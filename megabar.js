@@ -35,5 +35,11 @@
       if ((cs.position === "fixed" || cs.position === "sticky") && cs.top === "0px") el.style.top = H + "px";
     });
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build); else build();
+  function loadContact() {
+    if (window.__contactjs || document.getElementById("cu-loader") || !base) return;
+    var c = document.createElement("script"); c.id = "cu-loader"; c.src = base + "contact.js";
+    document.body.appendChild(c);
+  }
+  function go() { build(); loadContact(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go();
 })();
