@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zen Pizza</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="Zen">
+<nav class="nav">
+  <a class="logo" href="index.html" data-shop="name">Dough Re Mi</a>
+  <ul><li><a class="on" href="index.html">Home</a></li><li><a class="" href="menu.html">Menu</a></li><li><a class="" href="visit.html">Visit</a></li></ul>
+</nav>
+
+<header class="hero">
+  <div class="vert l">焼きたて</div>
+  <div class="sun" aria-hidden="true"></div>
+  <svg class="enso" viewBox="0 0 200 200" aria-hidden="true"><path d="M150 40 C100 5 30 30 28 100 C26 165 95 188 148 160 C178 142 186 108 180 82"/><path class="b" d="M144 46 C98 12 36 36 34 100 C32 160 94 182 144 156"/></svg>
+  <div class="hero-text">
+    <h1 data-shop="name">Dough Re Mi</h1>
+    <p data-shop="tagline">Wood-fired. Hand-stretched. Slightly dramatic.</p>
+    <span class="hanko" aria-hidden="true">窯</span>
+    <div class="btns" style="justify-content:center"><a class="btn red" data-order href="#">ORDER ONLINE</a><a class="btn" data-call href="tel:+14165550142">CALL</a></div>
+  </div>
+  <div class="vert">静かな一枚</div>
+  <span class="scroll" aria-hidden="true"></span>
+</header>
+
+<div class="sec rvme">
+  <div class="special" data-special>
+    <span class="tag">TODAY'S SPECIAL</span>
+    <h3>Margherita, quietly perfect</h3>
+    <p>Tomato, fresh mozzarella, basil. Nothing hides.</p>
+    <span class="pr">$19</span>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-head"><span class="vt">三枚</span><h2>Signature</h2></div>
+  <div class="feat" data-featured>
+    <article class="fcard"><span class="femoji">🍕</span><h3>Margherita</h3><p>Tomato, fresh mozzarella, basil, olive oil</p><b>$19</b></article>
+    <article class="fcard"><span class="femoji">🧀</span><h3>Four Cheese</h3><p>Mozzarella, cheddar, parmesan, blue cheese</p><b>$23</b></article>
+    <article class="fcard"><span class="femoji">🌶️</span><h3>Pepperoni Blaze</h3><p>Spicy pepperoni, chili oil, extra cheese</p><b>$24</b></article>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="story rvme">
+    <div class="big">窯の話</div>
+    <div>
+      <svg class="stroke" viewBox="0 0 140 14" aria-hidden="true"><path d="M2 8 C30 2 60 12 90 6 S125 5 138 8"/></svg>
+      <div data-story>
+        <p>We began with one oven and one rule: take away until only the essential remains. Flour, water, salt, fire.</p>
+        <p>The dough rests for two days, is stretched by hand, and bakes in ninety seconds. Come as you are. Sit. Eat slowly.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-head"><span class="vt">声</span><h2>Voices</h2></div>
+  <div class="quotes" data-quotes>
+    <div class="q"><p>The calmest pizza I have ever eaten. The crust is a small miracle.</p><cite>ANANYA, QUEEN WEST</cite></div>
+    <div class="q"><p>Simple menu, no noise. The best Margherita in the city.</p><cite>ROHAN K.</cite></div>
+    <div class="q"><p>We came for a quick bite and stayed two hours. Lovely place.</p><cite>MEERA &amp; SAM</cite></div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot">
+    <div><span class="brand" data-shop="name">Dough Re Mi</span><p data-shop="tagline">Wood-fired. Hand-stretched. Slightly dramatic.</p><p data-shop="address">218 Queen Street West, Toronto, ON M5V 2A4</p></div>
+    <div><h4>HOURS</h4><ul class="hours" data-hours><li><span class="hd">Mon - Thu</span><span class="ht">11:30 am - 10:00 pm</span></li><li><span class="hd">Fri - Sat</span><span class="ht">11:30 am - 11:30 pm</span></li><li><span class="hd">Sunday</span><span class="ht">12:00 pm - 9:00 pm</span></li></ul></div>
+    <div><h4>CALL</h4><p data-shop="phone">+1 (416) 555-0142</p><p><a data-call href="tel:+14165550142">Call</a> &middot; <a data-order href="#">Order online</a> &middot; <a data-wa href="https://wa.me/14165550142">WhatsApp</a></p></div>
+  </div>
+  <p class="copy"><span data-shop="name">Dough Re Mi</span> &middot; 静かな一枚</p>
+</footer>
+<script src="../shop.js"></script>
+<script src="../switcher.js"></script>
+<script>
+(function(){
+
+var T={
+feat:function(i,n){return '<article class="fcard"><span class="femoji">'+['\uD83C\uDF55','\uD83E\uDDC0','\uD83C\uDF36\uFE0F'][n%3]+'</span><h3>'+esc(i.name)+'</h3><p>'+esc(i.desc)+'</p><b>'+money(i.price)+'</b></article>'},
+special:function(s){return '<span class="tag">TODAY\'S SPECIAL</span><h3>'+esc(s.name)+'</h3><p>'+esc(s.desc)+'</p><span class="pr">'+money(s.price)+'</span>'},
+quote:function(q){return '<div class="q"><p>'+esc(q.q)+'</p><cite>'+esc(q.by).toUpperCase()+'</cite></div>'},
+faq:function(f){return '<details><summary>'+esc(f.q)+'</summary><p>'+esc(f.a)+'</p></details>'},
+cat:function(c,ci,body){return '<div class="cat" id="cat'+ci+'"><h2>'+esc(c.category)+'<span class="n">0'+(ci+1)+'</span></h2><ul class="items">'+body+'</ul></div>'},
+item:function(i){return '<li class="item"><h3>'+esc(i.name)+' <span class="tgs">'+badges(i)+'</span></h3><span class="price">'+money(i.price)+'</span><p>'+esc(i.desc)+'</p></li>'}
+};
+
+
+  var S=window.SHOP||{};
+  var $$=function(s){return [].slice.call(document.querySelectorAll(s))};
+  var esc=function(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML};
+  var cur=S.currency||'$';
+  function money(n){
+    if(typeof S.formatPrice==='function')return S.formatPrice(n);
+    if(typeof n==='number')n=(n%1?n.toFixed(2):n);
+    return cur+n;
+  }
+  var TAGS={'vegetarian':'V','vegan':'VG','gluten-free':'GF','spicy':'🌶'};
+  function tagsOf(i){var t=(i.tags||[]).slice();if(!t.length&&i.veg===true)t=['vegetarian'];return t}
+  function badges(i){
+    return tagsOf(i).filter(function(t){return TAGS[t]}).map(function(t){
+      return '<span class="tg tg-'+t.replace(/[^a-z]/g,'')+'" title="'+t+'">'+TAGS[t]+'</span>';
+    }).join('');
+  }
+  var digits=String(S.phone||'').replace(/\D/g,'');
+
+  $$('[data-shop]').forEach(function(el){var v=S[el.getAttribute('data-shop')];if(v)el.textContent=v});
+  if(S.name)document.title=S.name+' | '+(document.body.getAttribute('data-page')||'');
+  $$('[data-call]').forEach(function(a){if(digits)a.href='tel:+'+digits});
+  $$('[data-wa]').forEach(function(a){if(digits){a.href='https://wa.me/'+digits+'?text='+encodeURIComponent('Hi '+(S.name||'')+', I would like to order.');a.target='_blank';a.rel='noopener'}});
+  $$('[data-order]').forEach(function(a){if(S.orderUrl){a.href=S.orderUrl;a.target='_blank';a.rel='noopener'}else a.href='#'});
+  if(S.hoursList&&S.hoursList.length)$$('[data-hours]').forEach(function(ul){
+    ul.innerHTML=S.hoursList.map(function(h){return '<li><span class="hd">'+esc(h.d)+'</span><span class="ht">'+esc(h.t)+'</span></li>'}).join('');
+  });
+  if(typeof S.lat==='number')$$('[data-map]').forEach(function(f){
+    var d=.006;
+    f.src='https://www.openstreetmap.org/export/embed.html?bbox='+[S.lon-d,S.lat-d,S.lon+d,S.lat+d].join('%2C')+'&layer=mapnik&marker='+S.lat+'%2C'+S.lon;
+  });
+  var first=S.menu&&S.menu[0]?S.menu[0].items:[];
+  if(first.length)$$('[data-featured]').forEach(function(b){b.innerHTML=first.slice(0,3).map(function(i,n){return T.feat(i,n)}).join('')});
+  if(S.special)$$('[data-special]').forEach(function(b){b.innerHTML=T.special(S.special)});
+  if(S.story&&S.story.length)$$('[data-story]').forEach(function(b){b.innerHTML=S.story.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')});
+  if(S.quotes&&S.quotes.length)$$('[data-quotes]').forEach(function(b){b.innerHTML=S.quotes.slice(0,3).map(T.quote).join('')});
+  if(S.faq&&S.faq.length)$$('[data-faq]').forEach(function(b){b.innerHTML=S.faq.map(T.faq).join('')});
+  var m=document.getElementById('menu');
+  if(m&&S.menu&&S.menu.length){
+    m.innerHTML=S.menu.map(function(c,ci){
+      return T.cat(c,ci,(c.items||[]).map(T.item).join(''));
+    }).join('');
+    var tb=document.getElementById('tabs');
+    if(tb)tb.innerHTML=S.menu.map(function(c,ci){return '<a href="#cat'+ci+'">'+esc(c.category)+'</a>'}).join('');
+  }
+  /* scroll reveal; skipped (content stays visible) if no observer or reduced motion */
+  var els=$$('.rvme,.fcard,.cat,.q,.mapbox,.vcol');
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if('IntersectionObserver' in window&&!calm){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+    els.forEach(function(e){e.classList.add('rv');io.observe(e)});
+    var tl=$$('#tabs a'),cats=$$('.cat');
+    if(tl.length&&cats.length){
+      var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){tl.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-30% 0px -60% 0px'});
+      cats.forEach(function(c){io2.observe(c)});
+    }
+  }
+
+})();
+</script>
+</body>
+</html>

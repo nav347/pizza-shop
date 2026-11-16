@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Checklist: what every small shop website needs</title>
+<meta name="description" content="A plain checklist of the basic elements a small shop or restaurant website needs, with tips on mobile, speed, accessibility, trust and search.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="top"><div class="bar">
+  <a class="logo" href="index.html" data-shop="name">Dough Re Mi</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="visit.html">Visit</a></li>
+    <li><a href="checklist.html" aria-current="page">Checklist</a></li>
+  </ul></nav>
+  <button type="button" class="toggle" id="notes-toggle" aria-pressed="true">Design notes: ON</button>
+</div></header>
+
+<main id="main">
+  <h1>Basic elements every small shop site needs</h1>
+  <p>Written for shop owners in Canada. Tick things off as you go. Words with a line of explanation are marked in the text.</p>
+  <aside class="note"><span class="n">i</span><b>Design notes on this page</b>This page is a reference, so the notes are few. Turn them off for a clean read.</aside>
+  <p><a href="#test">Jump to: how to test it yourself</a></p>
+
+  <h2><span class="tag t-must">Must-have</span> Without these, people leave</h2>
+  <ul class="chk">
+    <li>Shop name and what you sell, clear in the first screen</li>
+    <li>Opening hours as real text, including holidays</li>
+    <li>Full address, plus a map link</li>
+    <li>Phone number that starts a call when tapped (a <code>tel:</code> link, with +1 and the area code)</li>
+    <li>Menu or product list as real text, with prices (say if tax is extra, such as "plus HST")</li>
+    <li>One clear main button: Order, Call, or Book</li>
+    <li>Works well on a phone</li>
+    <li>Allergen information for food: a short note plus "ask us"</li>
+  </ul>
+
+  <h2><span class="tag t-should">Should-have</span> Makes you look careful</h2>
+  <ul class="chk">
+    <li>Online ordering or links to the delivery apps you use</li>
+    <li>A Google Business Profile that matches the site (see SEO below)</li>
+    <li>A few real reviews or quotes</li>
+    <li>Photos of your own food and shop, small file size, with alt text</li>
+    <li>Links to your social pages, if you actually post there</li>
+    <li>Accessibility basics (below). In Ontario, AODA rules push businesses toward accessible service, and larger ones must meet WCAG (the web accessibility guidelines) on their sites.</li>
+    <li>A privacy line if you collect emails or names (Canada: PIPEDA is the federal privacy law)</li>
+  </ul>
+
+  <h2><span class="tag t-nice">Nice-to-have</span> Add later</h2>
+  <ul class="chk">
+    <li>French version (required in Quebec for business, and welcome elsewhere)</li>
+    <li>Gift cards, catering enquiries or a mailing list</li>
+    <li>Short story about who you are</li>
+    <li>"Open now" badge and holiday banner</li>
+    <li>Newsletter or event page</li>
+  </ul>
+
+  <h2><span class="tag t-bad">Common mistakes</span> Do not do these</h2>
+  <ul class="chk mistakes">
+    <li>Menu only as a PDF or a photo</li>
+    <li>Hours or address inside an image</li>
+    <li>Different hours on the site and on Google</li>
+    <li>Autoplay music or video, or pop-ups on arrival</li>
+    <li>Tiny grey text, or text laid over a busy picture</li>
+    <li>A giant hero photo that takes ten seconds to load</li>
+    <li>Prices with no tax note, or surprise fees at checkout</li>
+    <li>Tap targets so small that a thumb hits the wrong one</li>
+    <li>Letting the site go stale: old holiday banners, old prices</li>
+  </ul>
+
+  <h2 id="mobile">Mobile first</h2>
+  <p>Most people find a shop on their phone, often while walking. So design for a small screen first, then let it grow on a big one. This site works at 375 px wide (a common phone width) with no sideways scrolling. Put the call and order buttons where a thumb reaches.</p>
+
+  <h2>Contrast and font size</h2>
+  <p><b>Contrast</b> means how different the text colour is from the background. Dark on light is best. Aim for at least 4.5 to 1 for normal text (the WCAG rule). A free checker: search "WebAIM contrast checker". Use body text at 16 px or bigger. 18 px is kinder.</p>
+
+  <h2>Page speed</h2>
+  <p>Slow pages lose people. Keep images small: resize them to the size they show, and save as JPG or WebP. A phone photo straight from the camera can be 5 MB. That is far too big. Aim for under 200 KB per image. Skip heavy tools you do not need. This whole site uses no images at all.</p>
+
+  <h2>Accessibility basics</h2>
+  <p>Accessibility means people with low vision, limited movement or other needs can use your site too. It also helps everyone on a bright street.</p>
+  <ul class="chk">
+    <li><b>Alt text:</b> a short description for each photo (<code>alt="Margherita pizza with basil"</code>). Leave it empty for pure decoration.</li>
+    <li><b>Labels:</b> every form box has a visible label, not just grey hint text.</li>
+    <li><b>Focus states:</b> when you press Tab on a keyboard, you can see which link is selected. Try it on this page.</li>
+    <li><b>Semantic HTML</b> (using the right tags, such as <code>nav</code>, <code>main</code>, <code>h1</code> to <code>h3</code>, <code>button</code>): screen readers use these to find their way.</li>
+    <li>Do not use colour alone to give meaning. Write "Vegetarian" as well as showing a green dot.</li>
+    <li>Link text says where it goes: "See the menu", not "click here".</li>
+  </ul>
+
+  <h2>Trust signals</h2>
+  <p>A trust signal is anything that tells a stranger you are real and reliable.</p>
+  <ul class="chk">
+    <li>Real street address and phone number</li>
+    <li>Real reviews, with names or first names</li>
+    <li>Food safety or local licence notes if you want to show them</li>
+    <li>Clear prices, tax and refund or cancellation rules</li>
+    <li>Fresh content: current hours and current menu</li>
+  </ul>
+
+  <h2>SEO basics</h2>
+  <p>SEO (search engine optimisation) just means helping Google show your shop when someone searches "pizza near me".</p>
+  <ul class="chk">
+    <li><b>Title:</b> each page has its own, with shop name, what you sell and your town. See the <code>&lt;title&gt;</code> of each page here.</li>
+    <li><b>Meta description:</b> one or two sentences that appear under your link in search results.</li>
+    <li><b>Google Business Profile:</b> a free listing for Google Search and Maps. Claim it, add hours, photos, phone, menu link and website link. Reply to reviews. This is often more important than the website itself.</li>
+    <li>Use the same name, address and phone (NAP) everywhere: site, Google, social pages, directories.</li>
+    <li>Menu as text so Google can read it.</li>
+  </ul>
+
+  <h2 id="test">How to test it yourself</h2>
+  <details open>
+    <summary>The phone test</summary>
+    <p>Open your site on your own phone, on mobile data and not Wi-Fi. Can you read it without zooming? Does anything slide sideways? Tap the phone number. Does it start a call? Try with one hand.</p>
+  </details>
+  <details open>
+    <summary>The 5-second test</summary>
+    <p>Show the home page to someone for five seconds, then hide it. Ask: "What is this place? What do they sell? What would you do next?" If they cannot say, fix the top of the page.</p>
+  </details>
+  <details open>
+    <summary>Ask a friend to find the hours</summary>
+    <p>Hand a friend your phone and say "Is it open on Sunday night?" Do not help. Watch how long it takes. More than 10 seconds means the hours are too hidden.</p>
+  </details>
+  <details open>
+    <summary>Keyboard and zoom test</summary>
+    <p>Press Tab repeatedly: can you see where you are, and reach every button? Then zoom the browser to 200%. Is everything still usable?</p>
+  </details>
+</main>
+
+<footer>
+  <p><span data-shop="name">Dough Re Mi</span> &middot; <a href="tel:+14165550123" data-call data-shop="phone">+1 416 555 0123</a></p>
+  <p>This guide is general advice, not legal advice. Check current rules for your province.</p>
+</footer>
+<script src="../shop.js"></script>
+<script src="guide.js"></script>
+<script src="../switcher.js"></script>
+</body>
+</html>

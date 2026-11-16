@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Menu - Blob Pizza</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><nav><a href="index.html">Home</a><a href="menu.html" class=on>Menu</a><a href="visit.html">Visit</a></nav>
+<main>
+<h1>Menu</h1><p class="sub"><span data-shop="tagline">Hot, fresh, wood-fired pizza</span></p><div id="menu"><div class="card pop"><h2>Pizzas</h2><div><div class="item"><div><span class="n">Margherita</span><span class="d">Tomato, mozzarella, basil</span></div><span class="p">&#8377;199</span></div><div class="item"><div><span class="n">Paneer Tikka</span><span class="d">Paneer, onion, capsicum</span></div><span class="p">&#8377;279</span></div></div></div></div>
+</main>
+<footer>Prices in &#8377;</footer>
+<script src="../shop.js"></script><script src="../switcher.js"></script>
+<script>
+window.addEventListener("load",function(){var m=document.getElementById("menu");if(!m||m.children.length)return;
+var d=(window.SHOP&&window.SHOP.menu)||[];
+m.innerHTML=d.map(function(c){return '<div class="card pop"><h2>'+c.category+'</h2><div>'+c.items.map(function(i){return '<div class="item"><div><span class="n">'+i.name+'</span><span class="d">'+(i.desc||"")+'</span></div><span class="dots"></span><span class="p">&#8377;'+i.price+'</span></div>'}).join("")+'</div></div>'}).join("")||m.innerHTML;});
+</script><script>
+(function(){function go(){var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");o.unobserve(x.target)}})},{threshold:.1});document.querySelectorAll(".pop").forEach(function(p){o.observe(p)})}
+if(!("IntersectionObserver" in window)){document.querySelectorAll(".pop").forEach(function(p){p.classList.add("in")})}else{go();window.addEventListener("load",function(){setTimeout(go,300)})}})();
+</script></body></html>

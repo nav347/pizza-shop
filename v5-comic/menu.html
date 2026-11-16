@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Menu - Comic Pizza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<nav><a href="index.html">HOME!</a><a href="menu.html">MENU!</a><a href="visit.html">VISIT!</a></nav>
+<div class="wrap"><h1 style="font-family:Bangers;font-size:3rem;color:#e8112d;text-shadow:3px 3px 0 #111">THE MENU! <span class="pow" style="width:70px;height:70px;line-height:70px;font-size:1rem;margin:0">YUM</span></h1>
+<div id="menu"></div></div>
+<footer><span data-shop="name">Pizza Shop</span> &middot; <span data-shop="phone">+91 00000 00000</span></footer>
+<script src="../shop.js"></script><script src="../switcher.js"></script>
+<script>
+window.addEventListener('load',function(){var m=document.getElementById('menu');if(!m||m.children.length)return;
+var d=(window.SHOP&&window.SHOP.menu)||[{category:'Pizzas',items:[{name:'Margherita',desc:'Tomato, mozzarella, basil',price:249},{name:'Paneer Tikka',desc:'Spiced paneer, onion',price:329}]}];
+d.forEach(function(c){var s=document.createElement('section');s.className='cat';s.innerHTML='<h2></h2>';s.firstChild.textContent=c.category;
+(c.items||[]).forEach(function(i){var e=document.createElement('div');e.className='item';e.innerHTML='<div><b></b><small></small></div><span class="price"></span>';
+e.querySelector('b').textContent=i.name;e.querySelector('small').textContent=i.desc||'';e.querySelector('.price').textContent='\u20B9'+i.price;s.appendChild(e)});m.appendChild(s)})});
+</script></body></html>

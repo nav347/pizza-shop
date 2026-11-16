@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blob Pizza</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><nav><a href="index.html" class=on>Home</a><a href="menu.html">Menu</a><a href="visit.html">Visit</a></nav>
+<main>
+<span class="hero-pizza">&#127829;</span>
+<h1><span data-shop="name">Slice of Heaven Pizza</span></h1><p class="sub"><span data-shop="tagline">Hot, fresh, wood-fired pizza</span></p>
+<div class="card pop"><h2>Hungry?</h2><p>Open: <span data-shop="hours">Daily 11:00 AM - 11:00 PM</span></p><p><span data-shop="address">12 Main Road, Your City 400001</span></p><p>Call <span data-shop="phone">+91 98765 43210</span></p>
+<a class="btn" href="menu.html">See the menu</a><a class="btn g" href="visit.html">Come say hi</a></div>
+<div class="card pop"><h2>Squishy, cheesy, happy</h2><p>&#129472; &#127813; &#129750; Baked fresh, bounced to your table.</p></div>
+</main>
+<footer>Made with cheese by <span data-shop="name">Slice of Heaven Pizza</span></footer>
+<script src="../shop.js"></script><script src="../switcher.js"></script>
+<script>
+(function(){function go(){var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");o.unobserve(x.target)}})},{threshold:.1});document.querySelectorAll(".pop").forEach(function(p){o.observe(p)})}
+if(!("IntersectionObserver" in window)){document.querySelectorAll(".pop").forEach(function(p){p.classList.add("in")})}else{go();window.addEventListener("load",function(){setTimeout(go,300)})}})();
+</script></body></html>

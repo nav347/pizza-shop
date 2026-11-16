@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visit - Chalkboard Pizza</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<nav class="nav">
+  <a class="logo wob" href="index.html" data-shop="name">Pizza Shop</a>
+  <ul><li><a href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a class="on" href="visit.html">Visit</a></li></ul>
+</nav>
+<div class="title"><h1>Come say hi!</h1>
+<svg class="under" viewBox="0 0 420 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C60 4 120 22 190 12 S330 4 416 14"/></svg></div>
+
+<div class="board"><h2>Hours</h2><p data-shop="hours">Daily 11:00 – 23:00</p></div>
+<div class="board"><h2>Where</h2><p data-shop="address">12 Main Road, Your City</p>
+  <!-- placeholder map: replace bbox with the real location -->
+  <iframe class="map" title="Map" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=77.55%2C12.95%2C77.65%2C13.00&amp;layer=mapnik"></iframe>
+</div>
+<div class="board"><h2>Order now</h2><p data-shop="phone">+91 98765 43210</p>
+  <a class="btn" id="call" href="tel:+919876543210">Call us</a>
+  <a class="btn g" id="wa" href="https://wa.me/919876543210">WhatsApp</a>
+</div>
+<footer><span data-shop="name">Pizza Shop</span></footer>
+</div>
+<script src="../shop.js"></script>
+<script src="../switcher.js"></script>
+<script>
+window.addEventListener('load',function(){
+  var p=window.SHOP&&window.SHOP.phone;if(!p)return;
+  var d=String(p).replace(/\D/g,'');
+  document.getElementById('call').href='tel:+'+d;
+  document.getElementById('wa').href='https://wa.me/'+d;
+});
+</script>
+</body>
+</html>

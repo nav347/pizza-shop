@@ -1,0 +1,17 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Menu - Luxe Pizza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<nav><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="visit.html">Visit</a></nav>
+<div class="wrap"><h1 class="reveal" style="text-align:center">La Carte</h1><div class="rule"></div><div id="menu"></div></div>
+<footer><span data-shop="name">Pizza Shop</span> &middot; <span data-shop="phone">+91 00000 00000</span></footer>
+<script src="../shop.js"></script><script src="../switcher.js"></script>
+<script>
+window.addEventListener('load',function(){var m=document.getElementById('menu');if(!m||m.children.length)return;
+var d=(window.SHOP&&window.SHOP.menu)||[{category:'Pizzas',items:[{name:'Margherita',desc:'Tomato, mozzarella, basil',price:249},{name:'Paneer Tikka',desc:'Spiced paneer, onion',price:329}]}];
+var k=0;d.forEach(function(c){var s=document.createElement('section');s.className='cat';s.innerHTML='<h2></h2>';s.firstChild.textContent=c.category;
+(c.items||[]).forEach(function(i){var e=document.createElement('div');e.className='item reveal';e.style.animationDelay=(.2*k++)+'s';
+e.innerHTML='<div class="n"></div><span class="dots"></span><span class="price"></span>';
+e.querySelector('.n').innerHTML='<span></span><small></small>';e.querySelector('.n span').textContent=i.name;e.querySelector('small').textContent=i.desc||'';
+e.querySelector('.price').textContent='\u20B9'+i.price;s.appendChild(e)});m.appendChild(s)})});
+</script></body></html>

@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Patrick+Hand&family=Gloria+Hallelujah&display=swap');
+
+:root{--slate:#23292b;--chalk:#f4f1e6;--yel:#f7d96b;--pink:#f59bb0;--blue:#8fd3f4;--grn:#a8e6a1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Patrick Hand',cursive;font-size:1.25rem;color:var(--chalk);line-height:1.5;overflow-x:hidden;min-height:100vh;
+ background:
+  radial-gradient(ellipse at 20% 10%,rgba(255,255,255,.08),transparent 55%),
+  radial-gradient(ellipse at 80% 90%,rgba(255,255,255,.05),transparent 50%),
+  repeating-linear-gradient(97deg,rgba(255,255,255,.015) 0 2px,transparent 2px 7px),
+  repeating-linear-gradient(7deg,rgba(0,0,0,.05) 0 3px,transparent 3px 9px),
+  var(--slate);
+ border:14px solid #6b4a2b;border-image:linear-gradient(135deg,#7a5532,#4a3019,#7a5532) 1;box-shadow:inset 0 0 80px rgba(0,0,0,.6)}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:'Caveat Brush',cursive;font-weight:400;letter-spacing:.03em}
+.wrap{max-width:900px;margin:0 auto;padding:20px 5vw 60px}
+
+.nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:14px 0}
+.nav .logo{font-family:'Caveat Brush',cursive;font-size:1.8rem;color:var(--yel)}
+.nav ul{list-style:none;display:flex;gap:18px;flex-wrap:wrap}
+.nav li a{display:inline-block;padding:2px 10px;border:2px solid transparent;border-radius:255px 15px 225px 15px/15px 225px 15px 255px}
+.nav li a.on{border-color:var(--chalk)}
+.wob:hover,.nav li a:hover,.btn:hover,.item:hover{animation:wobble .6s ease-in-out}
+@keyframes wobble{0%,100%{transform:rotate(0)}20%{transform:rotate(-3deg) scale(1.03)}40%{transform:rotate(2.5deg)}60%{transform:rotate(-2deg)}80%{transform:rotate(1.2deg)}}
+
+.hero{text-align:center;padding:5vh 0 4vh}
+.hero h1{font-size:clamp(2.6rem,10vw,5.2rem);color:var(--chalk);line-height:1.05;text-shadow:0 0 2px rgba(255,255,255,.6),2px 3px 0 rgba(0,0,0,.35)}
+/* signature: chalk underline that draws itself */
+.under{display:block;margin:6px auto 0;width:min(80%,420px);height:24px}
+.under path{fill:none;stroke:var(--yel);stroke-width:5;stroke-linecap:round;stroke-dasharray:500;stroke-dashoffset:500;animation:draw 2.2s ease-out .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero p{font-family:'Gloria Hallelujah',cursive;font-size:1.15rem;margin-top:12px;color:var(--blue);opacity:0;animation:appear 1s ease 2s forwards}
+@keyframes appear{to{opacity:1}}
+.doodles{display:flex;justify-content:center;gap:26px;margin:28px 0;font-size:2.6rem;flex-wrap:wrap}
+.doodles span{display:inline-block;filter:grayscale(1) brightness(1.8) contrast(.8);animation:bob 3s ease-in-out infinite}
+.doodles span:nth-child(2){animation-delay:.5s}.doodles span:nth-child(3){animation-delay:1s}.doodles span:nth-child(4){animation-delay:1.5s}
+@keyframes bob{50%{transform:translateY(-8px) rotate(6deg)}}
+.doodle-svg{width:90px;height:90px;display:block;margin:0 auto}
+.doodle-svg *{fill:none;stroke:var(--chalk);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+
+.board{border:3px solid var(--chalk);border-radius:255px 18px 225px 18px/18px 225px 18px 255px;padding:24px 28px;margin:26px 0;background:rgba(255,255,255,.03)}
+.board h2{color:var(--pink);font-size:2rem}
+.board p{margin-top:4px}
+.btn{display:inline-block;margin:16px 10px 0 0;padding:8px 26px;border:3px solid var(--yel);color:var(--yel);font-family:'Caveat Brush',cursive;font-size:1.5rem;border-radius:255px 15px 225px 15px/15px 225px 15px 255px}
+.btn.g{border-color:var(--grn);color:var(--grn)}
+
+.title{text-align:center;padding:3vh 0}
+.title h1{font-size:clamp(2.4rem,9vw,4rem);color:var(--yel)}
+
+.cat{margin-bottom:40px}
+.cat h2{font-size:2.2rem;color:var(--pink);border-bottom:3px dashed rgba(244,241,230,.5);padding-bottom:4px;margin-bottom:10px}
+.cat:nth-child(3n+2) h2{color:var(--blue)}.cat:nth-child(3n+3) h2{color:var(--grn)}
+.item{display:flex;align-items:baseline;gap:8px;padding:6px 4px;cursor:default}
+.item .nm{font-family:'Caveat Brush',cursive;font-size:1.5rem}
+.item .dots{flex:1;border-bottom:2px dotted rgba(244,241,230,.4);min-width:10px;transform:translateY(-4px)}
+.item .pr{font-family:'Caveat Brush',cursive;font-size:1.5rem;color:var(--yel)}
+.item .ds{display:block;font-family:'Gloria Hallelujah',cursive;font-size:.9rem;color:rgba(244,241,230,.7);width:100%}
+.item .row{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;width:100%}
+
+.map{width:100%;height:300px;border:4px solid var(--chalk);border-radius:12px;margin-top:20px;filter:invert(.9) hue-rotate(180deg) grayscale(.5)}
+footer{text-align:center;font-family:'Gloria Hallelujah',cursive;font-size:.9rem;opacity:.7;padding:30px 0 10px}
+
+@media(max-width:640px){body{border-width:8px;font-size:1.1rem}.board{padding:18px}.nav{justify-content:center}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important}}

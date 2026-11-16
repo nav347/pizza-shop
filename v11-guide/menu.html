@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Menu | Dough Re Mi</title>
+<meta name="description" content="Our full menu with prices: pizzas, sides, pasta, drinks and sweets. Dietary tags shown on each item.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="top"><div class="bar">
+  <a class="logo" href="index.html" data-shop="name">Dough Re Mi</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html" aria-current="page">Menu</a></li>
+    <li><a href="visit.html">Visit</a></li>
+    <li><a href="checklist.html">Checklist</a></li>
+  </ul></nav>
+  <button type="button" class="toggle" id="notes-toggle" aria-pressed="true">Design notes: ON</button>
+</div></header>
+
+<main id="main">
+  <h1>Menu</h1>
+  <p>Prices are in Canadian dollars. Tax is added at checkout.</p>
+
+  <aside class="note"><span class="n">1</span><b>The menu is real text on the page</b>Not a PDF and not a photo of a printed menu. It loads fast on a phone, can be zoomed, read aloud by screen readers, and found by Google.<span class="bad">Mistake avoided: a PDF that needs pinching and zooming, or a menu that is one big picture with words in it.</span></aside>
+
+  <div class="legend" aria-label="How to read tags">
+    <span><span class="dtag">Vegetarian</span> meat-free</span>
+    <span><span class="dtag">Vegan</span> no animal products</span>
+    <span><span class="dtag">Gluten-free</span> ask about the kitchen</span>
+  </div>
+  <aside class="note"><span class="n">2</span><b>Dietary tags in words</b>Tags such as vegetarian, vegan and gluten-free are written out, not shown by colour alone. Many guests ask this first. Add a line telling people to ask about allergens (nuts, dairy, gluten, sesame).<span class="bad">Mistake avoided: a colour-only code that colour-blind guests cannot read, or no allergen note at all. Allergen care is a safety matter in Canada.</span></aside>
+
+  <div id="menu"><p>Loading the menu... If it does not appear, please call us.</p></div>
+
+  <aside class="note"><span class="n">3</span><b>Scannable categories</b>Each group (Pizzas, Sides, Pasta, Drinks) has its own heading, so people jump straight to what they want. A name, a one-line description, then the price.<span class="bad">Mistake avoided: one long list with no groups.</span></aside>
+  <aside class="note"><span class="n">4</span><b>Prices in one column</b>Prices line up on the right with a dotted guide from the name. The eye runs down the column to compare. Show the currency sign and tax rule once, near the top.<span class="bad">Mistake avoided: "market price", prices buried in sentences, or tax surprises at checkout. Say "plus HST" or "tax included" clearly.</span></aside>
+
+  <div class="btns">
+    <a class="btn" href="visit.html#order">Order now</a>
+    <a class="btn alt" href="tel:+14165550123" data-call>Call to order</a>
+  </div>
+  <aside class="note"><span class="n">5</span><b>A button at the end of the menu</b>When someone has chosen, the next step is right there. Do not make them scroll back up to find how to order.</aside>
+  <aside class="note"><span class="n">6</span><b>Bilingual?</b>In Quebec, French must be at least as prominent as English. Elsewhere, a French version helps many customers. If you add one, give it its own page (such as <code>fr/menu.html</code>) and a clear "Francais" link.</aside>
+</main>
+
+<footer>
+  <p><span data-shop="name">Dough Re Mi</span> &middot; <a href="tel:+14165550123" data-call data-shop="phone">+1 416 555 0123</a></p>
+</footer>
+<script src="../shop.js"></script>
+<script src="guide.js"></script>
+<script src="../switcher.js"></script>
+</body>
+</html>

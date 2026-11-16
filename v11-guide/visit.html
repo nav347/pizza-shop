@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visit and order | Dough Re Mi</title>
+<meta name="description" content="Address, map, opening hours, and how to order pickup, delivery or by phone.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="top"><div class="bar">
+  <a class="logo" href="index.html" data-shop="name">Dough Re Mi</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="visit.html" aria-current="page">Visit</a></li>
+    <li><a href="checklist.html">Checklist</a></li>
+  </ul></nav>
+  <button type="button" class="toggle" id="notes-toggle" aria-pressed="true">Design notes: ON</button>
+</div></header>
+
+<main id="main">
+  <h1>Visit and order</h1>
+  <p id="open-now" class="open" role="status">Check hours below</p>
+
+  <section class="card" id="order" aria-labelledby="ord">
+    <h2 id="ord">Order</h2>
+    <div class="btns">
+      <a class="btn" href="tel:+14165550123" data-call>Call <span data-shop="phone">+1 416 555 0123</span></a>
+      <a class="btn alt" href="#">Order online for pickup</a>
+      <a class="btn alt" href="#">Delivery apps</a>
+    </div>
+    <p>The online and delivery links above are placeholders. Point them at your own ordering page and the apps you use (for example Uber Eats, DoorDash, SkipTheDishes).</p>
+  </section>
+  <aside class="note"><span class="n">1</span><b>Order buttons, big and plain</b>Each way to order is one large button that says what it does. Buttons are at least 48 px tall so a thumb can hit them.<span class="bad">Mistake avoided: "Click here", tiny links, or only one way to order. If you sell on delivery apps, say so, and link to your own ordering page too, since apps take a cut.</span></aside>
+
+  <div class="facts">
+    <section class="card" aria-labelledby="hrs">
+      <h2 id="hrs">Hours</h2>
+      <ul class="hours" data-hours>
+        <li><span class="hd">Mon - Thu</span><span class="ht">12:00 pm - 11:00 pm</span></li>
+        <li><span class="hd">Fri - Sat</span><span class="ht">12:00 pm - 12:30 am</span></li>
+        <li><span class="hd">Sunday</span><span class="ht">1:00 pm - 11:00 pm</span></li>
+      </ul>
+      <p>Holiday hours: add a note here when they change.</p>
+    </section>
+    <section class="card" aria-labelledby="adr">
+      <h2 id="adr">Address and contact</h2>
+      <address><span data-shop="address">42 Oven Lane, Toronto, ON</span><br>
+      Phone: <a href="tel:+14165550123" data-call data-shop="phone">+1 416 555 0123</a></address>
+    </section>
+  </div>
+  <aside class="note"><span class="n">2</span><b>Hours as a table-like list</b>Days on the left, times on the right, as real text. It is easy to scan, and a screen reader can read it. Mention holiday changes (Canada Day, Christmas) in one line.<span class="bad">Mistake avoided: hours as a picture, or a different time here than on Google Maps. A wrong time costs you a customer.</span></aside>
+
+  <section class="mapbox" aria-labelledby="mp">
+    <h2 id="mp">Map</h2>
+    <iframe title="Map showing our location" data-map loading="lazy" src="about:blank"></iframe>
+    <p>Map not showing? Use the address above in your maps app.</p>
+  </section>
+  <aside class="note"><span class="n">3</span><b>A map and the written address</b>The map helps people see how close you are. The written address is there too, so it can be copied, read aloud, or pasted into a rideshare app.<span class="bad">Mistake avoided: a map with no address (useless when the map fails to load) or an address with no map. Also add parking, transit and wheelchair access notes: AODA expects accessible customer service in Ontario.</span></aside>
+
+  <aside class="note"><span class="n">4</span><b>Contact: more than one way</b>A phone for quick questions. Add an email or a contact form only if you will answer it. If a form asks for details, label every box and say why you need it (Canada's privacy law, PIPEDA, applies).<span class="bad">Mistake avoided: a contact form nobody reads, or one with unlabelled boxes.</span></aside>
+</main>
+
+<footer>
+  <p><span data-shop="name">Dough Re Mi</span> &middot; Prices in CAD, tax added at checkout. Please tell us about allergies when you order.</p>
+</footer>
+<script src="../shop.js"></script>
+<script src="guide.js"></script>
+<script src="../switcher.js"></script>
+</body>
+</html>

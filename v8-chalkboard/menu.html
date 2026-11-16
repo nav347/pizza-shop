@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Menu - Chalkboard Pizza</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<nav class="nav">
+  <a class="logo wob" href="index.html" data-shop="name">Pizza Shop</a>
+  <ul><li><a href="index.html">Home</a></li><li><a class="on" href="menu.html">Menu</a></li><li><a href="visit.html">Visit</a></li></ul>
+</nav>
+<div class="title"><h1>~ The Menu ~</h1>
+<svg class="under" viewBox="0 0 420 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C60 4 120 22 190 12 S330 4 416 14"/></svg></div>
+<div id="menu"></div>
+<noscript><p>Please enable JavaScript to see the menu, or call us.</p></noscript>
+<footer><span data-shop="name">Pizza Shop</span> &middot; <span data-shop="phone">+91 98765 43210</span></footer>
+</div>
+<script src="../shop.js"></script>
+<script src="../switcher.js"></script>
+<script>
+window.addEventListener('load',function(){
+  var m=document.getElementById('menu');
+  if(!m||m.children.length||m.textContent.trim())return;
+  var data=(window.SHOP&&window.SHOP.menu)||[];
+  if(!data.length){m.innerHTML='<p>Menu coming soon.</p>';return;}
+  var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+  m.innerHTML=data.map(function(c){
+    return '<div class="cat"><h2>'+esc(c.category)+'</h2>'+
+      (c.items||[]).map(function(i){
+        return '<div class="item"><div class="row"><span class="nm">'+esc(i.name)+'</span><span class="dots"></span><span class="pr">&#8377;'+esc(i.price)+'</span></div><span class="ds">'+esc(i.desc)+'</span></div>';
+      }).join('')+'</div>';
+  }).join('');
+});
+</script>
+</body>
+</html>
