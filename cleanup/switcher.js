@@ -1,6 +1,6 @@
 /* Cleanup-site version bar: jump between v1..v10, keeping the same page (index / services / quote).
    Also fills elements with data-biz="name|tagline|phone|email|area|hours" from window.BIZ
-   (links with data-biz=phone/email and no href get tel:/mailto:), and loads the root megabar.js. */
+   (links with data-biz=phone/email and no href get tel:/mailto:), and loads the root megabar.js and ratings.js. */
 (function () {
   var V = [
     ["v1-clean", "1 Clean Trust"], ["v2-pro", "2 Pro Contractor"],
@@ -47,7 +47,7 @@
     if (!inV) sel.innerHTML = '<option value="-1">Pick a design...</option>';
     V.forEach(function (v, i) {
       var o = document.createElement("option");
-      o.value = i; o.textContent = v[1]; o.setAttribute("data-slug", v[0]); if (i === idx) o.selected = true; sel.appendChild(o);
+      o.value = i; o.textContent = v[1]; o.setAttribute("data-slug", v[0]); o.setAttribute("data-label", v[1]); if (i === idx) o.selected = true; sel.appendChild(o);
     });
     sel.onchange = function () { if (+sel.value >= 0) go(+sel.value); };
     bar.querySelector("#sw-prev").onclick = function () { go((inV ? idx : 0) - 1); };
@@ -56,6 +56,12 @@
     var st = document.createElement("style");
     st.textContent = "#sw-bar a:focus-visible,#sw-bar button:focus-visible,#sw-bar select:focus-visible{outline:3px solid #7ad7f0;outline-offset:2px}";
     document.head.appendChild(st);
+  }
+  /* ratings.js (stars + favourites, shared with the pizza site) lives in the site root */
+  if (!window.PizzaRatings && !document.querySelector('script[src$="ratings.js"]')) {
+    var rs = document.createElement("script");
+    rs.src = here ? new URL("../ratings.js", here).href : "../../ratings.js";
+    document.head.appendChild(rs);
   }
   if (!window.__megabar && !document.querySelector('script[src$="megabar.js"]')) {
     var ms = document.createElement("script");

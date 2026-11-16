@@ -1,4 +1,4 @@
-/* Ratings + favourites for the pizza site. Loaded automatically by switcher.js (and by the gallery).
+/* Ratings + favourites for the pizza site AND the cleanup site (cleanup/). Cleanup keys sent to the server are "c-"+folder (c-v1-clean); pizza keys are the plain folder name. Loaded automatically by switcher.js (and by the gallery).
    Set API_BASE to the server URL later; empty = only this browser's ratings (localStorage).
    Contract: GET {API_BASE}/ratings -> {"v1-trattoria":{"avg":4.2,"count":12,"favs":3},...}
              POST {API_BASE}/rate {version, stars(1-5), voter}   POST {API_BASE}/fav {version, on:true|false, voter}
@@ -8,10 +8,14 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
 (function (root) {
   var KEY = "pizza.ratings.v1", VKEY = "pizza.voter.v1", TIMEOUT = 4000;
 
+  /* site key mapping: pizza keeps plain folder names (old votes stay valid); cleanup gets the "c-" prefix */
+  function keyFor(site, folder) { return site === "cleanup" ? "c-" + folder : folder; }
+  function siteFromPath(pathname) { return /(^|\/)cleanup(\/|$)/.test(pathname || "") ? "cleanup" : "pizza"; }
+
   /* ---- core logic (no DOM; testable in Node with injected storage/fetch) ---- */
   function createStore(o) {
     o = o || {};
-    var api = o.apiBase || "", st = o.storage, fx = o.fetch, mode = api ? "server" : "local";
+    var pre = o.prefix || "", api = o.apiBase || "", st = o.storage, fx = o.fetch, mode = api ? "server" : "local";
     var mine = { stars: {}, favs: {} }, shared = {}, subs = [], voter = "";
     try { var raw = st && st.getItem(KEY); if (raw) { var p = JSON.parse(raw); mine.stars = p.stars || {}; mine.favs = p.favs || {}; } } catch (e) {}
     try { voter = (st && st.getItem(VKEY)) || ""; } catch (e) {}
@@ -19,13 +23,15 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
       voter = "v" + Math.random().toString(36).slice(2, 12) + Date.now().toString(36);
       try { if (st) st.setItem(VKEY, voter); } catch (e) {}
     }
+    function K(v) { return pre && String(v).indexOf(pre) !== 0 ? pre + v : v; }
     function save() { try { if (st) st.setItem(KEY, JSON.stringify(mine)); } catch (e) {} }
     function emit() { subs.forEach(function (f) { try { f(); } catch (e) {} }); }
     function localStats(v) {
-      var s = mine.stars[v];
+      v = K(v); var s = mine.stars[v];
       return { avg: s || 0, count: s ? 1 : 0, favs: mine.favs[v] ? 1 : 0 };
     }
     function stats(v) {
+      v = K(v);
       if (mode === "server") {
         var d = shared[v];
         return d ? { avg: +d.avg || 0, count: +d.count || 0, favs: +d.favs || 0 } : { avg: 0, count: 0, favs: 0 };
@@ -47,11 +53,13 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
           function () { mode = "local"; emit(); return mode; });
     }
     function rate(v, n) {
+      v = K(v);
       n = Math.round(+n); if (!(n >= 1 && n <= 5)) return Promise.resolve(false);
       mine.stars[v] = n; save(); emit();
       return post("/rate", { version: v, stars: n, voter: voter }).then(function (ok) { return mode === "server" ? load() : ok; });
     }
     function fav(v, on) {
+      v = K(v);
       if (on === undefined) on = !mine.favs[v];
       if (on) mine.favs[v] = true; else delete mine.favs[v];
       save(); emit();
@@ -59,8 +67,8 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
     }
     return {
       load: load, rate: rate, fav: fav, stats: stats,
-      myStars: function (v) { return mine.stars[v] || 0; },
-      isFav: function (v) { return !!mine.favs[v]; },
+      myStars: function (v) { return mine.stars[K(v)] || 0; },
+      isFav: function (v) { return !!mine.favs[K(v)]; },
       mode: function () { return mode; },
       voter: function () { return voter; },
       subscribe: function (f) { subs.push(f); }
@@ -69,14 +77,15 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
   function r1(x) { return (Math.round(x * 10) / 10).toFixed(1); }
   function fmt(s) { return s.count ? "★" + r1(s.avg) + " (" + s.count + ")" : "no ratings"; }
 
-  if (typeof module !== "undefined" && module.exports) { module.exports = { createStore: createStore, fmt: fmt }; }
+  if (typeof module !== "undefined" && module.exports) { module.exports = { createStore: createStore, fmt: fmt, keyFor: keyFor, siteFromPath: siteFromPath }; }
   if (typeof window === "undefined" || typeof document === "undefined") return;
 
   /* ---- browser part ---- */
   var ls = null; try { ls = window.localStorage; } catch (e) {}
-  var store = createStore({ apiBase: API_BASE, storage: ls, fetch: window.fetch ? window.fetch.bind(window) : null });
+  var SITE = siteFromPath(location.pathname);
+  var store = createStore({ prefix: SITE === "cleanup" ? "c-" : "", apiBase: API_BASE, storage: ls, fetch: window.fetch ? window.fetch.bind(window) : null });
   var NOTE = "only your ratings shown (shared ratings not connected yet)";
-  window.PizzaRatings = { store: store, fmt: fmt, makeWidget: makeWidget, note: NOTE };
+  window.PizzaRatings = { site: SITE, store: store, fmt: fmt, makeWidget: makeWidget, note: NOTE };
 
   var path = location.pathname.split("/"); path.pop();
   var cur = path.pop() || "";
@@ -93,6 +102,7 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
     ".pr-pill{position:fixed;right:10px;z-index:2147482000;background:#111;color:#fff;border:2px solid #fff;border-radius:999px;padding:8px 14px;font:600 14px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.5);max-width:calc(100vw - 20px)}" +
     ".pr-panel{position:fixed;right:10px;z-index:2147482001;background:#111;color:#fff;border:2px solid #fff;border-radius:14px;padding:10px 12px;max-width:calc(100vw - 20px);box-shadow:0 4px 16px rgba(0,0,0,.6);font:600 13px/1.4 system-ui,sans-serif}" +
     ".pr-panel[hidden]{display:none}.pr-note{display:block;margin-top:6px;font-weight:400;font-size:11px;color:#ccc;max-width:260px}";
+  if (SITE === "cleanup") css.textContent += ".pr-pill,.pr-panel{border-color:#1167c9;font-family:Inter,system-ui,sans-serif}.pr-w button.on{color:#f5a300}";
   document.head.appendChild(css);
 
   /* A widget: 5 stars + heart + text for version v. Updates on store changes. */

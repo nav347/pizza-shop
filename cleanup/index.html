@@ -17,11 +17,20 @@ header p{margin-top:12px;color:#3d5168}
 .n{font-size:.8rem;font-weight:800;color:#6b7f95;letter-spacing:.08em}
 .card h2{font-size:1.2rem;margin:2px 0 6px}.card p{font-size:.95rem;color:#3d5168;flex:1}
 .go{font-weight:600;color:#1167c9;margin-top:12px}
+.cw{display:flex;flex-direction:column;min-width:0}.cw[hidden]{display:none}.cw .card{flex:1}
+.rt{background:#fff;border:2px solid #d5e0ee;border-top:0;border-radius:0 0 14px 14px;margin:-8px 8px 0;padding:10px 8px 6px;position:relative;z-index:1}
+.rt .pr-w{color:#12202f;max-width:100%}.rt .pr-w button{color:#b5c3d3}.rt .pr-w button.on{color:#f5a300}.rt .pr-w button.hf.on{color:#e0245e}.rt .pr-t{flex-basis:100%;margin:2px 0 0 4px;color:#3d5168}
+.tools{max-width:1100px;margin:10px auto 0;padding:0 5vw;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:.95rem;color:#3d5168}
+.tools select,.tools button{background:#fff;color:#0b3a6e;border:2px solid #d5e0ee;border-radius:10px;padding:8px 10px;font:inherit;font-weight:600;min-height:40px;cursor:pointer}
+.tools button[aria-pressed=true]{background:#1167c9;color:#fff;border-color:#1167c9}
+.tools :focus-visible{outline:3px solid #1167c9;outline-offset:2px}
+.empty{grid-column:1/-1;text-align:center;color:#3d5168}.pnote{max-width:1100px;margin:6px auto 0;padding:0 5vw;font-size:.8rem;color:#3d5168}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style></head>
 <body>
 <header><h1 data-biz="name"></h1><p><span data-biz="tagline"></span><br>Post-drywall cleanup for Toronto and the GTA. One business, ten different websites. Pick a vibe.</p><span class="tag">Placeholder brand for a design test</span></header>
-<main class="grid">
+<div class="tools"><label>Sort <select id="srt"><option value="n">Version</option><option value="r">Highest rated</option><option value="f">Most favourited</option></select></label><button type="button" id="myf" aria-pressed="false">&#10084; Your favourites</button></div><p class="pnote" id="pnote" aria-live="polite"></p>
+<main class="grid" id="grid">
 <a class="card" href="v1-clean/index.html"><div class="sw" style="background:linear-gradient(90deg,#fff,#1167c9)"></div><span class="n">01</span><h2>Clean Trust</h2><p>Crisp white and blue minimal: calm, clear and trustworthy.</p><span class="go">Open &rarr;</span></a>
 <a class="card" href="v2-pro/index.html"><div class="sw" style="background:linear-gradient(90deg,#14202e,#f5a300)"></div><span class="n">02</span><h2>Pro Contractor</h2><p>Corporate B2B look aimed at drywall companies who need a crew after theirs.</p><span class="go">Open &rarr;</span></a>
 <a class="card" href="v3-blueprint/index.html"><div class="sw" style="background:linear-gradient(90deg,#0a3d8f,#7fb2ff)"></div><span class="n">03</span><h2>Blueprint</h2><p>Technical drawing grid, white linework and dimensioned rooms.</p><span class="go">Open &rarr;</span></a>
@@ -33,5 +42,37 @@ header p{margin-top:12px;color:#3d5168}
 <a class="card" href="v9-before-after/index.html"><div class="sw" style="background:linear-gradient(90deg,#b9a99a,#fff)"></div><span class="n">09</span><h2>Before &amp; After</h2><p>Dusty on the left, spotless on the right: the result tells the story.</p><span class="go">Open &rarr;</span></a>
 <a class="card" href="v10-dark/index.html"><div class="sw" style="background:linear-gradient(90deg,#0d0f14,#4de0c4)"></div><span class="n">10</span><h2>Dark</h2><p>Dark mode with a cool teal glow, modern and sleek.</p><span class="go">Open &rarr;</span></a>
 </main>
-<script src="business.js"></script><script src="switcher.js"></script>
+<script src="business.js"></script><script src="../ratings.js"></script><script src="switcher.js"></script>
+<script>
+(function(){
+  var grid=document.getElementById("grid"),srt=document.getElementById("srt"),myf=document.getElementById("myf"),note=document.getElementById("pnote");
+  var items=[],i=0;
+  [].slice.call(grid.querySelectorAll("a.card")).forEach(function(a){
+    var slug=a.getAttribute("href").split("/")[0],w=document.createElement("div");
+    w.className="cw";grid.replaceChild(w,a);w.appendChild(a);
+    var r=document.createElement("div");r.className="rt";w.appendChild(r);
+    items.push({slug:slug,el:w,box:r,pos:i++});
+  });
+  var empty=document.createElement("p");empty.className="empty";empty.textContent="No favourites yet: tap the heart on a design.";
+  function render(){
+    var R=window.PizzaRatings,st=R.store,mode=srt.value,only=myf.getAttribute("aria-pressed")==="true";
+    var vis=items.filter(function(x){return !only||st.isFav(x.slug);});
+    if(mode==="r")vis.sort(function(a,b){var A=st.stats(a.slug),B=st.stats(b.slug);return B.avg-A.avg||B.count-A.count||a.pos-b.pos;});
+    else if(mode==="f")vis.sort(function(a,b){return st.stats(b.slug).favs-st.stats(a.slug).favs||a.pos-b.pos;});
+    else vis.sort(function(a,b){return a.pos-b.pos;});
+    items.forEach(function(x){x.el.hidden=vis.indexOf(x)<0;});
+    vis.forEach(function(x){grid.appendChild(x.el);});
+    if(!vis.length)grid.appendChild(empty);else if(empty.parentNode)grid.removeChild(empty);
+    note.textContent=st.mode()==="local"?R.note:"";
+  }
+  function start(){
+    var R=window.PizzaRatings;
+    items.forEach(function(x){x.box.appendChild(R.makeWidget(x.slug));});
+    R.store.subscribe(render);srt.onchange=render;
+    myf.onclick=function(){myf.setAttribute("aria-pressed",myf.getAttribute("aria-pressed")==="true"?"false":"true");render();};
+    render();
+  }
+  if(window.PizzaRatings)start();else{var n=0,t=setInterval(function(){if(window.PizzaRatings){clearInterval(t);start();}else if(++n>80)clearInterval(t);},50);}
+})();
+</script>
 </body></html>
