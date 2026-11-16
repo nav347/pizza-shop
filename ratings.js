@@ -3,7 +3,7 @@
    Contract: GET {API_BASE}/ratings -> {"v1-trattoria":{"avg":4.2,"count":12,"favs":3},...}
              POST {API_BASE}/rate {version, stars(1-5), voter}   POST {API_BASE}/fav {version, on:true|false, voter}
    A voter re-rating replaces their old rating (server side). */
-const API_BASE = "";
+const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
 
 (function (root) {
   var KEY = "pizza.ratings.v1", VKEY = "pizza.voter.v1", TIMEOUT = 4000;
