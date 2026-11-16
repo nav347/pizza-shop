@@ -1,13 +1,71 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Comic Pizza</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
-<nav><a href="index.html">HOME!</a><a href="menu.html">MENU!</a><a href="visit.html">VISIT!</a></nav>
-<div class="wrap hero"><div class="pow">POW!</div>
-<h1 data-shop="name">Pizza Shop</h1>
-<div class="bubble" data-shop="tagline">Hot, cheesy and way too good!</div><br>
-<a class="btn" href="menu.html">SEE THE MENU</a><a class="btn alt" href="visit.html">ORDER NOW!</a>
-<div class="panel"><h2>ZAP! Fresh out of the oven</h2><p>Stone-baked heroes with a cheesy super-power.</p></div></div>
-<footer><span data-shop="name">Pizza Shop</span> &middot; <span data-shop="phone">+91 00000 00000</span></footer>
-<script src="../shop.js"></script><script src="../switcher.js"></script>
+<title>Pop Comic Pizza - Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head>
+<body data-page="Home">
+<nav><a href="index.html" class="on">HOME!</a><a href="menu.html">MENU!</a><a href="visit.html">VISIT!</a></nav>
+<header class="hero"><div class="pow">NEW!</div><span class="issue">ISSUE #1 &middot; THE CHEESE AWAKENS</span><h1 data-shop="name">Dough Re Mi</h1><div class="bubble" data-shop="tagline">Wood-fired. Hand-stretched. Slightly dramatic.</div><br><a class="btn" data-call href="tel:+14165550123">CALL TO ORDER!</a><a class="btn blue" data-order href="#">ORDER ONLINE!</a><a class="btn alt" href="menu.html">SEE THE MENU</a></header><div class="ticker"><span>&#9733; HOT &#9733; CHEESY &#9733; WOOD-FIRED &#9733; HAND-STRETCHED &#9733; KA-POW FLAVOUR &#9733; FRESH DOUGH DAILY &#9733;</span></div><div class="wrap"><section class="sec"><div class="panel special" data-special><span class="caption">TODAY'S SPECIAL</span><div class="big">&#127829;</div><div><h3 class="sp-name">Smoky Pepper Supreme</h3><p class="sp-desc">Today only: charred peppers, caramelised onion, smoked cheddar, honey-chilli swirl.</p><span class="pow sm sp-price">$24</span></div></div></section><section class="sec"><h2>THE HERO LINEUP</h2><div data-featured><article class="fcard"><span class="femoji">&#127829;</span><h3>Margherita</h3><p>Tomato, fresh mozzarella, basil</p><b>$18</b></article><article class="fcard"><span class="femoji">&#129472;</span><h3>Four Cheese</h3><p>Mozzarella, cheddar, parmesan, blue</p><b>$22</b></article><article class="fcard"><span class="femoji">&#127798;&#65039;</span><h3>Pepperoni Blaze</h3><p>Spicy pepperoni, chilli oil</p><b>$21</b></article></div></section><section class="sec"><h2>ORIGIN STORY</h2><div class="panel story" data-story><span class="caption">MEANWHILE, IN THE KITCHEN...</span><p>Dough Re Mi began with one stubborn idea: pizza dough deserves 48 hours of patience. We ferment it slowly, stretch it by hand and bake it at 450 degrees in a wood-fired oven.</p><p>Every sauce is made in-house each morning. Every pizza leaves the oven a little charred, a little dramatic, and completely worth the wait.</p></div></section><section class="sec"><h2>FANS GO WILD!</h2><div class="cols" data-quotes><blockquote class="q"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><br><span>&ldquo;The crust alone is worth the trip. Crisp outside, soft inside.&rdquo;</span><cite>&mdash; Jenna R.</cite></blockquote><blockquote class="q"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><br><span>&ldquo;Best Margherita on the east side, no argument allowed.&rdquo;</span><cite>&mdash; Marcus T.</cite></blockquote><blockquote class="q"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><br><span>&ldquo;We ordered once and now it is a Friday tradition.&rdquo;</span><cite>&mdash; The Okafor family</cite></blockquote></div></section><section class="sec"><div class="btns rvme"><a class="btn" data-call href="tel:+14165550123">CALL NOW!</a><a class="btn blue" data-order href="#">ORDER ONLINE!</a></div></section></div>
+<footer><div class="cols"><div><h3>Hours</h3><ul class="hours" data-hours><li><span class="hd">Mon - Thu</span><span class="ht">12:00 pm - 11:00 pm</span></li><li><span class="hd">Fri - Sat</span><span class="ht">12:00 pm - 12:30 am</span></li><li><span class="hd">Sunday</span><span class="ht">1:00 pm - 11:00 pm</span></li></ul></div><div><h3>Find us</h3><p data-shop="address">42 Oven Lane, Toronto, ON M4M 1A1</p><p><a data-call href="tel:+14165550123"><span data-shop="phone">+1 (416) 555-0123</span></a></p></div><div><h3>Order</h3><p><a class="btn" data-call href="tel:+14165550123">Call</a><a class="btn blue solid" data-order href="#">Order online</a></p></div></div><p class="copy">&copy; <span data-shop="name">Dough Re Mi</span> &middot; <span data-shop="tagline">Wood-fired. Hand-stretched.</span></p></footer>
+<script src="../shop.js"></script>
+<script>
+(function(){
+var S=window.SHOP||{};
+var CUR=S.currency||'$';
+function money(n){
+  if(typeof S.formatPrice==='function'){try{return S.formatPrice(n);}catch(e){}}
+  n=Number(n);return CUR+(n%1?n.toFixed(2):n);
+}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function $$(s){return Array.prototype.slice.call(document.querySelectorAll(s));}
+var digits=String(S.phone||'').replace(/\D/g,'');
+$$('[data-shop]').forEach(function(e){var v=S[e.getAttribute('data-shop')];if(v)e.textContent=v;});
+if(S.name)document.title=S.name+' | '+(document.body.getAttribute('data-page')||'');
+if(digits)$$('[data-call]').forEach(function(a){a.href='tel:+'+digits;});
+$$('[data-order]').forEach(function(a){a.href=S.orderUrl||'#';if(S.orderUrl){a.target='_blank';a.rel='noopener';}});
+if(digits)$$('[data-wa]').forEach(function(a){a.href='https://wa.me/'+digits;a.target='_blank';a.rel='noopener';});
+if(S.hoursList)$$('[data-hours]').forEach(function(ul){ul.innerHTML='';S.hoursList.forEach(function(h){var li=el('li');li.appendChild(el('span','hd',h.d));li.appendChild(el('span','ht',h.t));ul.appendChild(li);});});
+if(S.lat&&S.lon)$$('[data-map]').forEach(function(f){var d=.006;f.src='https://www.openstreetmap.org/export/embed.html?bbox='+[S.lon-d,S.lat-d,S.lon+d,S.lat+d].join('%2C')+'&layer=mapnik&marker='+S.lat+'%2C'+S.lon;});
+var TAGS={vegetarian:['V','Vegetarian'],vegan:['VG','Vegan'],'gluten-free':['GF','Gluten-free'],spicy:['\uD83C\uDF36','Spicy']};
+function tagsOf(i){var t=(i.tags||[]).map(function(x){return String(x).toLowerCase();});if(i.veg===true&&t.indexOf('vegetarian')<0&&t.indexOf('vegan')<0)t.push('vegetarian');return t;}
+var menu=S.menu||[{category:'Pizzas',items:[{name:'Margherita',desc:'Tomato, mozzarella, basil',price:18,tags:['vegetarian']},{name:'Pepperoni',desc:'Spicy pepperoni, chilli oil',price:21,tags:['spicy']}]}];
+var m=document.getElementById('menu');
+if(m){
+  m.innerHTML='';
+  menu.forEach(function(c,ci){
+    var s=el('section','cat');s.id='cat'+ci;s.appendChild(el('h2','cat-title',c.category));
+    var ul=el('ul','items');
+    (c.items||[]).forEach(function(i){
+      var li=el('li','item'),h=el('div','ihead');
+      h.appendChild(el('span','iname',i.name));h.appendChild(el('span','idots'));
+      tagsOf(i).forEach(function(t){if(TAGS[t]){var b=el('span','dt dt-'+t.replace('-',''),TAGS[t][0]);b.title=TAGS[t][1];b.setAttribute('aria-label',TAGS[t][1]);h.appendChild(b);}});
+      h.appendChild(el('span','iprice',money(i.price)));
+      li.appendChild(h);li.appendChild(el('p','idesc',i.desc||''));ul.appendChild(li);
+    });
+    s.appendChild(ul);m.appendChild(s);
+  });
+  var tb=document.getElementById('tabs');
+  if(tb){tb.innerHTML='';menu.forEach(function(c,ci){var a=el('a',null,c.category);a.href='#cat'+ci;tb.appendChild(a);});}
+}
+$$('[data-featured]').forEach(function(box){
+  var E=['\uD83C\uDF55','\uD83E\uDDC0','\uD83C\uDF36\uFE0F'];
+  var items=(menu[0].items||[]).slice(0,3);
+  box.innerHTML='';
+  items.forEach(function(i,n){var a=el('article','fcard');a.appendChild(el('span','femoji',E[n%3]));a.appendChild(el('h3',null,i.name));a.appendChild(el('p',null,i.desc));a.appendChild(el('b',null,money(i.price)));box.appendChild(a);});
+});
+if(S.special)$$('[data-special]').forEach(function(b){
+  var n=b.querySelector('.sp-name'),d=b.querySelector('.sp-desc'),p=b.querySelector('.sp-price');
+  if(n)n.textContent=S.special.name;if(d)d.textContent=S.special.desc;if(p&&S.special.price!=null)p.textContent=money(S.special.price);
+});
+if(S.story&&S.story.length)$$('[data-story]').forEach(function(b){b.innerHTML='';S.story.forEach(function(t){b.appendChild(el('p',null,t));});});
+if(S.quotes&&S.quotes.length)$$('[data-quotes]').forEach(function(b){b.innerHTML='';S.quotes.forEach(function(q){var d=el('blockquote','q');d.appendChild(el('span',null,'\u201C'+q.q+'\u201D'));d.appendChild(el('cite',null,'\u2014 '+q.by));b.appendChild(d);});});
+if(S.faq&&S.faq.length)$$('[data-faq]').forEach(function(b){b.innerHTML='';S.faq.forEach(function(f){var d=el('details');d.appendChild(el('summary',null,f.q));d.appendChild(el('p',null,f.a));b.appendChild(d);});});
+var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!rm&&'IntersectionObserver' in window){
+  var els=$$('.fcard,.cat,.q,.panel,.box,.frame,.rvme,details,.item');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});
+  els.forEach(function(e){e.classList.add('rv');io.observe(e);});
+}
+})();
+</script>
+<script src="../switcher.js"></script>
 </body></html>

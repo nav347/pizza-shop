@@ -1,63 +1,145 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Patrick+Hand&family=Gloria+Hallelujah&display=swap');
 
-:root{--slate:#23292b;--chalk:#f4f1e6;--yel:#f7d96b;--pink:#f59bb0;--blue:#8fd3f4;--grn:#a8e6a1}
+:root{--slate:#23292b;--chalk:#f4f1e6;--yel:#f7d96b;--pink:#f59bb0;--blue:#8fd3f4;--grn:#a8e6a1;--org:#ffb46b}
 *{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{font-family:'Patrick Hand',cursive;font-size:1.25rem;color:var(--chalk);line-height:1.5;overflow-x:hidden;min-height:100vh;
  background:
-  radial-gradient(ellipse at 20% 10%,rgba(255,255,255,.08),transparent 55%),
-  radial-gradient(ellipse at 80% 90%,rgba(255,255,255,.05),transparent 50%),
-  repeating-linear-gradient(97deg,rgba(255,255,255,.015) 0 2px,transparent 2px 7px),
-  repeating-linear-gradient(7deg,rgba(0,0,0,.05) 0 3px,transparent 3px 9px),
+  radial-gradient(ellipse at 20% 10%,rgba(255,255,255,.09),transparent 55%),
+  radial-gradient(ellipse at 80% 90%,rgba(255,255,255,.06),transparent 50%),
+  radial-gradient(circle at 30% 60%,rgba(255,255,255,.04) 0,transparent 30%),
+  repeating-linear-gradient(97deg,rgba(255,255,255,.018) 0 2px,transparent 2px 7px),
+  repeating-linear-gradient(7deg,rgba(0,0,0,.06) 0 3px,transparent 3px 9px),
   var(--slate);
- border:14px solid #6b4a2b;border-image:linear-gradient(135deg,#7a5532,#4a3019,#7a5532) 1;box-shadow:inset 0 0 80px rgba(0,0,0,.6)}
+ background-attachment:fixed;
+ border:14px solid #6b4a2b;border-image:linear-gradient(135deg,#7a5532,#4a3019,#7a5532) 1;box-shadow:inset 0 0 90px rgba(0,0,0,.65)}
 a{color:inherit;text-decoration:none}
+ul{list-style:none}
 h1,h2,h3{font-family:'Caveat Brush',cursive;font-weight:400;letter-spacing:.03em}
-.wrap{max-width:900px;margin:0 auto;padding:20px 5vw 60px}
+.wrap{max-width:940px;margin:0 auto;padding:20px 5vw 40px}
 
 .nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:14px 0}
-.nav .logo{font-family:'Caveat Brush',cursive;font-size:1.8rem;color:var(--yel)}
-.nav ul{list-style:none;display:flex;gap:18px;flex-wrap:wrap}
-.nav li a{display:inline-block;padding:2px 10px;border:2px solid transparent;border-radius:255px 15px 225px 15px/15px 225px 15px 255px}
+.nav .logo{font-family:'Caveat Brush',cursive;font-size:1.9rem;color:var(--yel);display:inline-block}
+.nav ul{display:flex;gap:16px;flex-wrap:wrap}
+.nav li a{display:inline-block;padding:2px 12px;border:2px solid transparent;border-radius:255px 15px 225px 15px/15px 225px 15px 255px}
 .nav li a.on{border-color:var(--chalk)}
-.wob:hover,.nav li a:hover,.btn:hover,.item:hover{animation:wobble .6s ease-in-out}
-@keyframes wobble{0%,100%{transform:rotate(0)}20%{transform:rotate(-3deg) scale(1.03)}40%{transform:rotate(2.5deg)}60%{transform:rotate(-2deg)}80%{transform:rotate(1.2deg)}}
+.wob:hover,.nav li a:hover,.btn:hover,.item:hover .nm,.fcard:hover,.q:hover,.tabs a:hover{animation:wobble .6s ease-in-out}
+@keyframes wobble{0%,100%{transform:rotate(0)}20%{transform:rotate(-3deg) scale(1.04)}40%{transform:rotate(2.5deg)}60%{transform:rotate(-2deg)}80%{transform:rotate(1.2deg)}}
 
-.hero{text-align:center;padding:5vh 0 4vh}
-.hero h1{font-size:clamp(2.6rem,10vw,5.2rem);color:var(--chalk);line-height:1.05;text-shadow:0 0 2px rgba(255,255,255,.6),2px 3px 0 rgba(0,0,0,.35)}
-/* signature: chalk underline that draws itself */
-.under{display:block;margin:6px auto 0;width:min(80%,420px);height:24px}
-.under path{fill:none;stroke:var(--yel);stroke-width:5;stroke-linecap:round;stroke-dasharray:500;stroke-dashoffset:500;animation:draw 2.2s ease-out .3s forwards}
+/* hero */
+.hero{text-align:center;padding:4vh 0 3vh;position:relative}
+.hero h1{font-size:clamp(2.8rem,11vw,5.6rem);line-height:1.02;text-shadow:0 0 2px rgba(255,255,255,.6),2px 3px 0 rgba(0,0,0,.35);animation:scrawl 1.4s steps(18) both}
+@keyframes scrawl{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.under{display:block;margin:6px auto 0;width:min(80%,440px);height:24px}
+.under path{fill:none;stroke:var(--yel);stroke-width:5;stroke-linecap:round;stroke-dasharray:500;stroke-dashoffset:500;animation:draw 2.2s ease-out .9s forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
 .hero p{font-family:'Gloria Hallelujah',cursive;font-size:1.15rem;margin-top:12px;color:var(--blue);opacity:0;animation:appear 1s ease 2s forwards}
 @keyframes appear{to{opacity:1}}
-.doodles{display:flex;justify-content:center;gap:26px;margin:28px 0;font-size:2.6rem;flex-wrap:wrap}
+.doodle-svg{width:100px;height:100px;display:block;margin:0 auto 6px}
+.doodle-svg *{fill:none;stroke:var(--chalk);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.doodle-svg .steam{stroke:var(--blue);stroke-dasharray:6 6;animation:steam 2s linear infinite}
+@keyframes steam{to{stroke-dashoffset:-24}}
+.heroctas{margin-top:18px}
+.doodles{display:flex;justify-content:center;gap:26px;margin:20px 0;font-size:2.6rem;flex-wrap:wrap}
 .doodles span{display:inline-block;filter:grayscale(1) brightness(1.8) contrast(.8);animation:bob 3s ease-in-out infinite}
 .doodles span:nth-child(2){animation-delay:.5s}.doodles span:nth-child(3){animation-delay:1s}.doodles span:nth-child(4){animation-delay:1.5s}
 @keyframes bob{50%{transform:translateY(-8px) rotate(6deg)}}
-.doodle-svg{width:90px;height:90px;display:block;margin:0 auto}
-.doodle-svg *{fill:none;stroke:var(--chalk);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.star{position:absolute;color:var(--yel);font-size:1.6rem;animation:twinkle 2.4s ease-in-out infinite}
+@keyframes twinkle{50%{opacity:.25;transform:scale(.7) rotate(20deg)}}
 
-.board{border:3px solid var(--chalk);border-radius:255px 18px 225px 18px/18px 225px 18px 255px;padding:24px 28px;margin:26px 0;background:rgba(255,255,255,.03)}
+/* boards */
+.board{border:3px solid var(--chalk);border-radius:255px 18px 225px 18px/18px 225px 18px 255px;padding:24px 28px;margin:30px 0;background:rgba(255,255,255,.03);position:relative}
 .board h2{color:var(--pink);font-size:2rem}
 .board p{margin-top:4px}
-.btn{display:inline-block;margin:16px 10px 0 0;padding:8px 26px;border:3px solid var(--yel);color:var(--yel);font-family:'Caveat Brush',cursive;font-size:1.5rem;border-radius:255px 15px 225px 15px/15px 225px 15px 255px}
+.board.special{border-color:var(--yel);text-align:center;border-style:dashed;padding:30px 20px}
+.special .tag{font-family:'Gloria Hallelujah',cursive;font-size:.9rem;color:var(--yel);display:block}
+.special h2,.special h3{color:var(--chalk);font-size:clamp(1.8rem,6vw,2.6rem);margin:4px 0}
+.special .pr{display:inline-block;font-family:'Caveat Brush',cursive;font-size:2rem;color:var(--yel);border:3px solid var(--yel);border-radius:50%;padding:2px 18px;transform:rotate(-5deg);margin-top:8px}
+.special::after{content:"\2605";position:absolute;top:-16px;right:20px;color:var(--yel);font-size:2rem;transform:rotate(15deg);background:var(--slate);padding:0 6px}
+.btn{display:inline-block;margin:16px 10px 0 0;padding:8px 26px;border:3px solid var(--yel);color:var(--yel);font-family:'Caveat Brush',cursive;font-size:1.5rem;border-radius:255px 15px 225px 15px/15px 225px 15px 255px;transition:background .3s,color .3s}
 .btn.g{border-color:var(--grn);color:var(--grn)}
+.btn.p{border-color:var(--pink);color:var(--pink)}
+.btn:hover{background:rgba(255,255,255,.1)}
+.sec-title{text-align:center;font-size:2.4rem;color:var(--blue);margin:44px 0 18px}
+.sec-title::before,.sec-title::after{content:"~";color:var(--chalk);margin:0 12px}
 
+/* signature cards */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.fcard{border:3px solid var(--chalk);padding:22px 18px;text-align:center;border-radius:20px 230px 20px 230px/230px 20px 230px 20px;background:rgba(255,255,255,.03);transition:background .3s;cursor:default}
+.fcard:nth-child(2){border-color:var(--pink);transform:rotate(1.2deg)}
+.fcard:nth-child(3){border-color:var(--blue);transform:rotate(-1deg)}
+.fcard:hover{background:rgba(255,255,255,.09)}
+.femoji{display:block;font-size:2.6rem;filter:grayscale(1) brightness(1.8);margin-bottom:6px}
+.fcard h3{font-size:1.7rem;color:var(--yel)}
+.fcard p{font-family:'Gloria Hallelujah',cursive;font-size:.85rem;opacity:.8;margin:6px 0 10px}
+.fcard b{font-family:'Caveat Brush',cursive;font-size:1.6rem;font-weight:400;color:var(--grn)}
+
+/* story + quotes */
+.story p{margin-bottom:10px}
+.story p:first-letter{font-family:'Caveat Brush',cursive;font-size:2.2rem;color:var(--yel)}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.q{background:rgba(244,241,230,.92);color:#2b2b2b;padding:22px 16px 16px;position:relative;font-family:'Gloria Hallelujah',cursive;font-size:.92rem;box-shadow:3px 5px 0 rgba(0,0,0,.35);transition:box-shadow .2s}
+.q:nth-child(1){transform:rotate(-1.6deg)}.q:nth-child(2){transform:rotate(1.2deg)}.q:nth-child(3){transform:rotate(-.8deg)}
+.q::before{content:"";position:absolute;top:-10px;left:50%;width:70px;height:20px;margin-left:-35px;background:rgba(247,217,107,.75);transform:rotate(-3deg)}
+.q cite{display:block;margin-top:10px;font-style:normal;font-family:'Caveat Brush',cursive;font-size:1.2rem;color:#a33}
+
+/* scroll reveal: chalk fades and slides in */
+.rv{opacity:0;translate:0 28px;transition:opacity .9s ease,translate .9s cubic-bezier(.2,.8,.3,1.2)}
+.rv.in{opacity:1;translate:0 0}
+
+/* title */
 .title{text-align:center;padding:3vh 0}
 .title h1{font-size:clamp(2.4rem,9vw,4rem);color:var(--yel)}
 
-.cat{margin-bottom:40px}
-.cat h2{font-size:2.2rem;color:var(--pink);border-bottom:3px dashed rgba(244,241,230,.5);padding-bottom:4px;margin-bottom:10px}
-.cat:nth-child(3n+2) h2{color:var(--blue)}.cat:nth-child(3n+3) h2{color:var(--grn)}
-.item{display:flex;align-items:baseline;gap:8px;padding:6px 4px;cursor:default}
-.item .nm{font-family:'Caveat Brush',cursive;font-size:1.5rem}
+/* menu */
+.tabs{position:sticky;top:0;z-index:5;display:flex;gap:10px;overflow-x:auto;padding:10px 4px;margin:0 -4px 10px;background:rgba(35,41,43,.95);border-bottom:2px dashed rgba(244,241,230,.4);scrollbar-width:none}
+.tabs a{white-space:nowrap;font-family:'Caveat Brush',cursive;font-size:1.4rem;padding:0 16px;border:2px solid rgba(244,241,230,.35);border-radius:255px 15px 225px 15px/15px 225px 15px 255px;color:var(--chalk);display:inline-block}
+.tabs a.on{border-color:var(--yel);color:var(--yel);background:rgba(247,217,107,.08)}
+.legend{font-family:'Gloria Hallelujah',cursive;font-size:.8rem;display:flex;flex-wrap:wrap;gap:6px 18px;margin:14px 0 24px;opacity:.85}
+.cat{margin-bottom:44px;scroll-margin-top:70px}
+.cat h2{font-size:2.4rem;color:var(--pink);border-bottom:3px dashed rgba(244,241,230,.5);padding-bottom:4px;margin-bottom:10px}
+.cat:nth-child(3n+2) h2{color:var(--blue)}.cat:nth-child(3n+3) h2{color:var(--grn)}.cat:nth-child(3n+4) h2{color:var(--org)}
+.item{padding:8px 4px}
+.item .row{display:flex;align-items:baseline;gap:8px}
+.item .nm{font-family:'Caveat Brush',cursive;font-size:1.55rem;display:inline-block}
 .item .dots{flex:1;border-bottom:2px dotted rgba(244,241,230,.4);min-width:10px;transform:translateY(-4px)}
-.item .pr{font-family:'Caveat Brush',cursive;font-size:1.5rem;color:var(--yel)}
-.item .ds{display:block;font-family:'Gloria Hallelujah',cursive;font-size:.9rem;color:rgba(244,241,230,.7);width:100%}
-.item .row{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;width:100%}
+.item .pr{font-family:'Caveat Brush',cursive;font-size:1.55rem;color:var(--yel)}
+.item .ds{display:block;font-family:'Gloria Hallelujah',cursive;font-size:.88rem;color:rgba(244,241,230,.7)}
+.tg{display:inline-block;margin-left:6px;padding:0 6px;border:2px solid var(--grn);color:var(--grn);font:.8rem/1.4 'Gloria Hallelujah',cursive;border-radius:50%/60%;vertical-align:3px}
+.tg-vegan{border-color:var(--blue);color:var(--blue)}
+.tg-glutenfree{border-color:var(--org);color:var(--org)}
+.tg-spicy{border:0;padding:0;font-size:1rem;filter:none}
+.legend .tg{margin:0 6px 0 0}
 
-.map{width:100%;height:300px;border:4px solid var(--chalk);border-radius:12px;margin-top:20px;filter:invert(.9) hue-rotate(180deg) grayscale(.5)}
-footer{text-align:center;font-family:'Gloria Hallelujah',cursive;font-size:.9rem;opacity:.7;padding:30px 0 10px}
+/* visit */
+.hours li{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:2px dotted rgba(244,241,230,.35);flex-wrap:wrap}
+.hours .hd{font-family:'Caveat Brush',cursive;font-size:1.5rem;color:var(--blue)}
+.hours .ht{font-family:'Gloria Hallelujah',cursive;font-size:.95rem}
+.map{display:block;width:100%;height:320px;border:5px solid var(--chalk);border-radius:12px;margin-top:16px;filter:invert(.9) hue-rotate(180deg) grayscale(.5)}
+details{border-bottom:2px dotted rgba(244,241,230,.4);padding:12px 0}
+summary{cursor:pointer;font-family:'Caveat Brush',cursive;font-size:1.6rem;color:var(--yel);list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";transition:transform .3s;color:var(--pink)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{font-family:'Gloria Hallelujah',cursive;font-size:.95rem;margin-top:6px;opacity:.9}
 
-@media(max-width:640px){body{border-width:8px;font-size:1.1rem}.board{padding:18px}.nav{justify-content:center}}
-@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-delay:0s!important}}
+/* footer = wooden ledge with chalk notes */
+footer{background:#4a3019;border-top:10px solid #7a5532;padding:34px 5vw 70px;box-shadow:inset 0 10px 20px rgba(0,0,0,.4)}
+.foot{max-width:940px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:28px}
+.foot h4{font-family:'Caveat Brush',cursive;font-weight:400;font-size:1.5rem;color:var(--yel);margin-bottom:6px}
+.foot .brand{font-family:'Caveat Brush',cursive;font-size:2rem;color:var(--chalk);display:block}
+.foot p,.foot li{font-family:'Gloria Hallelujah',cursive;font-size:.85rem;line-height:1.7}
+.foot .hours li{padding:3px 0}.foot .hours .hd{font-size:1.1rem}.foot .hours .ht{font-size:.8rem}
+.foot a{text-decoration:underline wavy rgba(247,217,107,.6)}
+.copy{text-align:center;margin-top:24px;font-family:'Gloria Hallelujah',cursive;font-size:.75rem;opacity:.6}
+
+@media(max-width:700px){
+ body{border-width:8px;font-size:1.1rem}.board{padding:18px}.nav{justify-content:center}
+ .feat,.quotes,.foot{grid-template-columns:1fr}
+ .fcard:nth-child(n){transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+ *{animation-duration:.01s!important;animation-delay:0s!important;transition-duration:.01s!important}
+ .rv{opacity:1;translate:none}.under path{stroke-dashoffset:0}.hero p{opacity:1}
+ html{scroll-behavior:auto}
+}

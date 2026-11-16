@@ -1,13 +1,71 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Visit - Luxe Pizza</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head><body>
-<nav><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="visit.html">Visit</a></nav>
-<div class="wrap"><h1 class="reveal" style="text-align:center">Visit Us</h1><div class="rule"></div>
-<div class="box reveal d1"><h3>Address</h3><p data-shop="address">12 Main Road, Your City</p></div>
-<div class="box reveal d2"><h3>Hours</h3><p data-shop="hours">Daily 11am - 11pm</p></div>
-<iframe title="Map" src="https://www.openstreetmap.org/export/embed.html?bbox=77.55%2C12.95%2C77.65%2C13.0&amp;layer=mapnik" loading="lazy"></iframe>
-<p style="text-align:center;margin-top:24px"><a class="btn" href="tel:+910000000000">Call to Order</a><a class="btn" href="https://wa.me/910000000000">WhatsApp</a></p></div>
-<footer><span data-shop="name">Pizza Shop</span> &middot; <span data-shop="phone">+91 00000 00000</span></footer>
-<script src="../shop.js"></script><script src="../switcher.js"></script>
+<title>Luxe Pizza - Visit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head>
+<body data-page="Visit">
+<nav><a href="index.html">Home</a><a href="menu.html">Menu</a><a href="visit.html" class="on">Visit</a></nav>
+<div class="wrap"><p class="eyebrow reveal" style="text-align:center">Reservations &amp; orders</p><h1 class="title reveal d1" style="text-align:center">Visit Us</h1><div class="rule"></div><div class="cols"><div class="box"><h3>Hours</h3><ul class="hours" data-hours><li><span class="hd">Mon - Thu</span><span class="ht">12:00 pm - 11:00 pm</span></li><li><span class="hd">Fri - Sat</span><span class="ht">12:00 pm - 12:30 am</span></li><li><span class="hd">Sunday</span><span class="ht">1:00 pm - 11:00 pm</span></li></ul></div><div class="box"><h3>Address</h3><p data-shop="address">42 Oven Lane, Toronto, ON M4M 1A1</p><p><a data-call href="tel:+14165550123"><span data-shop="phone">+1 (416) 555-0123</span></a></p></div></div><section class="sec"><div class="mapbox"><iframe data-map title="Map to the restaurant" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=-79.3912%2C43.6472%2C-79.3752%2C43.6592&amp;layer=mapnik&amp;marker=43.6532%2C-79.3832"></iframe></div></section><div class="btns rvme"><a class="btn" data-call href="tel:+14165550123">Call to order</a><a class="btn blue solid" data-order href="#">Order online</a></div><p class="small"><a data-wa href="https://wa.me/14165550123">Prefer WhatsApp? Message us</a></p><section class="sec"><p class="eyebrow">Good to know</p><h2>Questions</h2><div data-faq><details><summary>Do you deliver?</summary><p>Yes, through the major delivery apps (DoorDash, Uber Eats, SkipTheDishes). You can also order online or call us for pickup.</p></details><details><summary>Is there parking?</summary><p>Street parking is available on Oven Lane and there is a paid lot one block east. Bike racks are right out front.</p></details><details><summary>Do you do catering and party orders?</summary><p>Absolutely. We cater office lunches, birthdays and events. Call us at least 48 hours ahead for larger orders.</p></details><details><summary>Do you have vegetarian, vegan or gluten-free options?</summary><p>Yes. Look for the V, VG and GF marks on the menu.</p></details></div></section></div>
+<footer><div class="cols"><div><h3>Hours</h3><ul class="hours" data-hours><li><span class="hd">Mon - Thu</span><span class="ht">12:00 pm - 11:00 pm</span></li><li><span class="hd">Fri - Sat</span><span class="ht">12:00 pm - 12:30 am</span></li><li><span class="hd">Sunday</span><span class="ht">1:00 pm - 11:00 pm</span></li></ul></div><div><h3>Find us</h3><p data-shop="address">42 Oven Lane, Toronto, ON M4M 1A1</p><p><a data-call href="tel:+14165550123"><span data-shop="phone">+1 (416) 555-0123</span></a></p></div><div><h3>Order</h3><p><a class="btn" data-call href="tel:+14165550123">Call</a><a class="btn blue solid" data-order href="#">Order online</a></p></div></div><p class="copy">&copy; <span data-shop="name">Dough Re Mi</span> &middot; <span data-shop="tagline">Wood-fired. Hand-stretched.</span></p></footer>
+<script src="../shop.js"></script>
+<script>
+(function(){
+var S=window.SHOP||{};
+var CUR=S.currency||'$';
+function money(n){
+  if(typeof S.formatPrice==='function'){try{return S.formatPrice(n);}catch(e){}}
+  n=Number(n);return CUR+(n%1?n.toFixed(2):n);
+}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function $$(s){return Array.prototype.slice.call(document.querySelectorAll(s));}
+var digits=String(S.phone||'').replace(/\D/g,'');
+$$('[data-shop]').forEach(function(e){var v=S[e.getAttribute('data-shop')];if(v)e.textContent=v;});
+if(S.name)document.title=S.name+' | '+(document.body.getAttribute('data-page')||'');
+if(digits)$$('[data-call]').forEach(function(a){a.href='tel:+'+digits;});
+$$('[data-order]').forEach(function(a){a.href=S.orderUrl||'#';if(S.orderUrl){a.target='_blank';a.rel='noopener';}});
+if(digits)$$('[data-wa]').forEach(function(a){a.href='https://wa.me/'+digits;a.target='_blank';a.rel='noopener';});
+if(S.hoursList)$$('[data-hours]').forEach(function(ul){ul.innerHTML='';S.hoursList.forEach(function(h){var li=el('li');li.appendChild(el('span','hd',h.d));li.appendChild(el('span','ht',h.t));ul.appendChild(li);});});
+if(S.lat&&S.lon)$$('[data-map]').forEach(function(f){var d=.006;f.src='https://www.openstreetmap.org/export/embed.html?bbox='+[S.lon-d,S.lat-d,S.lon+d,S.lat+d].join('%2C')+'&layer=mapnik&marker='+S.lat+'%2C'+S.lon;});
+var TAGS={vegetarian:['V','Vegetarian'],vegan:['VG','Vegan'],'gluten-free':['GF','Gluten-free'],spicy:['\uD83C\uDF36','Spicy']};
+function tagsOf(i){var t=(i.tags||[]).map(function(x){return String(x).toLowerCase();});if(i.veg===true&&t.indexOf('vegetarian')<0&&t.indexOf('vegan')<0)t.push('vegetarian');return t;}
+var menu=S.menu||[{category:'Pizzas',items:[{name:'Margherita',desc:'Tomato, mozzarella, basil',price:18,tags:['vegetarian']},{name:'Pepperoni',desc:'Spicy pepperoni, chilli oil',price:21,tags:['spicy']}]}];
+var m=document.getElementById('menu');
+if(m){
+  m.innerHTML='';
+  menu.forEach(function(c,ci){
+    var s=el('section','cat');s.id='cat'+ci;s.appendChild(el('h2','cat-title',c.category));
+    var ul=el('ul','items');
+    (c.items||[]).forEach(function(i){
+      var li=el('li','item'),h=el('div','ihead');
+      h.appendChild(el('span','iname',i.name));h.appendChild(el('span','idots'));
+      tagsOf(i).forEach(function(t){if(TAGS[t]){var b=el('span','dt dt-'+t.replace('-',''),TAGS[t][0]);b.title=TAGS[t][1];b.setAttribute('aria-label',TAGS[t][1]);h.appendChild(b);}});
+      h.appendChild(el('span','iprice',money(i.price)));
+      li.appendChild(h);li.appendChild(el('p','idesc',i.desc||''));ul.appendChild(li);
+    });
+    s.appendChild(ul);m.appendChild(s);
+  });
+  var tb=document.getElementById('tabs');
+  if(tb){tb.innerHTML='';menu.forEach(function(c,ci){var a=el('a',null,c.category);a.href='#cat'+ci;tb.appendChild(a);});}
+}
+$$('[data-featured]').forEach(function(box){
+  var E=['\uD83C\uDF55','\uD83E\uDDC0','\uD83C\uDF36\uFE0F'];
+  var items=(menu[0].items||[]).slice(0,3);
+  box.innerHTML='';
+  items.forEach(function(i,n){var a=el('article','fcard');a.appendChild(el('span','femoji',E[n%3]));a.appendChild(el('h3',null,i.name));a.appendChild(el('p',null,i.desc));a.appendChild(el('b',null,money(i.price)));box.appendChild(a);});
+});
+if(S.special)$$('[data-special]').forEach(function(b){
+  var n=b.querySelector('.sp-name'),d=b.querySelector('.sp-desc'),p=b.querySelector('.sp-price');
+  if(n)n.textContent=S.special.name;if(d)d.textContent=S.special.desc;if(p&&S.special.price!=null)p.textContent=money(S.special.price);
+});
+if(S.story&&S.story.length)$$('[data-story]').forEach(function(b){b.innerHTML='';S.story.forEach(function(t){b.appendChild(el('p',null,t));});});
+if(S.quotes&&S.quotes.length)$$('[data-quotes]').forEach(function(b){b.innerHTML='';S.quotes.forEach(function(q){var d=el('blockquote','q');d.appendChild(el('span',null,'\u201C'+q.q+'\u201D'));d.appendChild(el('cite',null,'\u2014 '+q.by));b.appendChild(d);});});
+if(S.faq&&S.faq.length)$$('[data-faq]').forEach(function(b){b.innerHTML='';S.faq.forEach(function(f){var d=el('details');d.appendChild(el('summary',null,f.q));d.appendChild(el('p',null,f.a));b.appendChild(d);});});
+var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!rm&&'IntersectionObserver' in window){
+  var els=$$('.fcard,.cat,.q,.panel,.box,.frame,.rvme,details,.item');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});
+  els.forEach(function(e){e.classList.add('rv');io.observe(e);});
+}
+})();
+</script>
+<script src="../switcher.js"></script>
 </body></html>

@@ -6,38 +6,134 @@
 <title>Chalkboard Pizza</title>
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-page="Chalkboard">
 <div class="wrap">
 <nav class="nav">
-  <a class="logo wob" href="index.html" data-shop="name">Pizza Shop</a>
-  <ul><li><a class="on" href="index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="visit.html">Visit</a></li></ul>
+  <a class="logo wob" href="index.html" data-shop="name">Dough Re Mi</a>
+  <ul><li><a class="on" href="index.html">Home</a></li><li><a class="" href="menu.html">Menu</a></li><li><a class="" href="visit.html">Visit</a></li></ul>
 </nav>
 
 <header class="hero">
-  <svg class="doodle-svg" viewBox="0 0 90 90" aria-hidden="true"><path d="M10 20 Q45 2 80 20 L45 82 Z"/><circle cx="35" cy="30" r="5"/><circle cx="55" cy="35" r="5"/><circle cx="45" cy="55" r="5"/></svg>
-  <h1 data-shop="name">Pizza Shop</h1>
+  <span class="star" style="left:6%;top:12%" aria-hidden="true">✦</span><span class="star" style="right:8%;top:30%;animation-delay:1s" aria-hidden="true">✧</span>
+  <svg class="doodle-svg" viewBox="0 0 90 90" aria-hidden="true"><path class="steam" d="M30 14 Q26 8 30 2 M45 14 Q41 8 45 2 M60 14 Q56 8 60 2"/><path d="M10 28 Q45 10 80 28 L45 86 Z"/><circle cx="35" cy="38" r="5"/><circle cx="55" cy="43" r="5"/><circle cx="45" cy="62" r="5"/></svg>
+  <h1 data-shop="name">Dough Re Mi</h1>
   <svg class="under" viewBox="0 0 420 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C60 4 120 22 190 12 S330 4 416 14"/></svg>
-  <p data-shop="tagline">Fresh dough, hot oven, good times.</p>
+  <p data-shop="tagline">Wood-fired. Hand-stretched. Slightly dramatic.</p>
+  <div class="heroctas"><a class="btn" data-order href="#">Order online</a><a class="btn g" data-call href="tel:+14165550142">Call us</a><a class="btn p" href="menu.html">See the menu</a></div>
 </header>
 
 <div class="doodles" aria-hidden="true"><span>🍕</span><span>🌿</span><span>🍅</span><span>🧀</span></div>
 
-<div class="board">
-  <h2>Today's special</h2>
-  <p>Ask us what's fresh from the oven. Written up daily!</p>
-  <a class="btn" href="menu.html">See the menu</a>
-  <a class="btn g" href="visit.html">Find us</a>
+<div class="board special rvme" data-special>
+  <span class="tag">~ today only ~</span>
+  <h3>Chef's Margherita Fresca</h3>
+  <p>Tomato, fresh mozzarella, basil picked this morning.</p>
+  <span class="pr">$19</span>
 </div>
 
-<div class="board">
-  <h2>Open</h2>
-  <p data-shop="hours">Daily 11:00 – 23:00</p>
-  <p data-shop="address">12 Main Road, Your City</p>
+<h2 class="sec-title">Our signatures</h2>
+<div class="feat" data-featured>
+  <article class="fcard"><span class="femoji">🍕</span><h3>Margherita</h3><p>Tomato, fresh mozzarella, basil, olive oil</p><b>$19</b></article>
+  <article class="fcard"><span class="femoji">🧀</span><h3>Four Cheese</h3><p>Mozzarella, cheddar, parmesan, blue cheese</p><b>$23</b></article>
+  <article class="fcard"><span class="femoji">🌶️</span><h3>Pepperoni Blaze</h3><p>Spicy pepperoni, chili oil, extra cheese</p><b>$24</b></article>
 </div>
 
-<footer><span data-shop="name">Pizza Shop</span> &middot; <span data-shop="phone">+91 98765 43210</span></footer>
+<div class="board story rvme">
+  <h2>Our story</h2>
+  <div data-story>
+    <p>It started with one stubborn idea: pizza dough deserves 48 hours of patience. We ferment it slowly, stretch it by hand and bake it in a wood-fired oven.</p>
+    <p>Every sauce is made in-house each morning. Every pizza leaves the oven a little charred, a little dramatic, and completely worth the wait.</p>
+  </div>
 </div>
+
+<h2 class="sec-title">What folks say</h2>
+<div class="quotes" data-quotes>
+  <div class="q"><p>&ldquo;The crust alone is worth the trip. Crisp outside, soft inside.&rdquo;</p><cite>- Ananya R.</cite></div>
+  <div class="q"><p>&ldquo;Best Margherita on Queen West, no argument allowed.&rdquo;</p><cite>- Karthik S.</cite></div>
+  <div class="q"><p>&ldquo;We ordered once and now it is a Friday tradition.&rdquo;</p><cite>- Meera &amp; family</cite></div>
+</div>
+</div>
+<footer>
+  <div class="foot">
+    <div><span class="brand" data-shop="name">Dough Re Mi</span><p data-shop="tagline">Wood-fired. Hand-stretched. Slightly dramatic.</p><p data-shop="address">218 Queen Street West, Toronto, ON M5V 2A4</p></div>
+    <div><h4>Hours</h4><ul class="hours" data-hours><li><span class="hd">Mon - Thu</span><span class="ht">11:30 am - 10:00 pm</span></li><li><span class="hd">Fri - Sat</span><span class="ht">11:30 am - 11:30 pm</span></li><li><span class="hd">Sunday</span><span class="ht">12:00 pm - 9:00 pm</span></li></ul></div>
+    <div><h4>Call us</h4><p data-shop="phone">+1 (416) 555-0142</p><p><a data-call href="tel:+14165550142">Call</a> &middot; <a data-order href="#">Order online</a> &middot; <a data-wa href="https://wa.me/14165550142">WhatsApp</a></p></div>
+  </div>
+  <p class="copy">chalk it up to good pizza &middot; <span data-shop="name">Dough Re Mi</span></p>
+</footer>
 <script src="../shop.js"></script>
 <script src="../switcher.js"></script>
+<script>
+(function(){
+
+var T={
+feat:function(i,n){return '<article class="fcard"><span class="femoji">'+['\uD83C\uDF55','\uD83E\uDDC0','\uD83C\uDF36\uFE0F'][n%3]+'</span><h3>'+esc(i.name)+'</h3><p>'+esc(i.desc)+'</p><b>'+money(i.price)+'</b></article>'},
+special:function(s){return '<span class="tag">~ today only ~</span><h3>'+esc(s.name)+'</h3><p>'+esc(s.desc)+'</p><span class="pr">'+money(s.price)+'</span>'},
+quote:function(q){return '<div class="q"><p>&ldquo;'+esc(q.q)+'&rdquo;</p><cite>- '+esc(q.by)+'</cite></div>'},
+faq:function(f){return '<details><summary>'+esc(f.q)+'</summary><p>'+esc(f.a)+'</p></details>'},
+cat:function(c,ci,body){return '<div class="cat" id="cat'+ci+'"><h2>'+esc(c.category)+'</h2><ul class="items">'+body+'</ul></div>'},
+item:function(i){return '<li class="item"><div class="row"><span class="nm">'+esc(i.name)+badges(i)+'</span><span class="dots"></span><span class="pr">'+money(i.price)+'</span></div><span class="ds">'+esc(i.desc)+'</span></li>'}
+};
+
+
+  var S=window.SHOP||{};
+  var $$=function(s){return [].slice.call(document.querySelectorAll(s))};
+  var esc=function(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML};
+  var cur=S.currency||'$';
+  function money(n){
+    if(typeof S.formatPrice==='function')return S.formatPrice(n);
+    if(typeof n==='number')n=(n%1?n.toFixed(2):n);
+    return cur+n;
+  }
+  var TAGS={'vegetarian':'V','vegan':'VG','gluten-free':'GF','spicy':'🌶'};
+  function tagsOf(i){var t=(i.tags||[]).slice();if(!t.length&&i.veg===true)t=['vegetarian'];return t}
+  function badges(i){
+    return tagsOf(i).filter(function(t){return TAGS[t]}).map(function(t){
+      return '<span class="tg tg-'+t.replace(/[^a-z]/g,'')+'" title="'+t+'">'+TAGS[t]+'</span>';
+    }).join('');
+  }
+  var digits=String(S.phone||'').replace(/\D/g,'');
+
+  $$('[data-shop]').forEach(function(el){var v=S[el.getAttribute('data-shop')];if(v)el.textContent=v});
+  if(S.name)document.title=S.name+' | '+(document.body.getAttribute('data-page')||'');
+  $$('[data-call]').forEach(function(a){if(digits)a.href='tel:+'+digits});
+  $$('[data-wa]').forEach(function(a){if(digits){a.href='https://wa.me/'+digits+'?text='+encodeURIComponent('Hi '+(S.name||'')+', I would like to order.');a.target='_blank';a.rel='noopener'}});
+  $$('[data-order]').forEach(function(a){if(S.orderUrl){a.href=S.orderUrl;a.target='_blank';a.rel='noopener'}else a.href='#'});
+  if(S.hoursList&&S.hoursList.length)$$('[data-hours]').forEach(function(ul){
+    ul.innerHTML=S.hoursList.map(function(h){return '<li><span class="hd">'+esc(h.d)+'</span><span class="ht">'+esc(h.t)+'</span></li>'}).join('');
+  });
+  if(typeof S.lat==='number')$$('[data-map]').forEach(function(f){
+    var d=.006;
+    f.src='https://www.openstreetmap.org/export/embed.html?bbox='+[S.lon-d,S.lat-d,S.lon+d,S.lat+d].join('%2C')+'&layer=mapnik&marker='+S.lat+'%2C'+S.lon;
+  });
+  var first=S.menu&&S.menu[0]?S.menu[0].items:[];
+  if(first.length)$$('[data-featured]').forEach(function(b){b.innerHTML=first.slice(0,3).map(function(i,n){return T.feat(i,n)}).join('')});
+  if(S.special)$$('[data-special]').forEach(function(b){b.innerHTML=T.special(S.special)});
+  if(S.story&&S.story.length)$$('[data-story]').forEach(function(b){b.innerHTML=S.story.map(function(p){return '<p>'+esc(p)+'</p>'}).join('')});
+  if(S.quotes&&S.quotes.length)$$('[data-quotes]').forEach(function(b){b.innerHTML=S.quotes.slice(0,3).map(T.quote).join('')});
+  if(S.faq&&S.faq.length)$$('[data-faq]').forEach(function(b){b.innerHTML=S.faq.map(T.faq).join('')});
+  var m=document.getElementById('menu');
+  if(m&&S.menu&&S.menu.length){
+    m.innerHTML=S.menu.map(function(c,ci){
+      return T.cat(c,ci,(c.items||[]).map(T.item).join(''));
+    }).join('');
+    var tb=document.getElementById('tabs');
+    if(tb)tb.innerHTML=S.menu.map(function(c,ci){return '<a href="#cat'+ci+'">'+esc(c.category)+'</a>'}).join('');
+  }
+  /* scroll reveal; skipped (content stays visible) if no observer or reduced motion */
+  var els=$$('.rvme,.fcard,.cat,.q,.mapbox,.vcol');
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if('IntersectionObserver' in window&&!calm){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+    els.forEach(function(e){e.classList.add('rv');io.observe(e)});
+    var tl=$$('#tabs a'),cats=$$('.cat');
+    if(tl.length&&cats.length){
+      var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){tl.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)})}})},{rootMargin:'-30% 0px -60% 0px'});
+      cats.forEach(function(c){io2.observe(c)});
+    }
+  }
+
+})();
+</script>
 </body>
 </html>
