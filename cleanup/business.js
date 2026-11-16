@@ -1,56 +1,70 @@
-/* Single source of truth for "Maple Axis" (placeholder name). Every cleanup version reads window.BIZ. */
+/* Single source of truth for Maple Axis (details supplied by Naveen 2026-11-16, from the owner's own text). Every cleanup version reads window.BIZ.
+   Rule: no invented prices, testimonials, insurance or certification claims. Add them only when the owner supplies them. */
 window.BIZ = {
   logo: "assets/maple-axis-logo.png",
   name: "Maple Axis",
-  tagline: "Post-drywall cleanup and commercial services, GTA",
-  phone: "+1 (416) 555-0188",
-  email: "hello@example.com",
-  area: "Toronto, Mississauga, Brampton, Vaughan, Markham, Richmond Hill, Oakville, Pickering and Ajax",
-  cities: ["Toronto", "Etobicoke", "North York", "Scarborough", "Mississauga", "Brampton", "Vaughan", "Markham", "Richmond Hill", "Oakville", "Pickering", "Ajax"],
-  hours: "Mon to Sat 7:00 am to 7:00 pm. Sunday by arrangement. Same-day quotes.",
+  legalLine: "Industrial & Commercial Services",
+  tagline: "Raising the Standard in Industrial & Commercial Services",
+  short: "Industrial and commercial services across the GTA",
+  phone: "+1 (647) 936-2203",
+  phoneRaw: "6479362203",
+  email: "Info.mapleaxis@gmail.com",
+  address: "1-431 Lawrence Ave West, North York, ON M5M 1C3",
+  addressLines: ["1-431 Lawrence Ave West", "North York, ON M5M 1C3"],
+  area: "North York, Toronto and the GTA",
+  cities: ["North York", "Toronto", "Etobicoke", "Scarborough", "Mississauga", "Brampton", "Vaughan", "Markham", "Richmond Hill"],
+  hours: "Call or email for availability",
+  about: [
+    "At Maple Axis, we believe every facility deserves a higher standard of care, performance and professionalism.",
+    "We are an industrial and commercial services company committed to delivering dependable, efficient and high-quality solutions for businesses, commercial properties and industrial facilities.",
+    "From specialized high-dusting and pressure washing to commercial facility maintenance and large-scale industrial cleaning projects, we bring the right equipment, attention to detail and a professional approach to every job.",
+    "Our goal is simple: to help businesses maintain cleaner, safer and better-maintained environments while minimizing operational disruptions."
+  ],
+  commitment: [
+    "At Maple Axis, we value reliability, consistency and building lasting business relationships.",
+    "We understand that every facility has different operational requirements. That's why we approach every project with careful planning, attention to detail and a commitment to delivering results that meet our clients' expectations.",
+    "Whether it's a scheduled maintenance contract or a specialized industrial project, we strive to deliver professional service from start to finish."
+  ],
+  /* Four short values for trust strips (no claims we cannot back up) */
+  values: [
+    { icon: "🛡️", title: "Reliable", text: "Dependable service you can plan around" },
+    { icon: "🏢", title: "Commercial & Industrial", text: "Solutions for every facility" },
+    { icon: "📍", title: "GTA Service Area", text: "Local, responsive, professional" },
+    { icon: "🤝", title: "Lasting relationships", text: "Built on consistency and trust" }
+  ],
   services: [
-    { id: "dust", name: "Fine-dust HEPA vacuuming", desc: "Every surface vacuumed with HEPA-filtered machines so sanding dust is removed, not pushed into the air: walls, ceilings, ledges, trim, window tracks and inside closets.", icon: "🧹", from: 220 },
-    { id: "wipe", name: "Wall, ceiling & trim wipe-down", desc: "Damp microfibre wipe of walls, ceilings, baseboards, door frames and sills so paint and primer bond to a clean surface.", icon: "🧽", from: 180 },
-    { id: "debris", name: "Debris & offcut haul-away", desc: "Drywall offcuts, buckets, compound pails, packaging and mud droppings bagged and taken away. Disposal handled at licensed transfer stations.", icon: "🚚", from: 150 },
-    { id: "floors", name: "Floor cleaning", desc: "Vacuum, then damp mop or scrub for hardwood, tile, vinyl, concrete and subfloor. Dried joint compound lifted without scratching.", icon: "🪣", from: 140 },
-    { id: "air", name: "Air scrubbing", desc: "HEPA air scrubbers run during and after cleaning to capture the fine dust still floating in the air. Ideal for occupied homes and basements.", icon: "💨", from: 160 },
-    { id: "vents", name: "Vent & duct-register cleaning", desc: "Registers, returns and visible duct openings vacuumed and wiped. Drywall dust in your furnace is the reason it clogs filters in a week.", icon: "🌀", from: 120 },
-    { id: "film", name: "Protective-film & tape removal", desc: "Poly sheeting, zip walls, floor protection, painter's tape and corner guards removed and disposed of with no residue left behind.", icon: "🎭", from: 90 },
-    { id: "paintprep", name: "Paint-ready prep", desc: "A final detail pass so painters can start the same day: dust-free walls, clean ceilings and tacked trim ready for primer.", icon: "🎨", from: 200 },
-    { id: "contractor", name: "Contractor subcontract partnerships", desc: "A dedicated crew on your schedule: flat per-job pricing, insured, invoiced to your company, ready within 24 hours of your drywall finish.", icon: "🤝", from: null }
+    { id: "contract", name: "Industrial & commercial contract services", desc: "Scheduled and project-based service contracts for businesses, commercial properties and industrial facilities, planned around your operations.", icon: "📑", from: null },
+    { id: "highdust", name: "High-level dusting & overhead structure cleaning", desc: "Specialized cleaning of beams, ductwork, racking, lighting and other overhead structures, where dust builds up out of reach.", icon: "🏗️", from: null },
+    { id: "pressure", name: "Commercial & industrial pressure washing", desc: "Pressure washing for loading docks, parking areas, building exteriors, equipment and heavily soiled surfaces.", icon: "💦", from: null },
+    { id: "warehouse", name: "Warehouse & facility maintenance", desc: "Ongoing upkeep that keeps warehouses and commercial facilities clean, safe and in good working order.", icon: "🏭", from: null },
+    { id: "floors", name: "Industrial floor scrubbing & surface cleaning", desc: "Machine floor scrubbing and surface cleaning for warehouses, plants, shops and large commercial spaces.", icon: "🧽", from: null },
+    { id: "special", name: "Specialized cleaning & maintenance projects", desc: "Large-scale and one-off projects, including post-construction and post-drywall cleanup, planned and carried out to a clear scope.", icon: "🧹", from: null }
   ],
   process: [
-    { step: "Book", desc: "Call, text or send the form. Tell us the address, the size and when the drywall crew finishes. You get a quote the same day." },
-    { step: "Walkthrough", desc: "We look at the space (or review photos), flag stairs, finishes and problem areas, and confirm a fixed price before we start." },
-    { step: "Clean", desc: "Top to bottom: ceilings, walls, trim, vents, then floors last. HEPA vacuums and air scrubbers keep the dust from settling twice." },
-    { step: "Inspection", desc: "We walk it with you or the site lead, fix anything missed on the spot, and hand the room over paint-ready." }
+    { step: "Reach out", desc: "Call or email us with your facility, the work and your timing." },
+    { step: "Plan", desc: "We review the scope and requirements and plan the job around your operations." },
+    { step: "Do the work", desc: "The right equipment and a careful, professional approach, with as little disruption as possible." },
+    { step: "Hand over", desc: "We check the result against the scope and hand the space back clean and ready." }
   ],
   forContractors: {
-    pitch: "Your drywall crew finishes, we clean up. Stop pulling your tapers off the next job to sweep. We show up within 24 hours, work to your schedule and leave the site paint-ready.",
+    pitch: "General contractors, drywall crews and property managers: when your trade finishes, we clean up. Ask about project and contract work.",
     perks: [
-      "Flat per-job or per-sq-ft pricing, agreed before the job",
-      "Fully insured, WSIB clearance certificate available",
-      "24 hour turnaround after you call it complete",
-      "Photo report sent to you and the homeowner",
-      "Monthly invoicing with your company name on it",
-      "We never approach your client for other work"
+      "Post-construction and post-drywall cleanup",
+      "Scheduled maintenance contracts",
+      "Planned around your site schedule",
+      "Careful work that limits disruption"
     ]
   },
   faq: [
-    { q: "How soon can you come after the drywall is finished?", a: "Usually within 24 hours, and often the same day for smaller jobs. For contractors we hold crew time for your regular schedule." },
-    { q: "How much does a post-drywall cleanup cost?", a: "Most Toronto-area homes run from $220 for a small room to $900 or more for a full basement or whole house. We quote a fixed price after a walkthrough or photos, not an open hourly rate." },
-    { q: "Do you use HEPA vacuums?", a: "Yes. Drywall dust is extremely fine and standard vacuums blow it back into the room. All our vacuums and air scrubbers use HEPA filtration." },
-    { q: "Will you do the work before painting?", a: "That is the best time. Our paint-ready prep pass leaves walls, ceilings and trim clean enough for primer. If the dust is not removed, it shows through the paint." },
-    { q: "Are you insured?", a: "Yes. We carry commercial general liability coverage and can provide a certificate of insurance and WSIB clearance for your site." },
-    { q: "Do I need to be home?", a: "No, as long as we have access (lockbox, concierge or the contractor on site). We send photos when the job is done." },
-    { q: "Do you take away the waste?", a: "Yes. Offcuts, buckets and packaging are included in debris haul-away. Large bin loads are priced separately before we start." },
-    { q: "Which areas do you cover?", a: "Toronto and the GTA: Mississauga, Brampton, Vaughan, Markham, Richmond Hill, Oakville, Pickering and Ajax. Ask us about Hamilton, Barrie and Durham." }
+    { q: "What kinds of facilities do you work in?", a: "Businesses, commercial properties and industrial facilities, including warehouses and large commercial spaces." },
+    { q: "Do you do one-off projects as well as contracts?", a: "Yes. We take scheduled maintenance contracts and specialized one-off industrial or commercial projects." },
+    { q: "Can you clean after construction or drywall work?", a: "Yes, post-construction and post-drywall cleanup is part of our specialized cleaning projects." },
+    { q: "How do I get a price?", a: "Call or email us with the location, the type of work and your timing, and we will respond with a quote. Pricing depends on the scope." },
+    { q: "Which areas do you cover?", a: "North York, Toronto and the GTA." },
+    { q: "How do I reach you?", a: "Phone +1 (647) 936-2203, or email Info.mapleaxis@gmail.com. We are at 1-431 Lawrence Ave West, North York." }
   ],
-  quotes: [
-    { text: "Our tapers finished Friday and the house was paint-ready Saturday morning. No dust on the windowsills, none in the vents.", who: "Priya N., homeowner, Etobicoke" },
-    { text: "We use Maple Axis on every basement finish now. It frees my crew for the next drywall job and clients love the photo report.", who: "Marco D., drywall contractor, Vaughan" },
-    { text: "As a property manager I need units turned over fast. They cleaned six suites after drywall repairs in two days.", who: "Jennifer L., property manager, Mississauga" }
-  ],
+  /* Real testimonials only. Empty until the owner supplies some: versions must hide the block when this is empty. */
+  quotes: [],
   formatPrice: function (n) {
     if (n === null || n === undefined || isNaN(n)) return "Custom quote";
     return "$" + Number(n).toLocaleString("en-CA", { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + " CAD";
