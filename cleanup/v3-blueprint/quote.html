@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Request a quote | Dust Settled Co.</title>
+<meta name="description" content="Post-drywall cleanup in Toronto and the GTA. HEPA dust removal, haul-away, paint-ready prep.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Archivo+Narrow:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+<script src="../business.js"></script><script src="../switcher.js" defer></script>
+</head><body>
+<header class="site"><div class="wrap"><a class="logo" href="index.html" data-biz="name">Dust Settled Co.</a><nav aria-label="Main"><a href="index.html">Home</a><a href="services.html">Services</a><a href="quote.html" aria-current="page">Get a quote</a></nav></div></header>
+<main>
+<section><div class="wrap"><p class="label">Form 7 / request</p><h1>Request a quote</h1><p>Tell us about the job. We reply within one business day.</p>
+<form id="qf" action="#" method="get">
+<div><label for="n">Name</label><input id="n" name="name" required autocomplete="name"></div>
+<div><label for="ph">Phone</label><input id="ph" name="phone" type="tel" required autocomplete="tel"></div>
+<div><label for="em">Email</label><input id="em" name="email" type="email" required autocomplete="email"></div>
+<div><label for="ct">City</label><input id="ct" name="city" required placeholder="Toronto, Mississauga..."></div>
+<div><label for="jt">Job type</label><select id="jt" name="job"><option>Homeowner (renovation)</option><option>Property manager</option><option>Drywall contractor (subcontract)</option><option>Other</option></select></div>
+<div><label for="rm">Rooms / sq ft</label><input id="rm" name="size" placeholder="e.g. 4 rooms, 1800 sq ft"></div>
+<div class="full"><label for="dt">Preferred date</label><input id="dt" name="date" type="date"></div>
+<div class="full"><button class="btn" type="submit">Send request</button></div>
+<div class="full msg" id="msg" role="status" tabindex="-1" hidden>Form not connected yet; call or email us.</div>
+</form></div></section>
+<section class="alt"><div class="wrap"><h2>FAQ</h2><div id="faq"><details><summary>How soon can you come after the drywallers finish?</summary><p>Usually within 48 hours. Rush same-day is available when the schedule allows.</p></details><details><summary>Do I need to be home?</summary><p>No. A lockbox or a contractor handoff works. We send photos when done.</p></details><details><summary>Is dust from sanding really a problem?</summary><p>Yes. Drywall dust is extremely fine, settles into vents and floors and re-circulates for weeks if not HEPA-vacuumed.</p></details><details><summary>How is the price set?</summary><p>From the base price per service, adjusted by square footage and condition. You get a fixed quote before we start.</p></details><details><summary>Do you work with drywall crews directly?</summary><p>Yes. We have subcontract partnerships: the crew books us, we clean on their schedule, they keep the client.</p></details><details><summary>Which areas do you cover?</summary><p>Toronto and the GTA: Mississauga, Brampton, Vaughan, Markham, Pickering and nearby.</p></details></div></div></section>
+</main>
+<footer><div class="wrap cols">
+<div><h3 data-biz="name">Dust Settled Co.</h3><p data-biz="tagline">After the drywall, we leave nothing but clean.</p></div>
+<div><p>Phone: <a href="tel:4165550142" data-biz="phone">(416) 555-0142</a></p><p>Email: <a href="mailto:hello@dustsettled.example" data-biz="email">hello@dustsettled.example</a></p></div>
+<div><p>Area: <span data-biz="area">Toronto and the GTA</span></p><p>Hours: <span data-biz="hours">Mon-Sat 7am-7pm</span></p></div>
+</div><div class="wrap"><p class="label">Placeholder business and prices (CAD). Demo only.</p></div></footer>
+<script>
+(function(){var B=window.BIZ;if(!B)return;
+function $(i){return document.getElementById(i)}
+function e(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function p(n){return typeof B.formatPrice==="function"?B.formatPrice(n):"$"+n}
+var CARD=function(s){return '<li class="card"><span class="ic" aria-hidden="true">'+e(s.icon||"")+'</span><h3>'+e(s.name)+"</h3><p>"+e(s.desc||"")+'</p><p class="price">from '+p(s.from)+" CAD</p></li>"},STEP=function(s,i){return '<li data-n="'+(i<9?"0":"")+(i+1)+'"><b>'+e(s.step)+"</b><br>"+e(s.desc)+"</li>"},QUOTE=function(x){return "<blockquote>"+e(x.text)+"<cite>-- "+e(x.who)+"</cite></blockquote>"};
+var s=$("svc-list");if(s&&B.services&&B.services.length){var n=+s.getAttribute("data-max")||99;s.innerHTML=B.services.slice(0,n).map(CARD).join("")}
+var pr=$("steps");if(pr&&B.process&&B.process.length){pr.innerHTML=B.process.map(STEP).join("")}
+var fq=$("faq");if(fq&&B.faq&&B.faq.length){fq.innerHTML=B.faq.map(function(f){return "<details><summary>"+e(f.q)+"</summary><p>"+e(f.a)+"</p></details>"}).join("")}
+var q=$("quotes");if(q&&B.quotes&&B.quotes.length){q.innerHTML=B.quotes.map(QUOTE).join("")}
+var c=$("contractors-body");if(c&&B.forContractors){c.innerHTML="<p>"+e(B.forContractors.pitch)+"</p><ul>"+(B.forContractors.perks||[]).map(function(x){return "<li>"+e(x)+"</li>"}).join("")+"</ul>"}
+})();
+</script><script>document.getElementById("qf").addEventListener("submit",function(ev){ev.preventDefault();var m=document.getElementById("msg");m.hidden=false;m.focus()})</script></body></html>

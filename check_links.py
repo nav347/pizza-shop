@@ -13,6 +13,12 @@ for slug in ["v1-trattoria", "v2-neon", "v3-diner", "v4-brutalist", "v5-comic", 
     pages = ["index.html", "menu.html", "visit.html"] + (["checklist.html"] if slug == "v11-guide" else [])
     EXPECT += [slug + "/" + p for p in pages]   # style.css is checked as a link when a page references it
 
+# second site: cleanup/ (index gallery + 10 versions x index/services/quote); only enforced for folders that exist or are in the contract
+EXPECT += ["megabar.js", "cleanup/index.html", "cleanup/business.js", "cleanup/switcher.js"]
+for slug in ["v1-clean", "v2-pro", "v3-blueprint", "v4-bold", "v5-friendly", "v6-luxury",
+             "v7-industrial", "v8-eco", "v9-before-after", "v10-dark"]:
+    EXPECT += ["cleanup/" + slug + "/" + p for p in ["index.html", "services.html", "quote.html", "style.css"]]
+
 
 class P(HTMLParser):
     def __init__(self):

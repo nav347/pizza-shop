@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Request a quote | Dust Settled Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+<script src="../business.js"></script></head><body class="quote">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap navrow"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">🌿</span><span data-biz="name">Dust Settled Co.</span></a>
+<nav aria-label="Main"><a href="index.html">Home</a><a href="services.html">Services</a><a href="quote.html" class="cta">Get a quote</a></nav></div></header>
+<main id="main"><section class="sec pagehead"><div class="wrap"><h1>Request a quote</h1><p>Tell us about your space. We reply within one business day, or call <a href="tel:+14165550142" data-biz="phone">(416) 555-0142</a>.</p></div></section>
+<section class="sec"><div class="wrap"><form id="qform" action="#" method="get" novalidate>
+<div class="fld"><label for="n">Name</label><input id="n" name="name" autocomplete="name" required></div>
+<div class="fld"><label for="p">Phone</label><input id="p" name="phone" type="tel" autocomplete="tel" required></div>
+<div class="fld"><label for="em">Email</label><input id="em" name="email" type="email" autocomplete="email"></div>
+<div class="fld"><label for="c">City</label><input id="c" name="city" placeholder="e.g. Vaughan"></div>
+<div class="fld"><label for="jobtype">Job type</label><select id="jobtype" name="job"><option>HEPA fine-dust vacuuming</option><option>Wipe-downs</option><option>Debris and offcut haul-away</option><option>Floor cleaning</option><option>Air scrubbing</option><option>Vent and duct-register cleaning</option><option>Film and residue removal</option><option>Paint-ready prep</option><option>Full post-drywall package</option></select></div>
+<div class="fld"><label for="sz">Rooms / sq ft</label><input id="sz" name="size" placeholder="e.g. 4 rooms, 1800 sq ft"></div>
+<div class="fld"><label for="d">Preferred date</label><input id="d" name="date" type="date"></div>
+<button class="btn" type="submit">Request a quote</button>
+<p id="formmsg" class="formmsg" role="status" tabindex="-1" hidden></p></form></div></section><section class="sec tint"><div class="wrap"><h2>FAQ</h2><div class="faq" data-render="faq"><details><summary>How soon can you come after the drywall crew finishes?</summary><p>Usually within 48 hours, often next day. Call for rush same-day slots.</p></details><details><summary>Do you bring your own equipment?</summary><p>Yes: HEPA vacuums, air scrubbers, protection film and disposal bags. You supply water access and power.</p></details><details><summary>Is the price fixed?</summary><p>We quote a fixed price after a walk-through or photos. Extra rooms or heavy debris are agreed before we start.</p></details><details><summary>Do you work with contractors?</summary><p>Yes. Drywall crews and GCs get priority booking, net-30 terms on approval and one invoice per site.</p></details><details><summary>Are you insured?</summary><p>Placeholder: add WSIB clearance and liability insurance details here before launch.</p></details></div></div></section></main>
+<footer class="foot v8"><div class="wrap fgrid">
+<div><strong data-biz="name">Dust Settled Co.</strong><p data-biz="tagline">We clean up after the drywall.</p></div>
+<div><h3>Contact</h3><p><a href="tel:+14165550142" data-biz="phone">(416) 555-0142</a><br><a href="mailto:jobs@dustsettled.example" data-biz="email">jobs@dustsettled.example</a></p></div>
+<div><h3>Service area</h3><p data-biz="area">Toronto and the GTA</p><h3>Hours</h3><p data-biz="hours">Mon-Sat 7am-7pm</p></div>
+</div><p class="wrap small">Placeholder brand. Prices in CAD, before HST.</p></footer>
+<script src="../switcher.js"></script>
+<script>
+(function(){
+var B=window.BIZ||{};
+function e(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML;}
+function price(n){return B.formatPrice?B.formatPrice(n):'$'+n;}
+function put(k,h){var els=document.querySelectorAll('[data-render="'+k+'"]');for(var i=0;i<els.length;i++){els[i].innerHTML=h;}}
+var sv=B.services&&B.services.length?B.services:null,pr=B.process&&B.process.length?B.process:null,
+fq=B.faq&&B.faq.length?B.faq:null,qt=B.quotes&&B.quotes.length?B.quotes:null;
+function card(s){return '<article class="svc"><span class="ico" aria-hidden="true">'+e(s.icon)+'</span><h3>'+e(s.name)+'</h3><p>'+e(s.desc)+'</p><p class="from">From '+price(s.from)+'</p></article>';}
+if(sv){
+ put('svc-cards',sv.slice(0,6).map(card).join(''));
+ put('svc-full',sv.map(card).join(''));
+ put('svc-table',sv.map(function(s,i){return '<tr><td class="code">S-'+(i+1<10?'0':'')+(i+1)+'</td><td><span class="ico" aria-hidden="true">'+e(s.icon)+'</span> <strong>'+e(s.name)+'</strong></td><td>'+e(s.desc)+'</td><td class="num">From '+price(s.from)+'</td></tr>';}).join(''));
+ var o=document.getElementById('jobtype');if(o){o.innerHTML='<option value="">Choose...</option>'+sv.map(function(s){return '<option>'+e(s.name)+'</option>';}).join('')+'<option>Full post-drywall package</option>';}
+}
+if(pr)put('steps',pr.map(function(p,i){return '<li class="step"><b>'+(i+1)+'</b><h3>'+e(p.step)+'</h3><p>'+e(p.desc)+'</p></li>';}).join(''));
+if(fq)put('faq',fq.map(function(f){return '<details><summary>'+e(f.q)+'</summary><p>'+e(f.a)+'</p></details>';}).join(''));
+if(qt)put('quotes',qt.map(function(q){return '<blockquote><p>'+e(q.text)+'</p><cite>'+e(q.who)+'</cite></blockquote>';}).join(''));
+var c=B.forContractors;if(c){var p=document.querySelector('[data-render="pitch"]');if(p&&c.pitch)p.textContent=c.pitch;
+ var l=document.querySelector('[data-render="perks"]');if(l&&c.perks&&c.perks.length)l.innerHTML=c.perks.map(function(x){return '<li>'+e(x)+'</li>';}).join('');}
+var f=document.getElementById('qform');if(f){f.addEventListener('submit',function(ev){ev.preventDefault();var m=document.getElementById('formmsg');m.hidden=false;m.textContent='Form not connected yet; call or email us.';m.focus();});}
+})();
+</script></body></html>

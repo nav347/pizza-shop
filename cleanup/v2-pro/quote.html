@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Request a quote | Dust Settled Co. trade cleanup for drywall contractors</title>
+<meta name="description" content="Post-drywall cleanup subcontractor for drywall and renovation companies in Toronto and the GTA. 24 hour turnaround, insured, flat per-job pricing.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="util"><div class="wrap"><span data-biz="hours"></span><span>Trade line: <a data-biz="phone"></a></span></div></div>
+<header class="top"><div class="wrap"><a class="brand" href="index.html"><i></i><span data-biz="name"></span></a>
+<nav class="main" aria-label="Main"><a href="index.html">Home</a><a href="services.html">Services</a><a href="quote.html" aria-current="page">Request a quote</a></nav></div></header>
+<main id="main"><div class="page-head"><div class="wrap"><span class="tag">Free quote</span><h1>Request a quote</h1><p class="lead">Contractors, homeowners and property managers: tell us about the job and we reply the same business day. Or call <a style="color:#fff" data-biz="phone"></a>.</p></div></div>
+<section><div class="wrap" style="max-width:740px"><form id="quote-form" action="#" method="post" novalidate>
+<div class="row"><label>Your name<input name="name" autocomplete="name" required></label><label>Phone<input name="phone" type="tel" autocomplete="tel" required></label></div>
+<div class="row"><label>Email<input name="email" type="email" autocomplete="email" required></label><label>City<input name="city" autocomplete="address-level2" placeholder="e.g. Mississauga"></label></div>
+<label>Job address<input name="address" autocomplete="street-address"></label>
+<div class="row"><label>Job type<select name="jobtype"><option>Basement finishing</option><option>Whole-house drywall</option><option>Renovation or addition</option><option>Water or fire damage repair</option><option>Condo or rental unit turnover</option><option>Commercial or office</option><option>Other</option></select></label><label>Rooms or approx. sq ft<input name="size" placeholder="e.g. 3 rooms, 1,200 sq ft"></label></div>
+<div class="row"><label>Preferred date<input name="date" type="date"></label><label>Who are you?<select name="who"><option>Homeowner</option><option>Drywall or reno contractor</option><option>Property manager</option></select></label></div>
+<label>Anything we should know?<textarea name="notes" rows="3"></textarea></label>
+<p class="note">Photos: email 3 to 5 photos of the space to <span data-biz="email"></span> after you send this, so we can quote without a visit. Photo upload is coming.</p>
+<button class="btn" type="submit">Request my quote</button>
+<p id="formmsg" role="status" tabindex="-1" hidden></p></form></div></section>
+<section class="white"><div class="wrap" style="max-width:740px"><h2>FAQ</h2><div id="faq" style="margin-top:14px"></div></div></section>
+<section><div class="wrap"><h2>Service area</h2><ul class="incl" id="cities" style="margin-top:12px"></ul></div></section>
+</main><footer><div class="wrap"><div class="cols"><div><b>Company</b><span data-biz="name"></span><br><span data-biz="tagline"></span></div>
+<div><b>Contact</b><a data-biz="phone"></a><br><a data-biz="email"></a></div>
+<div><b>Hours</b><span data-biz="hours"></span></div><div><b>Service area</b><span data-biz="area"></span></div></div>
+<small>Commercial general liability insured &middot; WSIB clearance on request &middot; Placeholder brand for a design test.</small></div></footer>
+<script src="../business.js"></script><script src="../switcher.js"></script>
+<script>
+(function(){
+  var B=window.BIZ,$=function(s){return document.querySelector(s)};
+  function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!==undefined)e.innerHTML=h;return e}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function svcCard(s){return '<div class="ic" aria-hidden="true">'+s.icon+'</div><h3>'+esc(s.name)+'</h3><p>'+esc(s.desc)+'</p><span class="price">'+(s.from==null?'Custom quote':'From '+B.formatPrice(s.from))+'</span>'}
+  var sp=$("#svc-preview");if(sp)B.services.slice(0,6).forEach(function(s){sp.appendChild(el("div","card",svcCard(s)))});
+  var sl=$("#svc-list");if(sl)B.services.forEach(function(s){sl.appendChild(el("article","svc-item",'<div class="ic" aria-hidden="true">'+s.icon+'</div><h3>'+esc(s.name)+'</h3><div class="pr">'+(s.from==null?'Custom quote':'From '+B.formatPrice(s.from))+'</div><p>'+esc(s.desc)+'</p>'))});
+  var st=$("#steps");if(st)B.process.forEach(function(p){st.appendChild(el("li","","<b>"+esc(p.step)+"</b><span>"+esc(p.desc)+"</span>"))});
+  var pk=$("#perks");if(pk)B.forContractors.perks.forEach(function(p){pk.appendChild(el("li","",esc(p)))});
+  var pt=$("#pitch");if(pt)pt.textContent=B.forContractors.pitch;
+  var qs=$("#quotes");if(qs)B.quotes.forEach(function(q){qs.appendChild(el("blockquote","","&ldquo;"+esc(q.text)+"&rdquo;<cite>"+esc(q.who)+"</cite>"))});
+  var fq=$("#faq");if(fq)B.faq.forEach(function(f){fq.appendChild(el("details","","<summary>"+esc(f.q)+"</summary><p>"+esc(f.a)+"</p>"))});
+  var cs=$("#cities");if(cs)B.cities.forEach(function(c){cs.appendChild(el("li","",esc(c)))});
+  var fm=$("#quote-form");if(fm)fm.addEventListener("submit",function(e){e.preventDefault();var m=$("#formmsg");m.hidden=false;m.textContent="Form not connected yet; call or email us: "+B.phone+" / "+B.email;m.focus&&m.focus()});
+})();
+</script>
+</body></html>

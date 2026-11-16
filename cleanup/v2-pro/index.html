@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your drywall crew finishes, we clean up | Dust Settled Co. trade cleanup for drywall contractors</title>
+<meta name="description" content="Post-drywall cleanup subcontractor for drywall and renovation companies in Toronto and the GTA. 24 hour turnaround, insured, flat per-job pricing.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="util"><div class="wrap"><span data-biz="hours"></span><span>Trade line: <a data-biz="phone"></a></span></div></div>
+<header class="top"><div class="wrap"><a class="brand" href="index.html"><i></i><span data-biz="name"></span></a>
+<nav class="main" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="services.html">Services</a><a href="quote.html">Request a quote</a></nav></div></header>
+<main id="main">
+<section class="hero"><div class="wrap"><div><span class="tag">Trade partner &middot; GTA</span>
+<h1>Your drywall crew finishes. <em>We clean up.</em></h1>
+<p class="lead">A dedicated post-drywall cleaning subcontractor for drywall, reno and restoration companies. Stop pulling skilled tapers off the next job to sweep. We arrive within 24 hours and leave the site paint-ready.</p>
+<div class="cta"><a class="btn" href="quote.html">Request a trade quote</a><a class="btn line" href="services.html">Services and rates</a></div></div>
+<div class="panel"><h2>Contractor account</h2><ul><li>Flat per-job or per-sq-ft pricing</li><li>Insured, WSIB clearance on request</li><li>Photo report to you and your client</li><li>Monthly invoicing under your terms</li></ul></div></div></section>
+<div class="stats"><div class="wrap"><div><b>24 h</b><span>Turnaround after you call it complete</span></div><div><b>HEPA</b><span>Vacuums and air scrubbers on every job</span></div><div><b>Fixed</b><span>Price agreed before we start</span></div><div><b>GTA</b><span>Toronto to Oakville to Ajax</span></div></div></div>
+<section><div class="wrap"><h2>Drywall dust gets everywhere</h2><p class="sub">Sanded joint compound travels through vents, closets and finished rooms. If it is not removed before paint, your finish is on the line.</p>
+<div class="compare"><div><h3>Your tapers cleaning</h3><ul><li>Skilled labour at skilled rates on a broom</li><li>Dust left in vents, tracks and ceilings</li><li>Callbacks when the painter finds grit</li></ul></div><div class="us"><h3>Dust Settled crew</h3><ul><li>Cleaning crew at cleaning rates</li><li>HEPA vacuuming from ceiling to floor</li><li>Inspection and photos before handover</li></ul></div></div></div></section>
+<section class="white"><div class="wrap"><h2>Services</h2><p class="sub">A full post-drywall scope, priced in CAD before HST.</p><div class="grid3" id="svc-preview"></div><p style="margin-top:20px"><a class="btn dark" href="services.html">Full rate sheet</a></p></div></section>
+<section class="dk"><div class="wrap"><h2>How it works</h2><p class="sub">From your call to a signed-off room.</p><ol class="steps" id="steps"></ol></div></section>
+<section><div class="wrap"><div class="contr"><div><span class="tag">For drywall contractors</span><h2 style="margin-top:12px">Subcontract partnership</h2><p id="pitch"></p><a class="btn" href="quote.html">Open a trade account</a></div><ul id="perks"></ul></div></div></section>
+<section class="white"><div class="wrap"><h2>From the trade</h2><p class="sub">Sample testimonials for the design test.</p><div class="grid3" id="quotes"></div></div></section>
+<section class="dk"><div class="wrap" style="text-align:center"><h2>Next job wrapping up?</h2><p class="sub" style="margin-inline:auto">Send us the address and finish date. Same-day quote.</p><div class="cta" style="justify-content:center"><a class="btn" href="quote.html">Request a quote</a><a class="btn line" data-biz="phone"></a></div></div></section>
+</main><footer><div class="wrap"><div class="cols"><div><b>Company</b><span data-biz="name"></span><br><span data-biz="tagline"></span></div>
+<div><b>Contact</b><a data-biz="phone"></a><br><a data-biz="email"></a></div>
+<div><b>Hours</b><span data-biz="hours"></span></div><div><b>Service area</b><span data-biz="area"></span></div></div>
+<small>Commercial general liability insured &middot; WSIB clearance on request &middot; Placeholder brand for a design test.</small></div></footer>
+<script src="../business.js"></script><script src="../switcher.js"></script>
+<script>
+(function(){
+  var B=window.BIZ,$=function(s){return document.querySelector(s)};
+  function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!==undefined)e.innerHTML=h;return e}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function svcCard(s){return '<div class="ic" aria-hidden="true">'+s.icon+'</div><h3>'+esc(s.name)+'</h3><p>'+esc(s.desc)+'</p><span class="price">'+(s.from==null?'Custom quote':'From '+B.formatPrice(s.from))+'</span>'}
+  var sp=$("#svc-preview");if(sp)B.services.slice(0,6).forEach(function(s){sp.appendChild(el("div","card",svcCard(s)))});
+  var sl=$("#svc-list");if(sl)B.services.forEach(function(s){sl.appendChild(el("article","svc-item",'<div class="ic" aria-hidden="true">'+s.icon+'</div><h3>'+esc(s.name)+'</h3><div class="pr">'+(s.from==null?'Custom quote':'From '+B.formatPrice(s.from))+'</div><p>'+esc(s.desc)+'</p>'))});
+  var st=$("#steps");if(st)B.process.forEach(function(p){st.appendChild(el("li","","<b>"+esc(p.step)+"</b><span>"+esc(p.desc)+"</span>"))});
+  var pk=$("#perks");if(pk)B.forContractors.perks.forEach(function(p){pk.appendChild(el("li","",esc(p)))});
+  var pt=$("#pitch");if(pt)pt.textContent=B.forContractors.pitch;
+  var qs=$("#quotes");if(qs)B.quotes.forEach(function(q){qs.appendChild(el("blockquote","","&ldquo;"+esc(q.text)+"&rdquo;<cite>"+esc(q.who)+"</cite>"))});
+  var fq=$("#faq");if(fq)B.faq.forEach(function(f){fq.appendChild(el("details","","<summary>"+esc(f.q)+"</summary><p>"+esc(f.a)+"</p>"))});
+  var cs=$("#cities");if(cs)B.cities.forEach(function(c){cs.appendChild(el("li","",esc(c)))});
+  var fm=$("#quote-form");if(fm)fm.addEventListener("submit",function(e){e.preventDefault();var m=$("#formmsg");m.hidden=false;m.textContent="Form not connected yet; call or email us: "+B.phone+" / "+B.email;m.focus&&m.focus()});
+})();
+</script>
+</body></html>

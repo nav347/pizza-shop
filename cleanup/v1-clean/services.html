@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Services | Dust Settled Co. post-drywall cleaning, Toronto</title>
+<meta name="description" content="Post-drywall cleanup in Toronto and the GTA: HEPA dust removal, wipe-down, debris haul-away and paint-ready prep.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap"><a class="brand" href="index.html"><b>&#9679;</b> <span data-biz="name"></span></a>
+<nav class="main" aria-label="Main"><a href="index.html">Home</a><a href="services.html" aria-current="page">Services</a><a href="quote.html">Get a quote</a><a class="btn" data-biz="phone"></a></nav></div></header>
+<main id="main"><div class="page-head"><div class="wrap"><p class="eyebrow">Services &amp; pricing</p><h1>Everything after the drywall</h1><p class="lead">Prices are starting points in Canadian dollars before HST. Your exact price is fixed after a walkthrough.</p></div></div>
+<section><div class="wrap"><div class="svc" id="svc-list"></div></div></section>
+<section class="alt"><div class="wrap"><h2>What is included in every cleanup</h2><ul class="incl"><li>HEPA vacuum of every wall, ceiling, ledge and trim surface</li><li>Damp wipe of walls, doors, frames and window sills</li><li>Floors vacuumed and damp mopped last</li><li>Vents and registers vacuumed</li><li>Debris, offcuts and poly bagged and removed</li><li>Final walkthrough with photos</li></ul></div></section>
+<section><div class="wrap"><h2>Add-ons</h2><p class="sub">Optional extras, added to your fixed quote.</p><div class="grid3"><div class="card"><h3>Interior window and track detail</h3><span class="price">$8 per window</span></div><div class="card"><h3>Light fixture and fan wipe-down</h3><span class="price">$12 per fixture</span></div><div class="card"><h3>Garage or utility room sweep</h3><span class="price">$60</span></div><div class="card"><h3>Stairwell and common-area pass (condos)</h3><span class="price">From $120</span></div><div class="card"><h3>Second air scrubber on site</h3><span class="price">$85 per day</span></div><div class="card"><h3>Evening or Sunday visit</h3><span class="price">+$75</span></div></div><p style="margin-top:22px"><a class="btn" href="quote.html">Get a free quote</a></p></div></section>
+</main><footer><div class="wrap"><div class="cols"><div><b data-biz="name"></b><span data-biz="tagline"></span></div>
+<div><b>Contact</b><a data-biz="phone"></a><br><a data-biz="email"></a></div>
+<div><b>Hours</b><span data-biz="hours"></span></div><div><b>Service area</b><span data-biz="area"></span></div></div>
+<small>Insured &middot; WSIB clearance available &middot; Placeholder brand for a design test.</small></div></footer>
+<script src="../business.js"></script><script src="../switcher.js"></script>
+<script>
+(function(){
+  var B=window.BIZ,$=function(s){return document.querySelector(s)};
+  function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!==undefined)e.innerHTML=h;return e}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function svcCard(s){return '<div class="ic" aria-hidden="true">'+s.icon+'</div><h3>'+esc(s.name)+'</h3><p>'+esc(s.desc)+'</p><span class="price">'+(s.from==null?'Custom quote':'From '+B.formatPrice(s.from))+'</span>'}
+  var sp=$("#svc-preview");if(sp)B.services.slice(0,6).forEach(function(s){sp.appendChild(el("div","card",svcCard(s)))});
+  var sl=$("#svc-list");if(sl)B.services.forEach(function(s){sl.appendChild(el("article","svc-item",'<div class="ic" aria-hidden="true">'+s.icon+'</div><h3>'+esc(s.name)+'</h3><div class="pr">'+(s.from==null?'Custom quote':'From '+B.formatPrice(s.from))+'</div><p>'+esc(s.desc)+'</p>'))});
+  var st=$("#steps");if(st)B.process.forEach(function(p){st.appendChild(el("li","","<b>"+esc(p.step)+"</b><span>"+esc(p.desc)+"</span>"))});
+  var pk=$("#perks");if(pk)B.forContractors.perks.forEach(function(p){pk.appendChild(el("li","",esc(p)))});
+  var pt=$("#pitch");if(pt)pt.textContent=B.forContractors.pitch;
+  var qs=$("#quotes");if(qs)B.quotes.forEach(function(q){qs.appendChild(el("blockquote","","&ldquo;"+esc(q.text)+"&rdquo;<cite>"+esc(q.who)+"</cite>"))});
+  var fq=$("#faq");if(fq)B.faq.forEach(function(f){fq.appendChild(el("details","","<summary>"+esc(f.q)+"</summary><p>"+esc(f.a)+"</p>"))});
+  var cs=$("#cities");if(cs)B.cities.forEach(function(c){cs.appendChild(el("li","",esc(c)))});
+  var fm=$("#quote-form");if(fm)fm.addEventListener("submit",function(e){e.preventDefault();var m=$("#formmsg");m.hidden=false;m.textContent="Form not connected yet; call or email us: "+B.phone+" / "+B.email;m.focus&&m.focus()});
+})();
+</script>
+</body></html>

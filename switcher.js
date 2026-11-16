@@ -77,5 +77,11 @@
     rs.src = (me && me.src ? me.src.replace(/switcher\.js(\?.*)?$/, "") : root) + "ratings.js";
     document.head.appendChild(rs);
   }
+  /* megabar.js: the top bar that switches between the Pizza and Cleanup sites */
+  if (!window.__megabar && !document.querySelector('script[src$="megabar.js"]')) {
+    var me2 = document.currentScript, ms = document.createElement("script");
+    ms.src = (me2 && me2.src ? me2.src.replace(/switcher\.js(\?.*)?$/, "") : root) + "megabar.js";
+    document.head.appendChild(ms);
+  }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build); else build();
 })();

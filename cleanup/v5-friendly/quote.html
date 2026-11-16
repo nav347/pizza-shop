@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Request a quote | Dust Settled Co.</title>
+<meta name="description" content="Post-drywall cleanup in Toronto and the GTA. HEPA dust removal, haul-away and paint-ready prep.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:ital,wght@0,400;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="v5">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap head-in">
+<a class="brand" href="index.html"><svg viewBox="0 0 120 110" class="bunny" aria-hidden="true" focusable="false"><g fill="#d9cfe8" stroke="#8b7aa8" stroke-width="3" stroke-linecap="round"><path d="M18 60 q-10 -12 4 -18 q0 -14 16 -10 q6 -14 22 -4 q16 -8 22 6 q16 0 14 16 q12 8 2 20 q6 16 -12 18 q-6 14 -22 6 q-14 10 -24 -2 q-18 2 -16 -16 q-14 -6 -6 -16z"/></g><circle cx="46" cy="58" r="5" fill="#4a3f5c"/><circle cx="74" cy="58" r="5" fill="#4a3f5c"/><circle cx="48" cy="56" r="1.6" fill="#fff"/><circle cx="76" cy="56" r="1.6" fill="#fff"/><path d="M52 72 q8 8 16 0" fill="none" stroke="#4a3f5c" stroke-width="3" stroke-linecap="round"/><circle cx="38" cy="70" r="5" fill="#f6b8c8" opacity=".7"/><circle cx="82" cy="70" r="5" fill="#f6b8c8" opacity=".7"/></svg><span data-biz="name">Dust Settled Co.</span></a>
+<nav aria-label="Main"><a href="index.html">Home</a><a href="services.html">Services</a><a href="quote.html" aria-current="page">Get a quote</a></nav>
+</div></header>
+<main id="main">
+<section class="page-head"><div class="wrap narrow reveal"><h1>Let us give you a friendly quote</h1><p class="lead">Tell us a little about your place. No pressure, no pushy sales, just a clear price.</p></div></section>
+<section class="sec"><div class="wrap narrow"><form id="quote-form" class="qform" action="#" method="post">
+<label>Name<input name="name" autocomplete="name" required></label>
+<label>Phone<input name="phone" type="tel" autocomplete="tel" required></label>
+<label>Email<input name="email" type="email" autocomplete="email" required></label>
+<label>City<input name="city" autocomplete="address-level2" placeholder="Toronto, Mississauga, Markham..." required></label>
+<label>Job type<select name="job"><option>Whole-home post-drywall cleanup</option><option>Single room or renovation area</option><option>Condo or unit turnover</option><option>Contractor partnership</option><option>Other</option></select></label>
+<label>Rooms or square feet<input name="size" placeholder="e.g. 3 rooms, or 1,400 sq ft"></label>
+<label>Preferred date<input name="date" type="date"></label>
+<button class="btn" type="submit">Send my request</button>
+<p id="form-msg" class="form-msg" role="status" hidden></p></form></div></section>
+<section class="sec tint"><div class="wrap narrow"><h2>Questions</h2><div id="faq-list" class="faq"><details><summary>How much does a cleanup cost?</summary><p>Most homes land between $350 and $1,200 depending on size and how much drywall work was done. You get a fixed quote before we start.</p></details><details><summary>Do you work with my drywall contractor?</summary><p>Yes. We work after the drywall crew finishes and can coordinate directly with them on timing.</p></details><details><summary>Is HEPA vacuuming really needed?</summary><p>Drywall dust is extremely fine. Regular vacuums pass it straight through the filter and back into the air. HEPA captures it.</p></details><details><summary>Do you haul away the offcuts?</summary><p>Yes, debris and offcut haul-away is one of our core services and can be added to any cleanup.</p></details><details><summary>How soon can you come?</summary><p>Often within 1 to 2 business days. Rush same-day visits are possible when our schedule allows.</p></details></div></div></section>
+</main>
+<footer class="site-foot"><div class="wrap foot-in">
+<div><p class="foot-brand" data-biz="name">Dust Settled Co.</p><p data-biz="tagline">Gentle, thorough cleanup after the drywall dust.</p></div>
+<ul class="foot-list">
+<li>Phone: <a href="tel:+14165550142" data-biz="phone">(416) 555-0142</a></li>
+<li>Email: <a href="mailto:hello@dustsettled.example" data-biz="email">hello@dustsettled.example</a></li>
+<li>Area: <span data-biz="area">Toronto and the GTA</span></li>
+<li>Hours: <span data-biz="hours">Mon to Sat, 7am to 7pm</span></li>
+</ul>
+<p class="fine">Placeholder business and sample prices in CAD. Not a real company.</p>
+</div></footer>
+<script src="../business.js"></script>
+<script src="../switcher.js"></script>
+<script>
+(function(){
+var INC={"hepa": ["Walls, ceilings, ledges, trim", "Inside closets and cabinets", "Sealed HEPA filtration"], "wipe": ["Sills, doors, frames", "Switches and fixtures", "Cabinet and counter faces"], "debris": ["Drywall offcuts and packaging", "Bagged and loaded out", "Proper disposal"], "floors": ["Hardwood, tile, vinyl, concrete", "Edges and under radiators", "Streak-free finish"], "air": ["Machine on site up to 8 hours", "Filter change included", "Before-and-after check"], "vents": ["Registers and returns", "Visible duct openings", "Temporary covers"], "film": ["Windows and frames", "Tubs, sinks, fixtures", "Scratch-safe tools only"], "paint": ["Dust-free walls and trim", "Floors and sills clean", "Painter sign-off checklist"], "sub": ["Per-unit or per-floor pricing", "Same-day or next-day", "One invoice per job"]};
+function esc(s){var d=document.createElement('div');d.textContent=s==null?'':s;return d.innerHTML}
+function money(n){return (window.BIZ&&BIZ.formatPrice)?BIZ.formatPrice(n):'$'+n+' CAD'}
+function $(i){return document.getElementById(i)}
+var B=window.BIZ;
+if(B){
+ var s=$('svc-list');
+ if(s&&B.services&&B.services.length){var lim=+s.getAttribute('data-limit')||99;
+  s.innerHTML=B.services.slice(0,lim).map(function(x){return '<li class="card"><span class="ic" aria-hidden="true">'+esc(x.icon)+'</span><h3>'+esc(x.name)+'</h3><p>'+esc(x.desc)+'</p><p class="from">From '+money(x.from)+'</p></li>'}).join('')}
+ var f=$('svc-full');
+ if(f&&B.services&&B.services.length){
+  f.innerHTML=B.services.map(function(x){var inc=(INC[x.id]||[]).map(function(i){return '<li>'+esc(i)+'</li>'}).join('');
+   return '<li class="card" id="'+esc(x.id)+'"><span class="ic" aria-hidden="true">'+esc(x.icon)+'</span><h3>'+esc(x.name)+'</h3><p>'+esc(x.desc)+'</p><p class="from">From '+money(x.from)+'</p>'+(inc?'<p class="inc-h">What is included</p><ul class="inc">'+inc+'</ul>':'')+'</li>'}).join('')}
+ var p=$('steps');
+ if(p&&B.process&&B.process.length){p.innerHTML=B.process.map(function(x,i){return '<li><span class="n">'+(i+1)+'</span><div><h3>'+esc(x.step)+'</h3><p>'+esc(x.desc)+'</p></div></li>'}).join('');}
+ var q=$('quotes');
+ if(q&&B.quotes&&B.quotes.length){q.innerHTML=B.quotes.map(function(x){return '<li><blockquote>'+esc(x.text)+'</blockquote><cite>'+esc(x.who)+'</cite></li>'}).join('')}
+ var fq=$('faq-list');
+ if(fq&&B.faq&&B.faq.length){fq.innerHTML=B.faq.map(function(x){return '<details><summary>'+esc(x.q)+'</summary><p>'+esc(x.a)+'</p></details>'}).join('')}
+ var c=B.forContractors,cp=$('contr-pitch'),cl=$('contr-perks');
+ if(c&&cp&&c.pitch)cp.textContent=c.pitch;
+ if(c&&cl&&c.perks&&c.perks.length)cl.innerHTML=c.perks.map(function(x){return '<li>'+esc(x)+'</li>'}).join('');
+ [].forEach.call(document.querySelectorAll('[data-biz]'),function(el){var v=B[el.getAttribute('data-biz')];if(v)el.textContent=v});
+}
+var form=$('quote-form');
+if(form)form.addEventListener('submit',function(ev){ev.preventDefault();var m=$('form-msg');m.textContent='Form not connected yet; call or email us.';m.hidden=false;});
+})();
+</script>
+</body>
+</html>
