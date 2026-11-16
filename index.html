@@ -20,10 +20,19 @@ header p{opacity:.8;margin-top:10px}
 .c15{background:#ffcb05;color:#111}.c16{background:#2a9d8f}.c17{background:#6b3f1d;border:4px solid #2f5d34}.c18{background:#0b3d91;border:4px solid #fff}
 .c19{background:#fff;color:#111;border-left:16px solid #da291c}.c20{background:linear-gradient(135deg,#041a2e,#1b9e77,#6a4c93)}
 .guide{grid-column:1/-1;background:#fff;color:#14121f;border:4px dashed #5b2bd6;min-height:140px}.guide .n{font-size:1.1rem;opacity:1;color:#5b2bd6}
+.cw{display:flex;flex-direction:column;min-width:0}.cw[hidden]{display:none}.cw.guidew{grid-column:1/-1}.cw .card{flex:1}
+.rt{background:#000;border-radius:0 0 14px 14px;margin:-6px 8px 0;padding:8px 8px 6px;position:relative;z-index:1;border:1px solid #444;border-top:0}
+.rt .pr-w{max-width:100%}.rt .pr-t{flex-basis:100%;margin:2px 0 0 4px}
+.tools{max-width:1100px;margin:10px auto 0;padding:0 5vw;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:.95rem}
+.tools select,.tools button{background:#fff;color:#14121f;border:2px solid #fff;border-radius:10px;padding:8px 10px;font:inherit;min-height:40px;cursor:pointer}
+.tools button[aria-pressed=true]{background:#ff5a7a;color:#fff;border-color:#ff5a7a}
+.tools :focus-visible{outline:3px solid #7ad7f0;outline-offset:2px}
+.empty{grid-column:1/-1;text-align:center;opacity:.85}.pnote{max-width:1100px;margin:6px auto 0;padding:0 5vw;font-size:.8rem;opacity:.8}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head>
 <body><header><h1 data-shop="name"></h1><p><span data-shop="tagline"></span><br>One shop, twenty radically different websites. Pick a vibe.</p></header>
-<main class="grid">
+<div class="tools"><label>Sort <select id="srt"><option value="n">Version number</option><option value="r">Highest rated</option><option value="f">Most favourited</option></select></label><button type="button" id="myf" aria-pressed="false">&#10084; Your favourites</button></div><p class="pnote" id="pnote" aria-live="polite"></p>
+<main class="grid" id="grid">
 <a class="card c1" href="v1-trattoria/index.html"><span class="n">01</span><h2>Naples Trattoria</h2><p>Gingham tablecloths, steaming pizza, nonna-approved serif elegance.</p><span class="go">Open &rarr;</span></a>
 <a class="card c2" href="v2-neon/index.html"><span class="n">02</span><h2>Neon Night</h2><p>Cyberpunk after-midnight pizza under flickering pink and cyan tubes.</p><span class="go">Open &rarr;</span></a>
 <a class="card c3" href="v3-diner/index.html"><span class="n">03</span><h2>Retro Diner</h2><p>Chrome, checkerboard floors, milkshake pink and a sign that chases its own lights.</p><span class="go">Open &rarr;</span></a>
@@ -45,5 +54,43 @@ header p{opacity:.8;margin-top:10px}
 <a class="card c19" href="v19-transit/index.html"><span class="n">19</span><h2>Transit Map</h2><p>Subway-map lines: every page is a stop on the way to dinner.</p><span class="go">Open &rarr;</span></a>
 <a class="card c20" href="v20-aurora/index.html"><span class="n">20</span><h2>Aurora</h2><p>Northern lights drifting over a calm night sky.</p><span class="go">Open &rarr;</span></a>
 </main>
-<script src="shop.js"></script><script src="switcher.js"></script>
+<script src="shop.js"></script><script src="ratings.js"></script><script src="switcher.js"></script>
+<script>
+(function(){
+  var grid=document.getElementById("grid"),srt=document.getElementById("srt"),myf=document.getElementById("myf"),note=document.getElementById("pnote");
+  var items=[],i=0;
+  [].slice.call(grid.querySelectorAll("a.card")).forEach(function(a){
+    var slug=a.getAttribute("href").split("/")[0],w=document.createElement("div");
+    w.className="cw"+(a.classList.contains("guide")?" guidew":"");
+    grid.replaceChild(w,a);w.appendChild(a);
+    var r=document.createElement("div");r.className="rt";w.appendChild(r);
+    items.push({slug:slug,el:w,box:r,guide:a.classList.contains("guide"),pos:i++});
+  });
+  var empty=document.createElement("p");empty.className="empty";empty.textContent="No favourites yet: tap the heart on a design.";
+  function ready(){return window.PizzaRatings;}
+  function render(){
+    var R=window.PizzaRatings,st=R.store,mode=srt.value,only=myf.getAttribute("aria-pressed")==="true";
+    var vis=items.filter(function(x){return !only||st.isFav(x.slug);});
+    var normal=vis.filter(function(x){return !x.guide;}),guide=vis.filter(function(x){return x.guide;});
+    if(mode==="r")normal.sort(function(a,b){var A=st.stats(a.slug),B=st.stats(b.slug);return B.avg-A.avg||B.count-A.count||a.pos-b.pos;});
+    else if(mode==="f")normal.sort(function(a,b){return st.stats(b.slug).favs-st.stats(a.slug).favs||a.pos-b.pos;});
+    else normal.sort(function(a,b){return a.pos-b.pos;});
+    var order=normal.slice();
+    if(guide.length){ if(mode==="n"){var k=0;order=[];var all=vis.slice().sort(function(a,b){return a.pos-b.pos;});order=all;} else order=normal.concat(guide); }
+    items.forEach(function(x){x.el.hidden=vis.indexOf(x)<0;});
+    order.forEach(function(x){grid.appendChild(x.el);});
+    if(!vis.length)grid.appendChild(empty);else if(empty.parentNode)grid.removeChild(empty);
+    note.textContent=R.store.mode()==="local"?R.note:"";
+  }
+  var built=false;
+  function start(){
+    var R=window.PizzaRatings;
+    items.forEach(function(x){x.box.appendChild(R.makeWidget(x.slug));});
+    R.store.subscribe(render);srt.onchange=render;
+    myf.onclick=function(){myf.setAttribute("aria-pressed",myf.getAttribute("aria-pressed")==="true"?"false":"true");render();};
+    render();
+  }
+  if(ready())start();else{var n=0,t=setInterval(function(){if(ready()){clearInterval(t);start();}else if(++n>80)clearInterval(t);},50);}
+})();
+</script>
 </body></html>

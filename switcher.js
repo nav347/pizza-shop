@@ -52,8 +52,8 @@
 
   function build() {
     fallbackFill();
-    var bar = document.createElement("div");
-    bar.setAttribute("style", "position:fixed;left:0;right:0;bottom:0;z-index:2147483000;display:flex;gap:6px;align-items:center;justify-content:center;padding:6px 8px;background:#111;color:#fff;font:600 13px/1 system-ui,sans-serif;box-shadow:0 -2px 10px rgba(0,0,0,.4)");
+    var bar = document.createElement("div"); bar.id = "sw-bar";
+    bar.setAttribute("style", "position:fixed;left:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;padding:6px 8px;background:#111;color:#fff;font:600 13px/1 system-ui,sans-serif;box-shadow:0 -2px 10px rgba(0,0,0,.4)");
     var bs = "background:#333;color:#fff;border:1px solid #666;border-radius:6px;padding:6px 10px;font:inherit;cursor:pointer;text-decoration:none";
     bar.innerHTML = '<a href="' + root + 'index.html" style="' + bs + '">All</a>' +
       '<button type="button" id="sw-prev" style="' + bs + '" aria-label="Previous design">&larr;</button>' +
@@ -64,12 +64,18 @@
     if (!inV) sel.innerHTML = '<option value="-1">Pick a design...</option>';
     V.forEach(function (v, i) {
       var o = document.createElement("option");
-      o.value = i; o.textContent = v[1]; if (i === idx) o.selected = true; sel.appendChild(o);
+      o.value = i; o.textContent = v[1]; o.setAttribute("data-slug", v[0]); o.setAttribute("data-label", v[1]); if (i === idx) o.selected = true; sel.appendChild(o);
     });
     sel.onchange = function () { if (+sel.value >= 0) go(+sel.value); };
     bar.querySelector("#sw-prev").onclick = function () { go((inV ? idx : 0) - 1); };
     bar.querySelector("#sw-next").onclick = function () { go((inV ? idx : -1) + 1); };
     document.body.style.paddingBottom = "52px";
+  }
+  /* ratings.js (stars + favourites) lives in the site root; load it from there whatever the page depth */
+  if (!window.PizzaRatings && !document.querySelector('script[src$="ratings.js"]')) {
+    var me = document.currentScript, rs = document.createElement("script");
+    rs.src = (me && me.src ? me.src.replace(/switcher\.js(\?.*)?$/, "") : root) + "ratings.js";
+    document.head.appendChild(rs);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build); else build();
 })();
