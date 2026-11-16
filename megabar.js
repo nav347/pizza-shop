@@ -22,7 +22,7 @@
     var bar = document.createElement("nav"); bar.id = "mega-bar"; bar.setAttribute("aria-label", "Switch between the two sites");
     bar.innerHTML =
       '<a href="' + base + 'index.html"' + (inCleanup ? "" : ' aria-current="page"') + '>&#127829; Pizza <span style="font-weight:400">&nbsp;(Dough Re Mi)</span></a>' +
-      '<a href="' + base + 'cleanup/index.html"' + (inCleanup ? ' aria-current="page"' : "") + '>&#129529; Drywall Cleanup <span style="font-weight:400">&nbsp;(Dust Settled)</span></a>';
+      '<a href="' + base + 'cleanup/index.html"' + (inCleanup ? ' aria-current="page"' : "") + '>&#129529; Drywall Cleanup <span style="font-weight:400">&nbsp;(Maple Axis)</span></a>';
     [].forEach.call(bar.querySelectorAll("span"), function (s) { s.className = "mb-long"; });
     st.textContent += "@media(max-width:560px){#mega-bar .mb-long{display:none}}";
     document.body.insertBefore(bar, document.body.firstChild);

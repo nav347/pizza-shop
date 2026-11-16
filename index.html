@@ -31,7 +31,7 @@ header p{opacity:.8;margin-top:10px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head>
 <body><header><h1 data-shop="name"></h1><p><span data-shop="tagline"></span><br>One shop, twenty radically different websites. Pick a vibe.</p></header>
-<div class="tools"><label>Sort <select id="srt"><option value="n">Version number</option><option value="r">Highest rated</option><option value="f">Most favourited</option></select></label><button type="button" id="myf" aria-pressed="false">&#10084; Your favourites</button></div><p class="pnote" id="pnote" aria-live="polite"></p>
+<div class="tools"><label>Sort <select id="srt"><option value="n">Version number</option><option value="r">Highest rated</option><option value="f">Most favourited</option></select></label><button type="button" id="myf" aria-pressed="false">&#10084; Your favourites</button><button type="button" id="shh" aria-pressed="false">Show hidden</button></div><p class="pnote" id="pnote" aria-live="polite"></p>
 <main class="grid" id="grid">
 <a class="card c1" href="v1-trattoria/index.html"><span class="n">01</span><h2>Naples Trattoria</h2><p>Gingham tablecloths, steaming pizza, nonna-approved serif elegance.</p><span class="go">Open &rarr;</span></a>
 <a class="card c2" href="v2-neon/index.html"><span class="n">02</span><h2>Neon Night</h2><p>Cyberpunk after-midnight pizza under flickering pink and cyan tubes.</p><span class="go">Open &rarr;</span></a>
@@ -68,12 +68,15 @@ header p{opacity:.8;margin-top:10px}
   });
   var empty=document.createElement("p");empty.className="empty";empty.textContent="No favourites yet: tap the heart on a design.";
   function ready(){return window.PizzaRatings;}
+  var shh=document.getElementById("shh");function showAll(){return shh.getAttribute("aria-pressed")==="true";}
   function render(){
     var R=window.PizzaRatings,st=R.store,mode=srt.value,only=myf.getAttribute("aria-pressed")==="true";
+    items.forEach(function(x){x.apply(showAll());});
     var vis=items.filter(function(x){return !only||st.isFav(x.slug);});
+    var nz=function(x){return x.folded?1:0;};
     var normal=vis.filter(function(x){return !x.guide;}),guide=vis.filter(function(x){return x.guide;});
-    if(mode==="r")normal.sort(function(a,b){var A=st.stats(a.slug),B=st.stats(b.slug);return B.avg-A.avg||B.count-A.count||a.pos-b.pos;});
-    else if(mode==="f")normal.sort(function(a,b){return st.stats(b.slug).favs-st.stats(a.slug).favs||a.pos-b.pos;});
+    if(mode==="r")normal.sort(function(a,b){var A=st.stats(a.slug),B=st.stats(b.slug);return nz(a)-nz(b)||B.avg-A.avg||B.count-A.count||a.pos-b.pos;});
+    else if(mode==="f")normal.sort(function(a,b){return nz(a)-nz(b)||st.stats(b.slug).favs-st.stats(a.slug).favs||a.pos-b.pos;});
     else normal.sort(function(a,b){return a.pos-b.pos;});
     var order=normal.slice();
     if(guide.length){ if(mode==="n"){var k=0;order=[];var all=vis.slice().sort(function(a,b){return a.pos-b.pos;});order=all;} else order=normal.concat(guide); }
@@ -85,7 +88,8 @@ header p{opacity:.8;margin-top:10px}
   var built=false;
   function start(){
     var R=window.PizzaRatings;
-    items.forEach(function(x){x.box.appendChild(R.makeWidget(x.slug));});
+    items.forEach(function(x){x.box.appendChild(R.makeWidget(x.slug));R.attachFold(x);});
+    shh.onclick=function(){shh.setAttribute("aria-pressed",showAll()?"false":"true");render();};
     R.store.subscribe(render);srt.onchange=render;
     myf.onclick=function(){myf.setAttribute("aria-pressed",myf.getAttribute("aria-pressed")==="true"?"false":"true");render();};
     render();

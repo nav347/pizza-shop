@@ -1,7 +1,8 @@
-/* Single source of truth for "Dust Settled Co." (placeholder name). Every cleanup version reads window.BIZ. */
+/* Single source of truth for "Maple Axis" (placeholder name). Every cleanup version reads window.BIZ. */
 window.BIZ = {
-  name: "Dust Settled Co.",
-  tagline: "The clean-up crew that comes after the drywall crew.",
+  logo: "assets/maple-axis-logo.png",
+  name: "Maple Axis",
+  tagline: "Post-drywall cleanup and commercial services, GTA",
   phone: "+1 (416) 555-0188",
   email: "hello@example.com",
   area: "Toronto, Mississauga, Brampton, Vaughan, Markham, Richmond Hill, Oakville, Pickering and Ajax",
@@ -47,7 +48,7 @@ window.BIZ = {
   ],
   quotes: [
     { text: "Our tapers finished Friday and the house was paint-ready Saturday morning. No dust on the windowsills, none in the vents.", who: "Priya N., homeowner, Etobicoke" },
-    { text: "We use Dust Settled on every basement finish now. It frees my crew for the next drywall job and clients love the photo report.", who: "Marco D., drywall contractor, Vaughan" },
+    { text: "We use Maple Axis on every basement finish now. It frees my crew for the next drywall job and clients love the photo report.", who: "Marco D., drywall contractor, Vaughan" },
     { text: "As a property manager I need units turned over fast. They cleaned six suites after drywall repairs in two days.", who: "Jennifer L., property manager, Mississauga" }
   ],
   formatPrice: function (n) {

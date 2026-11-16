@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en-CA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Services and rates | Maple Axis</title>
+<meta name="description" content="Maple Axis: post-drywall cleanup and commercial and industrial cleaning services across the GTA. HEPA dust removal, haul-away, paint-ready prep.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="icon" type="image/png" href="../assets/maple-axis-mark.png"></head><body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap bar"><a class="brand" href="index.html" data-no-chip><img class="ma-chip" src="../assets/maple-axis-logo.png" alt="Maple Axis"><small>Post-drywall cleanup &amp; commercial services</small></a>
+<nav class="nav" aria-label="Main"><a href="index.html">Home</a><a href="services.html" aria-current="page">Services</a><a href="quote.html">Get a quote</a></nav>
+<a class="tel" data-biz="phone" href="tel:+14165550188">+1 (416) 555-0188</a><a class="btn sm" href="quote.html">Get a quote &rarr;</a></div></header>
+<main id="main">
+<div class="page-head"><div class="wrap"><p class="kick">Services</p><h1>Cleaning for every <span class="gold">finished build</span></h1><p>Post-drywall cleanup plus commercial and industrial cleaning. Starting prices in Canadian dollars before HST.</p></div></div>
+<section><div class="wrap"><div class="svc" id="svc-list"><article class="svc-item"><div class="ic" aria-hidden="true">🧹</div><h3>Fine-dust HEPA vacuuming</h3><div class="pr">From $220 CAD</div><p>Every surface vacuumed with HEPA-filtered machines so sanding dust is removed, not pushed into the air.</p></article><article class="svc-item"><div class="ic" aria-hidden="true">🧽</div><h3>Wall, ceiling and trim wipe-down</h3><div class="pr">From $180 CAD</div><p>Damp microfibre wipe so paint and primer bond to a clean surface.</p></article><article class="svc-item"><div class="ic" aria-hidden="true">🚚</div><h3>Debris and offcut haul-away</h3><div class="pr">From $150 CAD</div><p>Offcuts, buckets and packaging bagged and taken away.</p></article><article class="svc-item"><div class="ic" aria-hidden="true">🪣</div><h3>Floor cleaning</h3><div class="pr">From $140 CAD</div><p>Vacuum, then damp mop or scrub for hardwood, tile, vinyl and concrete.</p></article><article class="svc-item"><div class="ic" aria-hidden="true">💨</div><h3>Air scrubbing</h3><div class="pr">From $160 CAD</div><p>HEPA air scrubbers capture the fine dust still floating in the air.</p></article><article class="svc-item"><div class="ic" aria-hidden="true">🎨</div><h3>Paint-ready prep</h3><div class="pr">From $200 CAD</div><p>A final detail pass so painters can start the same day.</p></article></div></div></section>
+<section class="alt"><div class="wrap"><h2 class="s">Included in every cleanup</h2><ul class="incl"><li>HEPA vacuum of every wall, ceiling, ledge and trim surface</li><li>Damp wipe of walls, doors, frames and window sills</li><li>Floors vacuumed and damp mopped last</li><li>Vents and registers vacuumed</li><li>Debris, offcuts and poly bagged and removed</li><li>Final walkthrough with photos</li></ul>
+<p style="margin-top:26px"><a class="btn solid" href="quote.html">Get a free quote &rarr;</a></p></div></section>
+</main><footer><div class="wrap"><div class="fgrid">
+<div><strong data-biz="name">Maple Axis</strong><p data-biz="tagline">Post-drywall cleanup and commercial services, GTA</p></div>
+<div><h4>Call or email</h4><p><a data-biz="phone" href="tel:+14165550188">+1 (416) 555-0188</a></p><p><a data-biz="email" href="mailto:hello@example.com">hello@example.com</a></p></div>
+<div><h4>Area and hours</h4><p data-biz="area">Toronto and the GTA</p><p data-biz="hours">Mon to Sat 7:00 am to 7:00 pm</p></div>
+</div><p class="fine">&copy; 2026 Maple Axis (placeholder contact details). Prices are starting prices in CAD before HST.</p></div></footer>
+<script src="../business.js"></script><script src="../switcher.js"></script>
+<script>
+(function(){
+var B=window.BIZ;if(!B)return;
+function e(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function price(n){return typeof B.formatPrice==='function'?B.formatPrice(n):(n==null?'Custom quote':'$'+n);}
+document.querySelectorAll('[data-biz]').forEach(function(el){var k=el.getAttribute('data-biz');if(B[k]){el.textContent=B[k];if(k==='phone')el.href='tel:'+String(B[k]).replace(/[^0-9+]/g,'');if(k==='email')el.href='mailto:'+B[k];}});
+function fill(id,list,fn){var n=document.getElementById(id);if(n&&list&&list.length)n.innerHTML=list.map(fn).join('');}
+var lim=document.getElementById('svc-preview');
+fill('svc-preview',lim&&B.services?B.services.slice(0,6):null,function(v){return '<li class="card"><span class="ico" aria-hidden="true">'+e(v.icon||'')+'</span><h3>'+e(v.name)+'</h3><p>'+e(v.desc)+'</p><p class="from">From <b>'+e(price(v.from))+'</b></p></li>';});
+fill('svc-list',B.services,function(v){return '<article class="svc-item"><div class="ic" aria-hidden="true">'+e(v.icon||'')+'</div><h3>'+e(v.name)+'</h3><div class="pr">'+(v.from==null?'Custom quote':'From '+e(price(v.from)))+'</div><p>'+e(v.desc)+'</p></article>';});
+fill('steps',B.process,function(v){return '<li><b>'+e(v.step)+'</b><span>'+e(v.desc)+'</span></li>';});
+fill('quote-list',B.quotes,function(v){return '<li><blockquote>&ldquo;'+e(v.text)+'&rdquo;<cite>'+e(v.who)+'</cite></blockquote></li>';});
+fill('faq',B.faq,function(v){return '<details><summary>'+e(v.q)+'</summary><p>'+e(v.a)+'</p></details>';});
+fill('cities',B.cities,function(v){return '<li>'+e(v)+'</li>';});
+var cp=document.getElementById('pitch');if(cp&&B.forContractors)cp.textContent=B.forContractors.pitch;
+fill('perks',B.forContractors&&B.forContractors.perks,function(v){return '<li>'+e(v)+'</li>';});
+var fm=document.getElementById('quote-form');
+if(fm)fm.addEventListener('submit',function(ev){ev.preventDefault();var m=document.getElementById('formmsg');m.hidden=false;m.textContent='Form not connected yet; call or email us: '+B.phone+' / '+B.email;if(m.focus)m.focus();});
+})();
+</script></body></html>

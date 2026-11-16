@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Post-drywall cleanup: 10 designs</title>
+<title>Maple Axis: post-drywall cleanup, 11 designs</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0}html,body{max-width:100%;overflow-x:hidden}
@@ -8,6 +8,7 @@ body{background:#f4f7fb;color:#12202f;font:17px/1.55 Inter,system-ui,sans-serif;
 header{text-align:center;padding:44px 5vw 18px;max-width:820px;margin:0 auto}
 h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1.1;font-weight:800;color:#0b3a6e}
 header p{margin-top:12px;color:#3d5168}
+.logochip{display:inline-block;background:#fff;border:2px solid #d5e0ee;border-radius:16px;padding:8px 18px;margin-bottom:10px}.logochip img{display:block;height:auto;max-width:200px;width:100%}.newb{display:inline-block;background:#f2b233;color:#111;font-size:.7rem;font-weight:800;border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:middle}
 .tag{display:inline-block;margin-top:14px;font-size:.8rem;font-weight:600;background:#e2eefb;color:#0b3a6e;border-radius:999px;padding:4px 12px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;max-width:1100px;margin:24px auto;padding:0 5vw}
 .card{display:flex;flex-direction:column;background:#fff;border:2px solid #d5e0ee;border-radius:14px;padding:18px;color:inherit;text-decoration:none;min-height:170px;transition:transform .2s,border-color .2s,box-shadow .2s}
@@ -26,10 +27,10 @@ header p{margin-top:12px;color:#3d5168}
 .tools :focus-visible{outline:3px solid #1167c9;outline-offset:2px}
 .empty{grid-column:1/-1;text-align:center;color:#3d5168}.pnote{max-width:1100px;margin:6px auto 0;padding:0 5vw;font-size:.8rem;color:#3d5168}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
-</style></head>
+</style><link rel="icon" type="image/png" href="assets/maple-axis-mark.png"></head>
 <body>
-<header><h1 data-biz="name"></h1><p><span data-biz="tagline"></span><br>Post-drywall cleanup for Toronto and the GTA. One business, ten different websites. Pick a vibe.</p><span class="tag">Placeholder brand for a design test</span></header>
-<div class="tools"><label>Sort <select id="srt"><option value="n">Version</option><option value="r">Highest rated</option><option value="f">Most favourited</option></select></label><button type="button" id="myf" aria-pressed="false">&#10084; Your favourites</button></div><p class="pnote" id="pnote" aria-live="polite"></p>
+<header><span class="logochip"><img src="assets/maple-axis-logo.png" alt="Maple Axis logo" width="200" height="88"></span><h1 data-biz="name">Maple Axis</h1><p><span data-biz="tagline"></span><br>Post-drywall cleanup for Toronto and the GTA. One business, eleven different websites. Pick a vibe.</p><span class="tag">Placeholder brand for a design test</span></header>
+<div class="tools"><label>Sort <select id="srt"><option value="n">Version</option><option value="r">Highest rated</option><option value="f">Most favourited</option></select></label><button type="button" id="myf" aria-pressed="false">&#10084; Your favourites</button><button type="button" id="shh" aria-pressed="false">Show hidden</button></div><p class="pnote" id="pnote" aria-live="polite"></p>
 <main class="grid" id="grid">
 <a class="card" href="v1-clean/index.html"><div class="sw" style="background:linear-gradient(90deg,#fff,#1167c9)"></div><span class="n">01</span><h2>Clean Trust</h2><p>Crisp white and blue minimal: calm, clear and trustworthy.</p><span class="go">Open &rarr;</span></a>
 <a class="card" href="v2-pro/index.html"><div class="sw" style="background:linear-gradient(90deg,#14202e,#f5a300)"></div><span class="n">02</span><h2>Pro Contractor</h2><p>Corporate B2B look aimed at drywall companies who need a crew after theirs.</p><span class="go">Open &rarr;</span></a>
@@ -41,6 +42,7 @@ header p{margin-top:12px;color:#3d5168}
 <a class="card" href="v8-eco/index.html"><div class="sw" style="background:linear-gradient(90deg,#2f7d4f,#cfe8c8)"></div><span class="n">08</span><h2>Eco</h2><p>Greens and natural tones: HEPA, low-waste and healthier air.</p><span class="go">Open &rarr;</span></a>
 <a class="card" href="v9-before-after/index.html"><div class="sw" style="background:linear-gradient(90deg,#b9a99a,#fff)"></div><span class="n">09</span><h2>Before &amp; After</h2><p>Dusty on the left, spotless on the right: the result tells the story.</p><span class="go">Open &rarr;</span></a>
 <a class="card" href="v10-dark/index.html"><div class="sw" style="background:linear-gradient(90deg,#0d0f14,#4de0c4)"></div><span class="n">10</span><h2>Dark</h2><p>Dark mode with a cool teal glow, modern and sleek.</p><span class="go">Open &rarr;</span></a>
+<a class="card" href="v11-axis/index.html"><div class="sw" style="background:linear-gradient(90deg,#0e0f12,#f2b233)"></div><span class="n">11 <span class="newb">New: Maple Axis style</span></span><h2>Maple Axis</h2><p>Near-black and gold corporate look with a glass-lobby Toronto skyline hero.</p><span class="go">Open &rarr;</span></a>
 </main>
 <script src="business.js"></script><script src="../ratings.js"></script><script src="switcher.js"></script>
 <script>
@@ -54,11 +56,14 @@ header p{margin-top:12px;color:#3d5168}
     items.push({slug:slug,el:w,box:r,pos:i++});
   });
   var empty=document.createElement("p");empty.className="empty";empty.textContent="No favourites yet: tap the heart on a design.";
+  var shh=document.getElementById("shh");function showAll(){return shh.getAttribute("aria-pressed")==="true";}
   function render(){
     var R=window.PizzaRatings,st=R.store,mode=srt.value,only=myf.getAttribute("aria-pressed")==="true";
+    items.forEach(function(x){x.apply(showAll());});
+    var nz=function(x){return x.folded?1:0;};
     var vis=items.filter(function(x){return !only||st.isFav(x.slug);});
-    if(mode==="r")vis.sort(function(a,b){var A=st.stats(a.slug),B=st.stats(b.slug);return B.avg-A.avg||B.count-A.count||a.pos-b.pos;});
-    else if(mode==="f")vis.sort(function(a,b){return st.stats(b.slug).favs-st.stats(a.slug).favs||a.pos-b.pos;});
+    if(mode==="r")vis.sort(function(a,b){var A=st.stats(a.slug),B=st.stats(b.slug);return nz(a)-nz(b)||B.avg-A.avg||B.count-A.count||a.pos-b.pos;});
+    else if(mode==="f")vis.sort(function(a,b){return nz(a)-nz(b)||st.stats(b.slug).favs-st.stats(a.slug).favs||a.pos-b.pos;});
     else vis.sort(function(a,b){return a.pos-b.pos;});
     items.forEach(function(x){x.el.hidden=vis.indexOf(x)<0;});
     vis.forEach(function(x){grid.appendChild(x.el);});
@@ -67,7 +72,8 @@ header p{margin-top:12px;color:#3d5168}
   }
   function start(){
     var R=window.PizzaRatings;
-    items.forEach(function(x){x.box.appendChild(R.makeWidget(x.slug));});
+    items.forEach(function(x){x.box.appendChild(R.makeWidget(x.slug));R.attachFold(x);});
+    shh.onclick=function(){shh.setAttribute("aria-pressed",showAll()?"false":"true");render();};
     R.store.subscribe(render);srt.onchange=render;
     myf.onclick=function(){myf.setAttribute("aria-pressed",myf.getAttribute("aria-pressed")==="true"?"false":"true");render();};
     render();

@@ -1,4 +1,4 @@
-/* Cleanup-site version bar: jump between v1..v10, keeping the same page (index / services / quote).
+/* Cleanup-site version bar: jump between v1..v11, keeping the same page (index / services / quote).
    Also fills elements with data-biz="name|tagline|phone|email|area|hours" from window.BIZ
    (links with data-biz=phone/email and no href get tel:/mailto:), and loads the root megabar.js and ratings.js. */
 (function () {
@@ -7,7 +7,8 @@
     ["v3-blueprint", "3 Blueprint"], ["v4-bold", "4 Bold"],
     ["v5-friendly", "5 Friendly"], ["v6-luxury", "6 Luxury"],
     ["v7-industrial", "7 Industrial"], ["v8-eco", "8 Eco"],
-    ["v9-before-after", "9 Before & After"], ["v10-dark", "10 Dark"]
+    ["v9-before-after", "9 Before & After"], ["v10-dark", "10 Dark"],
+    ["v11-axis", "11 Maple Axis"]
   ];
   var me = document.currentScript;
   var here = me && me.src ? me.src : "";
@@ -32,8 +33,19 @@
   var root = inV ? "../" : "";
   if (!/^(index|services|quote)\.html$/.test(file)) file = "index.html";
   function go(i) { location.href = root + V[(i + V.length) % V.length][0] + "/" + (inV ? file : "index.html"); }
+  /* Maple Axis logo on a white rounded chip, put in front of each page's own brand link (so the dark AXIS letters show) */
+  function chip() {
+    if (document.querySelector("img.ma-chip") || document.querySelector("[data-no-chip]")) return;
+    var a = document.querySelector("a.brand, a.logo"); if (!a) return;
+    [].forEach.call(a.children, function (c) { if (/^(svg|b|i)$/i.test(c.tagName) || /(^|\s)mark(\s|$)/.test(c.className)) c.style.display = "none"; });
+    var im = document.createElement("img");
+    im.className = "ma-chip"; im.alt = ""; im.setAttribute("aria-hidden", "true");
+    im.src = here ? new URL("assets/maple-axis-logo.png", here).href : (inV ? "../" : "") + "assets/maple-axis-logo.png";
+    im.setAttribute("style", "height:30px;width:auto;vertical-align:middle;background:#fff;border-radius:8px;padding:3px 8px;margin-right:8px;box-sizing:content-box");
+    a.insertBefore(im, a.firstChild);
+  }
   function build() {
-    fill();
+    fill(); chip();
     if (document.getElementById("sw-bar")) return;
     var bar = document.createElement("div"); bar.id = "sw-bar";
     bar.setAttribute("style", "position:fixed;left:0;right:0;bottom:0;z-index:2147483000;display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;padding:6px 8px;background:#111;color:#fff;font:600 13px/1 system-ui,sans-serif;box-shadow:0 -2px 10px rgba(0,0,0,.4)");

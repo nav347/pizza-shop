@@ -1,12 +1,14 @@
 /* Ratings + favourites for the pizza site AND the cleanup site (cleanup/). Cleanup keys sent to the server are "c-"+folder (c-v1-clean); pizza keys are the plain folder name. Loaded automatically by switcher.js (and by the gallery).
    Set API_BASE to the server URL later; empty = only this browser's ratings (localStorage).
-   Contract: GET {API_BASE}/ratings -> {"v1-trattoria":{"avg":4.2,"count":12,"favs":3},...}
+   Contract: GET {API_BASE}/ratings -> {"v1-trattoria":{"avg":4.2,"count":12,"favs":3,"nopes":1},...}   ("nopes" optional)
              POST {API_BASE}/rate {version, stars(1-5), voter}   POST {API_BASE}/fav {version, on:true|false, voter}
+             POST {API_BASE}/nope {version, on:true|false, voter}   ("Don't show"; failures are ignored silently)
    A voter re-rating replaces their old rating (server side). */
 const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
 
 (function (root) {
   var KEY = "pizza.ratings.v1", VKEY = "pizza.voter.v1", TIMEOUT = 4000;
+  var THUMB = "👎"; /* thumbs-down */
 
   /* site key mapping: pizza keeps plain folder names (old votes stay valid); cleanup gets the "c-" prefix */
   function keyFor(site, folder) { return site === "cleanup" ? "c-" + folder : folder; }
@@ -16,8 +18,8 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
   function createStore(o) {
     o = o || {};
     var pre = o.prefix || "", api = o.apiBase || "", st = o.storage, fx = o.fetch, mode = api ? "server" : "local";
-    var mine = { stars: {}, favs: {} }, shared = {}, subs = [], voter = "";
-    try { var raw = st && st.getItem(KEY); if (raw) { var p = JSON.parse(raw); mine.stars = p.stars || {}; mine.favs = p.favs || {}; } } catch (e) {}
+    var mine = { stars: {}, favs: {}, nopes: {} }, shared = {}, subs = [], voter = "";
+    try { var raw = st && st.getItem(KEY); if (raw) { var p = JSON.parse(raw); mine.stars = p.stars || {}; mine.favs = p.favs || {}; mine.nopes = p.nopes || {}; } } catch (e) {}
     try { voter = (st && st.getItem(VKEY)) || ""; } catch (e) {}
     if (!voter) {
       voter = "v" + Math.random().toString(36).slice(2, 12) + Date.now().toString(36);
@@ -28,13 +30,13 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
     function emit() { subs.forEach(function (f) { try { f(); } catch (e) {} }); }
     function localStats(v) {
       v = K(v); var s = mine.stars[v];
-      return { avg: s || 0, count: s ? 1 : 0, favs: mine.favs[v] ? 1 : 0 };
+      return { avg: s || 0, count: s ? 1 : 0, favs: mine.favs[v] ? 1 : 0, nopes: mine.nopes[v] ? 1 : 0 };
     }
     function stats(v) {
       v = K(v);
       if (mode === "server") {
         var d = shared[v];
-        return d ? { avg: +d.avg || 0, count: +d.count || 0, favs: +d.favs || 0 } : { avg: 0, count: 0, favs: 0 };
+        return d ? { avg: +d.avg || 0, count: +d.count || 0, favs: +d.favs || 0, nopes: +d.nopes || 0 } : { avg: 0, count: 0, favs: 0, nopes: 0 };
       }
       return localStats(v);
     }
@@ -65,10 +67,19 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
       save(); emit();
       return post("/fav", { version: v, on: !!on, voter: voter }).then(function (ok) { return mode === "server" ? load() : ok; });
     }
+    function nope(v, on) {
+      v = K(v);
+      if (on === undefined) on = !mine.nopes[v];
+      if (on) mine.nopes[v] = true; else delete mine.nopes[v];
+      save(); emit();
+      /* the server may not have /nope yet: failures are ignored silently */
+      return post("/nope", { version: v, on: !!on, voter: voter }).then(function (ok) { return mode === "server" ? load() : ok; }, function () { return false; });
+    }
     return {
-      load: load, rate: rate, fav: fav, stats: stats,
+      load: load, rate: rate, fav: fav, nope: nope, stats: stats,
       myStars: function (v) { return mine.stars[K(v)] || 0; },
       isFav: function (v) { return !!mine.favs[K(v)]; },
+      isNope: function (v) { return !!mine.nopes[K(v)]; },
       mode: function () { return mode; },
       voter: function () { return voter; },
       subscribe: function (f) { subs.push(f); }
@@ -85,7 +96,7 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
   var SITE = siteFromPath(location.pathname);
   var store = createStore({ prefix: SITE === "cleanup" ? "c-" : "", apiBase: API_BASE, storage: ls, fetch: window.fetch ? window.fetch.bind(window) : null });
   var NOTE = "only your ratings shown (shared ratings not connected yet)";
-  window.PizzaRatings = { site: SITE, store: store, fmt: fmt, makeWidget: makeWidget, note: NOTE };
+  window.PizzaRatings = { site: SITE, store: store, fmt: fmt, makeWidget: makeWidget, attachFold: attachFold, note: NOTE };
 
   var path = location.pathname.split("/"); path.pop();
   var cur = path.pop() || "";
@@ -101,9 +112,38 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
     ".pr-row{flex-basis:100%;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid #444;padding-top:4px;font:600 12px/1.2 system-ui,sans-serif;color:#ddd}" +
     ".pr-pill{position:fixed;right:10px;z-index:2147482000;background:#111;color:#fff;border:2px solid #fff;border-radius:999px;padding:8px 14px;font:600 14px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.5);max-width:calc(100vw - 20px)}" +
     ".pr-panel{position:fixed;right:10px;z-index:2147482001;background:#111;color:#fff;border:2px solid #fff;border-radius:14px;padding:10px 12px;max-width:calc(100vw - 20px);box-shadow:0 4px 16px rgba(0,0,0,.6);font:600 13px/1.4 system-ui,sans-serif}" +
+    ".pr-nopebtn{background:none;border:1px solid #888;color:inherit;border-radius:8px;min-height:32px;padding:4px 10px;font:600 12px/1 system-ui,sans-serif;cursor:pointer;margin:4px 0 0 4px}.pr-nopebtn[aria-pressed=true]{background:#555;color:#fff;border-color:#555}" +
+    ".pr-fold{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:#e6e6e6;color:#555;border:1px dashed #999;border-radius:10px;padding:6px 10px;font:600 13px/1.3 system-ui,sans-serif;opacity:.85}.pr-fold[hidden]{display:none}.pr-fold button{background:#fff;color:#222;border:1px solid #888;border-radius:8px;min-height:32px;padding:4px 10px;font:600 12px/1 system-ui,sans-serif;cursor:pointer}" +
+    ".pr-nopebtn:focus-visible,.pr-fold button:focus-visible{outline:3px solid #7ad7f0;outline-offset:2px}" +
     ".pr-panel[hidden]{display:none}.pr-note{display:block;margin-top:6px;font-weight:400;font-size:11px;color:#ccc;max-width:260px}";
   if (SITE === "cleanup") css.textContent += ".pr-pill,.pr-panel{border-color:#1167c9;font-family:Inter,system-ui,sans-serif}.pr-w button.on{color:#f5a300}";
   document.head.appendChild(css);
+
+  /* Gallery fold. x = {slug, el (wrapper holding the card a.card), box (rating box)}. Adds a "Don't show" button and a slim
+     greyed row ("v4 Brutalist - hidden, you didn't like it" + "Show again"). x.apply(showAll) re-applies state; the gallery calls it from render(). */
+  function attachFold(x) {
+    var card = x.el.querySelector("a.card"), nEl = x.el.querySelector(".n"), hEl = x.el.querySelector("h2");
+    var num = nEl ? parseInt(nEl.textContent, 10) : NaN;
+    x.label = (isNaN(num) ? "" : "v" + num + " ") + (hEl ? hEl.textContent : x.slug);
+    var b = document.createElement("button"); b.type = "button"; b.className = "pr-nopebtn";
+    x.box.appendChild(b);
+    var row = document.createElement("div"); row.className = "pr-fold"; row.hidden = true;
+    var tx = document.createElement("span"), sb = document.createElement("button"); sb.type = "button"; sb.textContent = "Show again";
+    row.appendChild(tx); row.appendChild(sb); x.el.appendChild(row);
+    b.onclick = function () { store.nope(x.slug); if (x.folded) sb.focus(); };
+    sb.onclick = function () { store.nope(x.slug, false); b.focus(); };
+    x.apply = function (showAll) {
+      var no = store.isNope(x.slug), fold = no && !showAll;
+      if (card) card.style.display = fold ? "none" : "";
+      x.box.style.display = fold ? "none" : "";
+      row.hidden = !fold; tx.textContent = x.label + " · hidden, you didn't like it";
+      b.setAttribute("aria-expanded", fold ? "false" : "true"); b.setAttribute("aria-pressed", no ? "true" : "false");
+      b.textContent = THUMB + (no ? " Hidden (undo)" : " Don't show");
+      sb.setAttribute("aria-expanded", fold ? "false" : "true");
+      x.folded = fold;
+    };
+    x.apply(false);
+  }
 
   /* A widget: 5 stars + heart + text for version v. Updates on store changes. */
   function makeWidget(v, withText) {
@@ -126,7 +166,7 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
       h.className = "hf" + (f ? " on" : "");
       h.setAttribute("aria-pressed", f ? "true" : "false");
       h.setAttribute("aria-label", f ? "Remove from favourites" : "Add to favourites");
-      if (t) t.textContent = fmt(s) + " · ❤ " + s.favs;
+      if (t) t.textContent = fmt(s) + " · ❤ " + s.favs + (s.nopes ? " · " + THUMB + " " + s.nopes : "");
     }
     store.subscribe(refresh); refresh();
     return w;
@@ -143,6 +183,8 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
         var s = store.stats(slug), extra = "";
         if (s.count) extra += "  ★" + r1(s.avg) + " (" + s.count + ")";
         if (s.favs) extra += (extra ? " " : "  ") + "❤" + s.favs;
+        if (s.nopes) extra += (extra ? " " : "  ") + THUMB + s.nopes;
+        if (store.isNope(slug)) extra += "  (hidden by you)";
         o.textContent = o.getAttribute("data-label") + extra;
       });
     }
@@ -151,7 +193,15 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
     var row = document.createElement("div"); row.className = "pr-row";
     var lab = document.createElement("span"); lab.textContent = "Rate this:";
     var note = document.createElement("span"); note.style.cssText = "font-weight:400;font-size:11px;color:#bbb";
-    row.appendChild(lab); row.appendChild(makeWidget(cur)); row.appendChild(note);
+    var nb = document.createElement("button"); nb.type = "button"; nb.className = "pr-nopebtn"; nb.style.color = "#ddd";
+    nb.onclick = function () { store.nope(cur); };
+    function nbl() {
+      var no = store.isNope(cur);
+      nb.setAttribute("aria-pressed", no ? "true" : "false");
+      nb.textContent = THUMB + (no ? " Marked: don't show (undo)" : " Don't show");
+    }
+    store.subscribe(nbl); nbl();
+    row.appendChild(lab); row.appendChild(makeWidget(cur)); row.appendChild(nb); row.appendChild(note);
     bar.appendChild(row);
     function n() { note.textContent = noteText(); fit(); }
     store.subscribe(n); n();
