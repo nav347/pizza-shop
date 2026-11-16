@@ -1,17 +1,44 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Menu - Blob Pizza</title><link rel="stylesheet" href="style.css"></head><body>
-<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><nav><a href="index.html">Home</a><a href="menu.html" class=on>Menu</a><a href="visit.html">Visit</a></nav>
+<title>Menu</title><link rel="stylesheet" href="style.css"></head><body data-page="Menu">
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div><nav><a href="index.html">Home</a><a href="menu.html" class=on>Menu</a><a href="visit.html">Visit</a></nav>
 <main>
-<h1>Menu</h1><p class="sub"><span data-shop="tagline">Hot, fresh, wood-fired pizza</span></p><div id="menu"><div class="card pop"><h2>Pizzas</h2><div><div class="item"><div><span class="n">Margherita</span><span class="d">Tomato, mozzarella, basil</span></div><span class="p">&#8377;199</span></div><div class="item"><div><span class="n">Paneer Tikka</span><span class="d">Paneer, onion, capsicum</span></div><span class="p">&#8377;279</span></div></div></div></div>
+<h1 class="">Menu</h1><p class="sub"><span data-shop="tagline">Hot, fresh, wood-fired pizza</span></p>
+<nav class="tabs" data-catnav><a href="#cat-0">Pizzas</a></nav>
+<p class="legend">Tags: vegetarian / vegan / gluten-free / spicy</p>
+<div id="menu"><section class="cat" id="cat-0"><h2 class="cat-title">Pizzas</h2><ul class="items"><li class="item"><div class="ihead"><span class="iname">Margherita</span><span class="tags"><span class="tag vegetarian">vegetarian</span></span><span class="idots"></span><span class="iprice">$18</span></div><p class="idesc">Tomato, fresh mozzarella, basil</p></li><li class="item"><div class="ihead"><span class="iname">Diavola</span><span class="tags"><span class="tag spicy">spicy</span></span><span class="idots"></span><span class="iprice">$21</span></div><p class="idesc">Spicy salami, chili oil, mozzarella</p></li><li class="item"><div class="ihead"><span class="iname">Garden Vegan</span><span class="tags"><span class="tag vegan">vegan</span><span class="tag gluten-free">gluten-free</span></span><span class="idots"></span><span class="iprice">$20</span></div><p class="idesc">Roasted veg, cashew cheese, herbs</p></li></ul></section></div>
+<p style="text-align:center"><a class="btn" href="tel:+14165550134" data-call>&#128222; Call to order</a><a class="btn alt" href="#" data-order>Order online</a><a class="btn alt" href="https://wa.me/14165550134" data-wa>WhatsApp</a></p>
 </main>
-<footer>Prices in &#8377;</footer>
+<footer><div class="fgrid"><div><h4>Hours</h4><ul class="hours" data-hours><li><span class="hd">Mon - Thu</span><span class="ht">11:00 am - 10:00 pm</span></li><li><span class="hd">Fri - Sat</span><span class="ht">11:00 am - 12:00 am</span></li><li><span class="hd">Sunday</span><span class="ht">12:00 pm - 9:00 pm</span></li></ul></div><div><h4>Find us</h4><p><span data-shop="address">123 Queen Street West, Toronto, ON M5H 2M9</span></p></div><div><h4>Call</h4><p><span data-shop="phone">+1 416 555 0134</span></p><a class="btn" href="tel:+14165550134" data-call>Call</a></div></div><p class="c">Made with cheese by <span data-shop="name">Slice of Heaven Pizza</span></p></footer>
 <script src="../shop.js"></script><script src="../switcher.js"></script>
 <script>
-window.addEventListener("load",function(){var m=document.getElementById("menu");if(!m||m.children.length)return;
-var d=(window.SHOP&&window.SHOP.menu)||[];
-m.innerHTML=d.map(function(c){return '<div class="card pop"><h2>'+c.category+'</h2><div>'+c.items.map(function(i){return '<div class="item"><div><span class="n">'+i.name+'</span><span class="d">'+(i.desc||"")+'</span></div><span class="dots"></span><span class="p">&#8377;'+i.price+'</span></div>'}).join("")+'</div></div>'}).join("")||m.innerHTML;});
-</script><script>
-(function(){function go(){var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");o.unobserve(x.target)}})},{threshold:.1});document.querySelectorAll(".pop").forEach(function(p){o.observe(p)})}
-if(!("IntersectionObserver" in window)){document.querySelectorAll(".pop").forEach(function(p){p.classList.add("in")})}else{go();window.addEventListener("load",function(){setTimeout(go,300)})}})();
+(function(){
+var S=window.SHOP||{};
+function $$(q){return [].slice.call(document.querySelectorAll(q))}
+function esc(x){var d=document.createElement("div");d.textContent=x==null?"":x;return d.innerHTML}
+function money(n){if(typeof S.formatPrice==="function")return S.formatPrice(n);return (S.currency||"$")+n}
+var digits=String(S.phone||"").replace(/\D/g,"");
+$$("[data-shop]").forEach(function(e){var v=S[e.getAttribute("data-shop")];if(v)e.textContent=v});
+if(S.name)document.title=S.name+" | "+(document.body.getAttribute("data-page")||"");
+if(digits)$$("[data-call]").forEach(function(e){e.href="tel:+"+digits});
+$$("[data-order]").forEach(function(e){e.href=S.orderUrl||"#";if(S.orderUrl){e.target="_blank";e.rel="noopener"}});
+if(digits)$$("[data-wa]").forEach(function(e){e.href="https://wa.me/"+digits;e.target="_blank";e.rel="noopener"});
+if(S.hoursList)$$("[data-hours]").forEach(function(u){u.innerHTML=S.hoursList.map(function(h){return '<li><span class="hd">'+esc(h.d)+'</span><span class="ht">'+esc(h.t)+'</span></li>'}).join("")});
+if(S.lat&&S.lon)$$("[data-map]").forEach(function(f){var d=.006,lo=S.lon,la=S.lat;f.src="https://www.openstreetmap.org/export/embed.html?bbox="+[lo-d,la-d,lo+d,la+d].join("%2C")+"&layer=mapnik&marker="+la+"%2C"+lo});
+function tags(i){var t=(i.tags||[]).slice();if(!t.length&&i.veg===true)t=["vegetarian"];
+return t.length?'<span class="tags">'+t.map(function(x){var c=String(x).toLowerCase().replace(/\s+/g,"-");return '<span class="tag '+esc(c)+'">'+esc(x)+'</span>'}).join("")+'</span>':""}
+var M=S.menu||[];
+if(M.length){
+$$("#menu").forEach(function(b){b.innerHTML=M.map(function(c,n){return '<section class="cat" id="cat-'+n+'"><h2 class="cat-title">'+esc(c.category)+'</h2><ul class="items">'+c.items.map(function(i){return '<li class="item"><div class="ihead"><span class="iname">'+esc(i.name)+'</span>'+tags(i)+'<span class="idots"></span><span class="iprice">'+esc(money(i.price))+'</span></div><p class="idesc">'+esc(i.desc)+'</p></li>'}).join("")+'</ul></section>'}).join("")});
+$$("[data-catnav]").forEach(function(b){b.innerHTML=M.map(function(c,n){return '<a href="#cat-'+n+'">'+esc(c.category)+'</a>'}).join("")});
+var E=["\ud83c\udf55","\ud83e\uddc0","\ud83c\udf36\ufe0f"];
+$$("[data-featured]").forEach(function(b){b.innerHTML=M[0].items.slice(0,3).map(function(i,n){return '<article class="fcard"><span class="femoji">'+E[n%3]+'</span><h3>'+esc(i.name)+'</h3>'+tags(i)+'<p>'+esc(i.desc)+'</p><b>'+esc(money(i.price))+'</b></article>'}).join("")});
+}
+if(S.special)$$("[data-special]").forEach(function(b){b.innerHTML='<span class="badge">Today&#8217;s special</span><h2>'+esc(S.special.name)+'</h2><p>'+esc(S.special.desc)+'</p><b class="price">'+esc(money(S.special.price))+'</b>'});
+if(S.story)$$("[data-story]").forEach(function(b){b.innerHTML=S.story.map(function(p){return '<p>'+esc(p)+'</p>'}).join("")});
+if(S.quotes)$$("[data-quotes]").forEach(function(b){b.innerHTML=S.quotes.map(function(q){return '<blockquote><p>&ldquo;'+esc(q.q)+'&rdquo;</p><cite>'+esc(q.by)+'</cite></blockquote>'}).join("")});
+if(S.faq)$$("[data-faq]").forEach(function(b){b.innerHTML=S.faq.map(function(f){return '<details><summary>'+esc(f.q)+'</summary><p>'+esc(f.a)+'</p></details>'}).join("")});
+var els=$$(".panel,.fcard,.cat,blockquote");els.forEach(function(e){e.classList.add("rv")});
+if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.08});els.forEach(function(e){io.observe(e)})}else els.forEach(function(e){e.classList.add("in")});
+})();
 </script></body></html>

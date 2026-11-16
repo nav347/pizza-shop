@@ -1,14 +1,49 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Vaporwave Pizza</title><link rel="stylesheet" href="style.css"></head><body>
+<title>Vaporwave Pizza</title><link rel="stylesheet" href="style.css"></head><body data-page="Home">
 <div class="sun"></div><nav><a class="brand" href="index.html">&#9728; <span data-shop="name">Slice of Heaven Pizza</span></a><a href="index.html" class=on>HOME</a><a href="menu.html">MENU</a><a href="visit.html">VISIT</a></nav>
 <main>
-<marquee>&#9733; WELCOME TO THE PIZZA DIMENSION &#9733; NOW LOADING FLAVOR.EXE &#9733;</marquee>
-<h1 class="chrome glitch"><span data-shop="name">Slice of Heaven Pizza</span></h1>
-<p class="sub"><span data-shop="tagline">Hot, fresh, wood-fired pizza</span></p>
-<div class="win"><h2>welcome.exe</h2><div class="body"><p>&#127829; Open: <span data-shop="hours">Daily 11:00 AM - 11:00 PM</span></p><p>&#128205; <span data-shop="address">12 Main Road, Your City 400001</span></p><p>&#128222; <span data-shop="phone">+91 98765 43210</span></p>
-<a class="btn" href="menu.html">VIEW MENU</a><a class="btn" href="visit.html">VISIT / ORDER</a></div></div>
+<marquee>&#9733; WELCOME TO THE PIZZA DIMENSION &#9733; NOW LOADING FLAVOR.EXE &#9733;</marquee><span class="hero-art">&#127829;</span>
+<h1 class="chrome glitch"><span data-shop="name">Slice of Heaven Pizza</span></h1><p class="sub"><span data-shop="tagline">Hot, fresh, wood-fired pizza</span></p>
+<p style="text-align:center"><a class="btn" href="tel:+14165550134" data-call>&#128222; Call to order</a><a class="btn alt" href="#" data-order>Order online</a><a class="btn alt" href="https://wa.me/14165550134" data-wa>WhatsApp</a></p>
+<section class="panel special" data-title="special.exe"><div class="pb"><div data-special><span class="badge">Today&#8217;s special</span><h2>Smoky Truffle Mushroom</h2><p>Today only: roasted mushrooms, truffle oil, fior di latte, arugula.</p><b class="price">$24</b></div></div></section>
+<h1 class="chrome glitch sm">SIGNATURE SLICES</h1>
+<div class="showcase" data-featured><article class="fcard"><span class="femoji">&#127829;</span><h3>Margherita</h3><p>Tomato, mozzarella, basil</p><b>$18</b></article><article class="fcard"><span class="femoji">&#129472;</span><h3>Four Cheese</h3><p>Mozzarella, cheddar, parmesan, gorgonzola</p><b>$22</b></article><article class="fcard"><span class="femoji">&#127798;</span><h3>Diavola</h3><p>Spicy salami, chili oil</p><b>$21</b></article></div>
+<section class="panel " data-title="about_us.txt"><div class="pb"><h2>About us</h2><div class="about" data-story><p>We ferment our dough for 48 hours, stretch it by hand and bake it in a wood-fired oven right here in Toronto.</p><p>Sauces are made fresh every morning. Every pizza leaves the oven a little charred and completely worth the wait.</p></div></div></section>
+<h1 class="chrome glitch sm">GUESTBOOK</h1>
+<div class="quotes" data-quotes><blockquote><p>&ldquo;The crust alone is worth the trip.&rdquo;</p><cite>Priya N.</cite></blockquote><blockquote><p>&ldquo;Best pizza on Queen West, no argument allowed.&rdquo;</p><cite>Marcus L.</cite></blockquote><blockquote><p>&ldquo;Our Friday night tradition now.&rdquo;</p><cite>The Tremblay family</cite></blockquote></div>
+<section class="panel " data-title="order.exe"><div class="pb"><h2>Order now</h2><p>Open: <span data-shop="hours">Mon-Thu 11 am - 10 pm | Fri-Sat 11 am - 12 am | Sun 12 pm - 9 pm</span></p><a class="btn" href="tel:+14165550134" data-call>&#128222; Call to order</a><a class="btn alt" href="#" data-order>Order online</a><a class="btn alt" href="https://wa.me/14165550134" data-wa>WhatsApp</a></div></section>
 </main>
-<footer>&copy; 1999 <span data-shop="name">Slice of Heaven Pizza</span> &#9733; best viewed in Netscape</footer>
+<footer><div class="fgrid"><div><h4>Hours</h4><ul class="hours" data-hours><li><span class="hd">Mon - Thu</span><span class="ht">11:00 am - 10:00 pm</span></li><li><span class="hd">Fri - Sat</span><span class="ht">11:00 am - 12:00 am</span></li><li><span class="hd">Sunday</span><span class="ht">12:00 pm - 9:00 pm</span></li></ul></div><div><h4>Find us</h4><p><span data-shop="address">123 Queen Street West, Toronto, ON M5H 2M9</span></p></div><div><h4>Call</h4><p><span data-shop="phone">+1 416 555 0134</span></p><a class="btn" href="tel:+14165550134" data-call>Call</a></div></div><p class="c">&copy; 1999 <span data-shop="name">Slice of Heaven Pizza</span> &#9733; best viewed in Netscape</p></footer>
 <script src="../shop.js"></script><script src="../switcher.js"></script>
-</body></html>
+<script>
+(function(){
+var S=window.SHOP||{};
+function $$(q){return [].slice.call(document.querySelectorAll(q))}
+function esc(x){var d=document.createElement("div");d.textContent=x==null?"":x;return d.innerHTML}
+function money(n){if(typeof S.formatPrice==="function")return S.formatPrice(n);return (S.currency||"$")+n}
+var digits=String(S.phone||"").replace(/\D/g,"");
+$$("[data-shop]").forEach(function(e){var v=S[e.getAttribute("data-shop")];if(v)e.textContent=v});
+if(S.name)document.title=S.name+" | "+(document.body.getAttribute("data-page")||"");
+if(digits)$$("[data-call]").forEach(function(e){e.href="tel:+"+digits});
+$$("[data-order]").forEach(function(e){e.href=S.orderUrl||"#";if(S.orderUrl){e.target="_blank";e.rel="noopener"}});
+if(digits)$$("[data-wa]").forEach(function(e){e.href="https://wa.me/"+digits;e.target="_blank";e.rel="noopener"});
+if(S.hoursList)$$("[data-hours]").forEach(function(u){u.innerHTML=S.hoursList.map(function(h){return '<li><span class="hd">'+esc(h.d)+'</span><span class="ht">'+esc(h.t)+'</span></li>'}).join("")});
+if(S.lat&&S.lon)$$("[data-map]").forEach(function(f){var d=.006,lo=S.lon,la=S.lat;f.src="https://www.openstreetmap.org/export/embed.html?bbox="+[lo-d,la-d,lo+d,la+d].join("%2C")+"&layer=mapnik&marker="+la+"%2C"+lo});
+function tags(i){var t=(i.tags||[]).slice();if(!t.length&&i.veg===true)t=["vegetarian"];
+return t.length?'<span class="tags">'+t.map(function(x){var c=String(x).toLowerCase().replace(/\s+/g,"-");return '<span class="tag '+esc(c)+'">'+esc(x)+'</span>'}).join("")+'</span>':""}
+var M=S.menu||[];
+if(M.length){
+$$("#menu").forEach(function(b){b.innerHTML=M.map(function(c,n){return '<section class="cat" id="cat-'+n+'"><h2 class="cat-title">'+esc(c.category)+'</h2><ul class="items">'+c.items.map(function(i){return '<li class="item"><div class="ihead"><span class="iname">'+esc(i.name)+'</span>'+tags(i)+'<span class="idots"></span><span class="iprice">'+esc(money(i.price))+'</span></div><p class="idesc">'+esc(i.desc)+'</p></li>'}).join("")+'</ul></section>'}).join("")});
+$$("[data-catnav]").forEach(function(b){b.innerHTML=M.map(function(c,n){return '<a href="#cat-'+n+'">'+esc(c.category)+'</a>'}).join("")});
+var E=["\ud83c\udf55","\ud83e\uddc0","\ud83c\udf36\ufe0f"];
+$$("[data-featured]").forEach(function(b){b.innerHTML=M[0].items.slice(0,3).map(function(i,n){return '<article class="fcard"><span class="femoji">'+E[n%3]+'</span><h3>'+esc(i.name)+'</h3>'+tags(i)+'<p>'+esc(i.desc)+'</p><b>'+esc(money(i.price))+'</b></article>'}).join("")});
+}
+if(S.special)$$("[data-special]").forEach(function(b){b.innerHTML='<span class="badge">Today&#8217;s special</span><h2>'+esc(S.special.name)+'</h2><p>'+esc(S.special.desc)+'</p><b class="price">'+esc(money(S.special.price))+'</b>'});
+if(S.story)$$("[data-story]").forEach(function(b){b.innerHTML=S.story.map(function(p){return '<p>'+esc(p)+'</p>'}).join("")});
+if(S.quotes)$$("[data-quotes]").forEach(function(b){b.innerHTML=S.quotes.map(function(q){return '<blockquote><p>&ldquo;'+esc(q.q)+'&rdquo;</p><cite>'+esc(q.by)+'</cite></blockquote>'}).join("")});
+if(S.faq)$$("[data-faq]").forEach(function(b){b.innerHTML=S.faq.map(function(f){return '<details><summary>'+esc(f.q)+'</summary><p>'+esc(f.a)+'</p></details>'}).join("")});
+var els=$$(".panel,.fcard,.cat,blockquote");els.forEach(function(e){e.classList.add("rv")});
+if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.08});els.forEach(function(e){io.observe(e)})}else els.forEach(function(e){e.classList.add("in")});
+})();
+</script></body></html>

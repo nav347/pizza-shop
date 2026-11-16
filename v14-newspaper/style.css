@@ -1,0 +1,77 @@
+*{box-sizing:border-box}
+:root{--paper:#efe6d0;--ink:#1c1812;--rule:#3a3226;--red:#8b1a10}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "Libre Baskerville",Georgia,serif;overflow-x:hidden;
+ background-image:radial-gradient(rgba(90,60,20,.07) 1px,transparent 1px),radial-gradient(rgba(90,60,20,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(120,90,40,.1),transparent 18%,transparent 82%,rgba(120,90,40,.12));
+ background-size:7px 7px,13px 13px,100% 100%}
+a{color:inherit}
+.mast,.page,.foot{max-width:1060px;margin:0 auto;padding:0 14px}
+.mast{padding-top:10px}
+.strip{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;border-top:3px double var(--rule);border-bottom:1px solid var(--rule);padding:4px 0;font:.72rem/1.3 "Special Elite",monospace;text-transform:uppercase;letter-spacing:.06em}
+.strip.sub{border-top:1px solid var(--rule);border-bottom:3px double var(--rule);margin-top:6px}
+.title{font:700 clamp(2.2rem,11vw,6rem)/1 "UnifrakturCook",serif;text-align:center;margin:8px 0 2px}
+.title a{text-decoration:none}
+.edition{text-align:center;font:italic .9rem "Playfair Display",serif}
+.nav{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 22px;padding:8px 0;border-bottom:1px solid var(--rule);font:700 .85rem "Playfair Display",serif;text-transform:uppercase;letter-spacing:.1em}
+.nav a{text-decoration:none}.nav a:hover{color:var(--red);text-decoration:underline}
+.bighead{font:900 clamp(1.7rem,6vw,3.4rem)/1.05 "Playfair Display",serif;text-align:center;margin:22px 0 8px}
+.bighead.small{font-size:clamp(1.4rem,5vw,2.4rem)}
+.deck{text-align:center;font-style:italic;margin:0 0 16px;border-bottom:1px solid var(--rule);padding-bottom:12px}
+.dateline{font:.8rem "Special Elite",monospace;text-transform:uppercase;letter-spacing:.05em;margin:12px 0 0;text-align:center;min-height:3em}
+.tw.typing::after{content:"\258C";animation:blink .6s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.body2{column-count:3;column-gap:26px;column-rule:1px solid var(--rule);text-align:justify;hyphens:auto}
+.body2 p{margin:0 0 .8em}
+.dc::first-letter{font:900 3.6rem/.8 "Playfair Display",serif;float:left;padding:4px 6px 0 0;color:var(--red)}
+.more{font-weight:700;color:var(--red)}
+.photo{position:relative;overflow:hidden;filter:grayscale(1) contrast(1.2);background:#d9d0b8;display:flex;align-items:center;justify-content:center;border:1px solid var(--rule)}
+.photo .dots{position:absolute;inset:0;background:radial-gradient(circle,#000 28%,transparent 31%) 0 0/6px 6px;opacity:.35}
+.photo .pz{font-size:4.5rem;position:relative;line-height:1}
+figure.photo{display:block;margin:0 0 12px;break-inside:avoid;padding:20px 0 0;text-align:center}
+figure.photo .pz{font-size:6rem;display:block;padding-bottom:10px}
+figure.photo figcaption{position:relative;font:italic .72rem/1.3 "Libre Baskerville",serif;background:var(--paper);padding:6px;border-top:1px solid var(--rule);text-align:left}
+.ph2,.ph3,.ph4{height:140px;margin-bottom:8px}
+.special{border:4px double var(--ink);margin:22px auto;padding:14px;text-align:center;max-width:540px;background:rgba(255,255,255,.25);transform:rotate(-1deg)}
+.special h3{margin:0;font:900 1rem "Playfair Display",serif;text-transform:uppercase;letter-spacing:.15em}
+.spname{font:900 2rem/1.1 "Playfair Display",serif;margin:6px 0;color:var(--red)}
+.btn{display:inline-block;background:var(--ink);color:var(--paper);padding:9px 16px;margin:3px 0;text-decoration:none;font:700 .8rem "Playfair Display",serif;text-transform:uppercase;letter-spacing:.12em;border:2px solid var(--ink)}
+.btn:hover,.btn.alt{background:transparent;color:var(--ink)}.btn.alt:hover{background:var(--ink);color:var(--paper)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px dashed var(--ink);font-size:.7rem}
+.sect{font:900 1.5rem "Playfair Display",serif;text-transform:uppercase;letter-spacing:.12em;text-align:center;border-top:3px double var(--rule);border-bottom:1px solid var(--rule);padding:8px 0;margin:30px 0 16px}
+.sect2{font:900 1.3rem "Playfair Display",serif;border-bottom:2px solid var(--ink);margin:0 0 10px}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr)}
+.cols3>*{padding:0 18px;border-left:1px solid var(--rule)}.cols3>*:first-child{border-left:0;padding-left:0}.cols3>*:last-child{padding-right:0}
+.cols3 h3,.cols3 h4{font:900 1.2rem "Playfair Display",serif;margin:6px 0}
+.cols3 p{text-align:justify;margin:0}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.story{column-count:2;column-gap:26px;column-rule:1px solid var(--rule);text-align:justify}
+.story p{margin:0}.story p::first-letter{font:900 3rem/.8 "Playfair Display",serif;float:left;padding:4px 6px 0 0}
+blockquote{margin:0;font-style:italic;text-align:justify}
+blockquote cite{display:block;margin-top:8px;font:.78rem "Special Elite",monospace;text-transform:uppercase;font-style:normal}
+.legend{text-align:center;font:.78rem "Special Elite",monospace}
+.tag{display:inline-block;min-width:22px;padding:0 4px;border:1.5px solid var(--ink);font:700 .65rem/1.5 "Special Elite",monospace;text-align:center;margin-right:4px}
+.t-spicy{color:var(--red);border-color:var(--red)}
+.tags{margin-top:4px}
+.anchors{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin:0 0 18px;padding:8px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:5;font:700 .85rem "Playfair Display",serif;text-transform:uppercase}
+.anchors a{text-decoration:none}.anchors a:hover{color:var(--red)}
+.menu{column-count:2;column-gap:26px;column-rule:1px solid var(--rule)}
+.cat{break-inside:avoid;margin-bottom:22px;scroll-margin-top:70px}
+.cat-title{font:900 1.25rem "Playfair Display",serif;text-transform:uppercase;letter-spacing:.2em;background:var(--ink);color:var(--paper);padding:4px 10px;margin:0 0 8px;text-align:center}
+.items{list-style:none;margin:0;padding:0}
+.item{border:1px dashed var(--rule);padding:8px 10px;margin-bottom:8px;background:rgba(255,255,255,.2)}
+.ihead{display:flex;align-items:baseline;gap:4px;font:900 1rem "Playfair Display",serif;text-transform:uppercase}
+.idots{flex:1;border-bottom:1px dotted var(--ink);min-width:10px}
+.iprice{font-family:"Special Elite",monospace}
+.idesc{margin:3px 0 0;font-size:.85rem;font-style:italic}
+.hours{list-style:none;margin:0;padding:0}
+.hours li{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dotted var(--rule)}
+.hd{font-weight:700}.ht{font-family:"Special Elite",monospace;font-size:.9rem}
+.addr{font-style:italic}
+.mapbox iframe{width:100%;height:300px;border:3px double var(--ink);filter:sepia(.6) grayscale(.5)}
+.fq h4{border-bottom:1px solid var(--ink);padding-bottom:3px}
+.foot{margin-top:34px;border-top:3px double var(--rule);padding-top:12px;padding-bottom:20px}
+.fcols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.fcols p{margin:0}
+.fine{text-align:center;font:.72rem "Special Elite",monospace;margin:14px 0 0;text-transform:uppercase}
+@media(max-width:800px){.body2,.menu,.story{column-count:1}.cols3,.cols2,.fcols{grid-template-columns:1fr;gap:18px}.cols3>*{border-left:0;padding:0}.strip{justify-content:center;text-align:center}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tw.typing::after{animation:none}.special{transform:none}}
