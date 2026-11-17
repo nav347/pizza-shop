@@ -88,7 +88,7 @@ header p{opacity:.8;margin-top:10px}
   var built=false;
   function start(){
     var R=window.PizzaRatings;
-    items.forEach(function(x){x.box.appendChild(R.makeWidget(x.slug));R.attachFold(x);});
+    items.forEach(function(x){x.box.appendChild(R.makeWidget(x.slug));R.attachFold(x);x.box.appendChild(R.makeNotes(x.slug).wrap);});
     shh.onclick=function(){shh.setAttribute("aria-pressed",showAll()?"false":"true");render();};
     R.store.subscribe(render);srt.onchange=render;
     myf.onclick=function(){myf.setAttribute("aria-pressed",myf.getAttribute("aria-pressed")==="true"?"false":"true");render();};

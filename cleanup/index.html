@@ -22,6 +22,7 @@ header p{margin-top:12px;color:#3d5168}
 .rt{background:#fff;border:2px solid #d5e0ee;border-top:0;border-radius:0 0 14px 14px;margin:-8px 8px 0;padding:10px 8px 6px;position:relative;z-index:1}
 .rt .pr-w{color:#12202f;max-width:100%}.rt .pr-w button{color:#b5c3d3}.rt .pr-w button.on{color:#f5a300}.rt .pr-w button.hf.on{color:#e0245e}.rt .pr-t{flex-basis:100%;margin:2px 0 0 4px;color:#3d5168}
 .meta{padding:6px 10px 0;font-size:.85rem;color:#3d5168;margin:0 8px;position:relative;z-index:1;background:#fff;border:2px solid #d5e0ee;border-top:0;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}.meta a{color:#1167c9;font-weight:600}.meta button{background:none;border:0;color:#0b3a6e;font:inherit;font-weight:600;cursor:pointer;padding:4px 0}.meta .np{flex-basis:100%}.meta .np p{margin:4px 0}.meta :focus-visible{outline:3px solid #1167c9;outline-offset:2px}
+.rt .pr-np,.rt .pr-np-p{--np-bg:#f4f7fb;--np-fg:#12202f;--np-mut:#3d5168;--np-line:#d5e0ee;--np-acc:#f2b233}.rt .pr-np-btn{color:#0b3a6e;border-color:#b5c3d3}.rt .pr-np-btn[aria-expanded=true]{background:#1167c9;color:#fff;border-color:#1167c9}
 .tools{max-width:1100px;margin:10px auto 0;padding:0 5vw;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:.95rem;color:#3d5168}
 .tools select,.tools button{background:#fff;color:#0b3a6e;border:2px solid #d5e0ee;border-radius:10px;padding:8px 10px;font:inherit;font-weight:600;min-height:40px;cursor:pointer}
 .tools button[aria-pressed=true]{background:#1167c9;color:#fff;border-color:#1167c9}
@@ -53,10 +54,8 @@ header p{margin-top:12px;color:#3d5168}
     w.id="card-"+slug;
     var V=window.CleanupVersions,ver=V.byId(slug)||{},ns=V.notes(slug),m=document.createElement("div");m.className="meta";
     if(ver.parent){var pr=V.byId(ver.parent),pa=document.createElement("a");pa.href="#card-"+ver.parent;pa.textContent="branched from "+(pr?pr.title:ver.parent);m.appendChild(pa);}
-    var nb=document.createElement("button");nb.type="button";nb.textContent="\uD83D\uDCDD "+ns.length+(ns.length===1?" note":" notes");nb.setAttribute("aria-expanded","false");
-    var np=document.createElement("div");np.className="np";np.hidden=true;
-    nb.onclick=function(){np.hidden=!np.hidden;nb.setAttribute("aria-expanded",String(!np.hidden));if(!np.hidden)V.renderNotes(np,slug);};
-    m.appendChild(nb);m.appendChild(np);w.appendChild(m);
+    /* notes control (visitor notes + notes.json "From the editor") is added by ratings.js makeNotes() in start() */
+    if(m.children.length)w.appendChild(m);
     var r=document.createElement("div");r.className="rt";w.appendChild(r);
     items.push({slug:slug,el:w,box:r,pos:i++});
   });
@@ -77,7 +76,7 @@ header p{margin-top:12px;color:#3d5168}
   }
   function start(){
     var R=window.PizzaRatings;
-    items.forEach(function(x){x.box.appendChild(R.makeWidget(x.slug));R.attachFold(x);});
+    items.forEach(function(x){x.box.appendChild(R.makeWidget(x.slug));R.attachFold(x);x.box.appendChild(R.makeNotes(x.slug).wrap);});
     shh.onclick=function(){shh.setAttribute("aria-pressed",showAll()?"false":"true");render();};
     R.store.subscribe(render);srt.onchange=render;
     myf.onclick=function(){myf.setAttribute("aria-pressed",myf.getAttribute("aria-pressed")==="true"?"false":"true");render();};

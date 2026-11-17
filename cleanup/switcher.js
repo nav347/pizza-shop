@@ -97,6 +97,8 @@
         var pr = byId(v.parent), s = document.createElement("span");
         s.id = "sw-parent"; s.textContent = "Branched from " + (pr ? pr.title : v.parent); s.style.opacity = ".8"; extra.appendChild(s);
       }
+      /* when ratings.js is loaded it adds the merged notes control (visitors + this editor feed) beside the stars; this is the fallback */
+      if (window.PizzaRatings && window.PizzaRatings.makeNotes) return;
       var nb = document.createElement("button"); nb.type = "button"; nb.id = "sw-notebtn"; nb.setAttribute("style", bs + ";margin-left:6px");
       nb.textContent = "📝 " + notesFor(v.id).length; nb.setAttribute("aria-label", "Notes for this version");
       nb.onclick = function () { panel.hidden = !panel.hidden; if (!panel.hidden) renderNotes(panel, v.id); };

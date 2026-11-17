@@ -3,6 +3,8 @@
    Contract: GET {API_BASE}/ratings -> {"v1-trattoria":{"avg":4.2,"count":12,"favs":3,"nopes":1},...}   ("nopes" optional)
              POST {API_BASE}/rate {version, stars(1-5), voter}   POST {API_BASE}/fav {version, on:true|false, voter}
              POST {API_BASE}/nope {version, on:true|false, voter}   ("Don't show"; failures are ignored silently)
+             POST {API_BASE}/note {version, text(max 300), voter, name?(max 40)} -> {ok:true, notes:N} | 400/429 {error}
+             GET  {API_BASE}/notes?version=<key> -> [{ts, text, name}] newest first (max 50); /ratings entries also carry "notes":N
    A voter re-rating replaces their old rating (server side). */
 const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
 
@@ -36,9 +38,9 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
       v = K(v);
       if (mode === "server") {
         var d = shared[v];
-        return d ? { avg: +d.avg || 0, count: +d.count || 0, favs: +d.favs || 0, nopes: +d.nopes || 0 } : { avg: 0, count: 0, favs: 0, nopes: 0 };
+        return d ? { avg: +d.avg || 0, count: +d.count || 0, favs: +d.favs || 0, nopes: +d.nopes || 0, notes: +d.notes || 0 } : { avg: 0, count: 0, favs: 0, nopes: 0, notes: 0 };
       }
-      return localStats(v);
+      var l = localStats(v); l.notes = 0; return l;
     }
     function withTimeout(promise) {
       return Promise.race([promise, new Promise(function (_, rej) { setTimeout(function () { rej(new Error("timeout")); }, TIMEOUT); })]);
@@ -75,8 +77,40 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
       /* the server may not have /nope yet: failures are ignored silently */
       return post("/nope", { version: v, on: !!on, voter: voter }).then(function (ok) { return mode === "server" ? load() : ok; }, function () { return false; });
     }
+    /* ---- visitor notes (server only; one short note per call, listed newest first) ---- */
+    var ncache = {}, NOTE_TTL = 30000, MSG_FAIL = "Could not save the note, try again later", MSG_MANY = "Too many notes, try again later";
+    function notes(v) {
+      v = K(v);
+      if (mode !== "server" || !fx) return Promise.resolve([]);
+      var c = ncache[v]; if (c && Date.now() - c.t < NOTE_TTL) return Promise.resolve(c.list.slice());
+      return withTimeout(fx(api + "/notes?version=" + encodeURIComponent(v)).then(function (r) { if (!r.ok) throw new Error("bad"); return r.json(); }))
+        .then(function (d) {
+          var list = (Array.isArray(d) ? d : []).filter(function (n) { return n && typeof n.text === "string"; }).slice(0, 50);
+          ncache[v] = { t: Date.now(), list: list }; return list.slice();
+        }, function () { return []; });
+    }
+    function addNote(v, text, name) {
+      v = K(v); text = String(text == null ? "" : text).trim().slice(0, 300); name = String(name == null ? "" : name).trim().slice(0, 40);
+      if (!text) return Promise.resolve({ ok: false, message: "Write a note first" });
+      if (mode !== "server" || !fx) return Promise.resolve({ ok: false, message: MSG_FAIL });
+      var body = { version: v, text: text, voter: voter }; if (name) body.name = name;
+      return withTimeout(fx(api + "/note", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+        .then(function (r) { return r.json().then(function (j) { return j || {}; }, function () { return {}; }).then(function (j) { return { status: r.status, ok: !!r.ok, j: j }; }); }))
+        .then(function (x) {
+          if (x.ok && x.j.ok !== false) {
+            var n = +x.j.notes; if (!(n >= 0)) n = ((shared[v] && +shared[v].notes) || 0) + 1;
+            shared[v] = shared[v] || {}; shared[v].notes = n;
+            var item = { ts: Math.floor(Date.now() / 1000), text: text }; if (name) item.name = name;
+            if (ncache[v]) { ncache[v].list.unshift(item); ncache[v].list = ncache[v].list.slice(0, 50); ncache[v].t = Date.now(); }
+            emit(); return { ok: true, notes: n, note: item };
+          }
+          if (x.status === 429) return { ok: false, message: MSG_MANY };
+          if (x.status === 400 && typeof x.j.error === "string" && x.j.error) return { ok: false, message: x.j.error.slice(0, 120) };
+          return { ok: false, message: MSG_FAIL };
+        }, function () { return { ok: false, message: MSG_FAIL }; });
+    }
     return {
-      load: load, rate: rate, fav: fav, nope: nope, stats: stats,
+      load: load, rate: rate, fav: fav, nope: nope, stats: stats, notes: notes, addNote: addNote,
       myStars: function (v) { return mine.stars[K(v)] || 0; },
       isFav: function (v) { return !!mine.favs[K(v)]; },
       isNope: function (v) { return !!mine.nopes[K(v)]; },
@@ -88,7 +122,23 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
   function r1(x) { return (Math.round(x * 10) / 10).toFixed(1); }
   function fmt(s) { return s.count ? "★" + r1(s.avg) + " (" + s.count + ")" : "no ratings"; }
 
-  if (typeof module !== "undefined" && module.exports) { module.exports = { createStore: createStore, fmt: fmt, keyFor: keyFor, siteFromPath: siteFromPath }; }
+  /* relative date: ts = unix seconds, unix ms, ISO string or YYYY-MM-DD; unknown input gives "" */
+  function ago(ts, now) {
+    var t = typeof ts === "number" ? (ts < 1e12 ? ts * 1000 : ts) : Date.parse(ts);
+    if (!(t > 0)) return "";
+    var d = Math.max(0, ((now == null ? Date.now() : now) - t) / 1000);
+    function u(n, w) { n = Math.floor(n); return n + " " + w + (n === 1 ? "" : "s") + " ago"; }
+    if (d < 60) return "just now"; if (d < 3600) return u(d / 60, "minute"); if (d < 86400) return u(d / 3600, "hour");
+    if (d < 86400 * 30) return u(d / 86400, "day"); if (d < 86400 * 365) return u(d / (86400 * 30), "month"); return u(d / (86400 * 365), "year");
+  }
+  /* merge of the two note sources for one panel: visitors (server, newest first) and the editor (repo notes.json, newest first) */
+  function mergeNotes(visitors, editor) {
+    var v = (visitors || []).map(function (n) { return { text: String(n.text), who: n.name ? String(n.name) : "", when: ago(n.ts), src: "visitor" }; });
+    var e = (editor || []).map(function (n) { return { text: String(n.text), who: n.author ? String(n.author) : "", when: n.date ? ago(n.date) || String(n.date) : "", src: "editor" }; });
+    return { visitors: v, editor: e, total: v.length + e.length };
+  }
+
+  if (typeof module !== "undefined" && module.exports) { module.exports = { createStore: createStore, fmt: fmt, keyFor: keyFor, siteFromPath: siteFromPath, ago: ago, mergeNotes: mergeNotes }; }
   if (typeof window === "undefined" || typeof document === "undefined") return;
 
   /* ---- browser part ---- */
@@ -96,7 +146,7 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
   var SITE = siteFromPath(location.pathname);
   var store = createStore({ prefix: SITE === "cleanup" ? "c-" : "", apiBase: API_BASE, storage: ls, fetch: window.fetch ? window.fetch.bind(window) : null });
   var NOTE = "only your ratings shown (shared ratings not connected yet)";
-  window.PizzaRatings = { site: SITE, store: store, fmt: fmt, makeWidget: makeWidget, attachFold: attachFold, note: NOTE };
+  window.PizzaRatings = { site: SITE, store: store, fmt: fmt, makeWidget: makeWidget, attachFold: attachFold, makeNotes: makeNotes, ago: ago, mergeNotes: mergeNotes, note: NOTE };
 
   var path = location.pathname.split("/"); path.pop();
   var cur = path.pop() || "";
@@ -115,8 +165,18 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
     ".pr-nopebtn{background:none;border:1px solid #888;color:inherit;border-radius:8px;min-height:32px;padding:4px 10px;font:600 12px/1 system-ui,sans-serif;cursor:pointer;margin:4px 0 0 4px}.pr-nopebtn[aria-pressed=true]{background:#555;color:#fff;border-color:#555}" +
     ".pr-fold{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;background:#e6e6e6;color:#555;border:1px dashed #999;border-radius:10px;padding:6px 10px;font:600 13px/1.3 system-ui,sans-serif;opacity:.85}.pr-fold[hidden]{display:none}.pr-fold button{background:#fff;color:#222;border:1px solid #888;border-radius:8px;min-height:32px;padding:4px 10px;font:600 12px/1 system-ui,sans-serif;cursor:pointer}" +
     ".pr-nopebtn:focus-visible,.pr-fold button:focus-visible{outline:3px solid #7ad7f0;outline-offset:2px}" +
+    ".pr-np,.pr-np-p{--np-bg:#111;--np-fg:#fff;--np-mut:#bbb;--np-line:#555;--np-acc:#7ad7f0;display:block;flex-basis:100%;min-width:0;font:500 13px/1.4 system-ui,sans-serif}" +
+    ".pr-np-btn{background:none;border:1px solid #888;color:inherit;border-radius:8px;min-height:32px;padding:4px 10px;font:600 12px/1 system-ui,sans-serif;cursor:pointer;margin:4px 0 0 4px}.pr-np-btn[aria-expanded=true]{background:#555;color:#fff;border-color:#555}" +
+    ".pr-np-p{margin-top:6px;background:var(--np-bg);color:var(--np-fg);border:1px solid var(--np-line);border-radius:10px;padding:8px 10px;max-height:min(55vh,420px);overflow:auto;text-align:left}.pr-np-p[hidden]{display:none}" +
+    ".pr-np-p.pr-np-fix{position:fixed;left:8px;right:8px;max-width:440px;margin:0 auto;z-index:2147482500;box-shadow:0 4px 16px rgba(0,0,0,.6);border:2px solid #fff}" +
+    ".pr-np-p h3{font:700 12px/1.2 system-ui,sans-serif;margin:8px 0 4px;color:var(--np-mut);text-transform:uppercase;letter-spacing:.04em}.pr-np-p h3:first-child{margin-top:0}" +
+    ".pr-np-p p{margin:4px 0;overflow-wrap:anywhere;white-space:pre-wrap}.pr-np-p p small{display:block;color:var(--np-mut);font-size:11px}" +
+    ".pr-np-p textarea,.pr-np-p input{width:100%;font:inherit;font-size:16px;color:#111;background:#fff;border:1px solid #888;border-radius:6px;padding:6px;margin:4px 0}.pr-np-p textarea{min-height:56px;resize:vertical}" +
+    ".pr-np-p .pr-np-ct{font-size:11px;color:var(--np-mut)}.pr-np-p .pr-np-go{background:var(--np-acc);color:#111;border:0;border-radius:8px;min-height:36px;padding:6px 14px;font:700 13px/1 system-ui,sans-serif;cursor:pointer}.pr-np-p .pr-np-go:disabled{opacity:.6;cursor:default}" +
+    ".pr-np-p .pr-np-msg{display:block;margin-top:4px;font-size:12px;color:var(--np-mut)}.pr-np-p button:focus-visible,.pr-np-p textarea:focus-visible,.pr-np-p input:focus-visible,.pr-np-btn:focus-visible{outline:3px solid var(--np-acc);outline-offset:2px}" +
+    "@media(prefers-reduced-motion:reduce){.pr-np-p,.pr-np-btn{transition:none!important;animation:none!important}}" +
     ".pr-panel[hidden]{display:none}.pr-note{display:block;margin-top:6px;font-weight:400;font-size:11px;color:#ccc;max-width:260px}";
-  if (SITE === "cleanup") css.textContent += ".pr-pill,.pr-panel{border-color:#1167c9;font-family:Inter,system-ui,sans-serif}.pr-w button.on{color:#f5a300}";
+  if (SITE === "cleanup") css.textContent += ".pr-pill,.pr-panel,.pr-np-fix{border-color:#1167c9;font-family:Inter,system-ui,sans-serif}.pr-w button.on{color:#f5a300}";
   document.head.appendChild(css);
 
   /* Gallery fold. x = {slug, el (wrapper holding the card a.card), box (rating box)}. Adds a "Don't show" button and a slim
@@ -172,6 +232,78 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
     return w;
   }
 
+  /* Notes control for version slug (plain folder name): returns {wrap, btn, panel, refresh}. All text goes in with textContent only.
+     o.fixed = panel floats above the version bar (id pr-np-bar); o.editor = function(slug) -> repo notes (default: CleanupVersions.notes). */
+  var npSeq = 0;
+  function makeNotes(slug, o) {
+    o = o || {}; var id = "pr-np-" + (++npSeq), open = false;
+    function editorNotes() {
+      try { var f = o.editor || (window.CleanupVersions && window.CleanupVersions.notes); return f ? (f(slug) || []) : []; } catch (e) { return []; }
+    }
+    var wrap = document.createElement("span"); wrap.className = "pr-np";
+    var btn = document.createElement("button"); btn.type = "button"; btn.className = "pr-np-btn";
+    btn.setAttribute("aria-expanded", "false");
+    var panel = document.createElement("div"); panel.className = "pr-np-p" + (o.fixed ? " pr-np-fix" : ""); panel.id = o.fixed ? "pr-np-bar" : id; panel.hidden = true;
+    panel.setAttribute("role", "group"); panel.setAttribute("aria-label", "Notes for this design");
+    btn.setAttribute("aria-controls", panel.id);
+    var list = document.createElement("div"); list.setAttribute("aria-live", "polite");
+    var form = document.createElement("div");
+    var ta = document.createElement("textarea"); ta.maxLength = 300; ta.rows = 2; ta.placeholder = "Leave a short note (max 300 characters)"; ta.setAttribute("aria-label", "Your note");
+    var ct = document.createElement("span"); ct.className = "pr-np-ct";
+    var nm = document.createElement("input"); nm.type = "text"; nm.maxLength = 40; nm.placeholder = "Your name (optional)"; nm.setAttribute("aria-label", "Your name, optional");
+    var go = document.createElement("button"); go.type = "button"; go.className = "pr-np-go"; go.textContent = "Add note";
+    var msg = document.createElement("span"); msg.className = "pr-np-msg"; msg.setAttribute("role", "status");
+    form.appendChild(ta); form.appendChild(ct); form.appendChild(nm); form.appendChild(go); form.appendChild(msg);
+    panel.appendChild(list); panel.appendChild(form);
+    wrap.appendChild(btn);
+    if (!o.fixed) wrap.appendChild(panel);
+    var visitors = [], sending = false;
+    function count() { return store.stats(slug).notes + editorNotes().length; }
+    function label() { btn.textContent = "📝 Notes (" + count() + ")"; }
+    function line(n) {
+      var p = document.createElement("p"); p.textContent = n.text;
+      var meta = [n.who, n.when].filter(Boolean).join(", ");
+      if (meta) { var s = document.createElement("small"); s.textContent = meta; p.appendChild(s); }
+      return p;
+    }
+    function head(t) { var h = document.createElement("h3"); h.textContent = t; return h; }
+    function draw() {
+      var m = mergeNotes(visitors, editorNotes());
+      list.textContent = "";
+      if (!m.total) { var e = document.createElement("p"); e.textContent = "No notes yet"; list.appendChild(e); }
+      if (m.visitors.length) { if (m.editor.length) list.appendChild(head("From visitors")); m.visitors.forEach(function (n) { list.appendChild(line(n)); }); }
+      if (m.editor.length) { list.appendChild(head("From the editor")); m.editor.forEach(function (n) { list.appendChild(line(n)); }); }
+      form.hidden = store.mode() !== "server";
+      ct.textContent = ta.value.length + "/300";
+    }
+    function setOpen(v, focusBack) {
+      open = v; panel.hidden = !v; btn.setAttribute("aria-expanded", v ? "true" : "false");
+      if (o.fixed) fit();
+      if (v) {
+        draw(); store.notes(slug).then(function (l) { visitors = l; draw(); });
+        if (!form.hidden) ta.focus(); else { panel.tabIndex = -1; panel.focus(); }
+      } else if (focusBack) btn.focus();
+    }
+    btn.onclick = function (e) { e.preventDefault(); e.stopPropagation(); setOpen(!open, false); };
+    panel.addEventListener("keydown", function (e) { if (e.key === "Escape") { e.stopPropagation(); setOpen(false, true); } });
+    btn.addEventListener("keydown", function (e) { if (e.key === "Escape" && open) setOpen(false, true); });
+    ta.addEventListener("input", function () { ct.textContent = ta.value.length + "/300"; });
+    go.onclick = function () {
+      if (sending) return; sending = true; go.disabled = true; msg.textContent = "Sending...";
+      store.addNote(slug, ta.value, nm.value).then(function (r) {
+        sending = false; go.disabled = false;
+        if (r.ok) {
+          ta.value = ""; msg.textContent = "Thanks, note added";
+          visitors = [{ ts: r.note.ts, text: r.note.text, name: r.note.name }].concat(visitors).slice(0, 50); draw();
+        } else msg.textContent = r.message;
+      });
+    };
+    store.subscribe(function () { label(); if (open) draw(); });
+    if (window.CleanupVersions && window.CleanupVersions.ready) window.CleanupVersions.ready(function () { label(); if (open) draw(); });
+    label(); draw();
+    return { wrap: wrap, btn: btn, panel: panel, refresh: function () { label(); draw(); }, open: function () { setOpen(true); }, close: function () { setOpen(false, true); } };
+  }
+
   function noteText() { return store.mode() === "local" ? NOTE : ""; }
 
   function attachBar(bar) {
@@ -201,7 +333,13 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
       nb.textContent = THUMB + (no ? " Marked: don't show (undo)" : " Don't show");
     }
     store.subscribe(nbl); nbl();
-    row.appendChild(lab); row.appendChild(makeWidget(cur)); row.appendChild(nb); row.appendChild(note);
+    row.appendChild(lab); row.appendChild(makeWidget(cur)); row.appendChild(nb);
+    /* the old repo-only notes button of the cleanup bar is replaced by this merged one */
+    var oldNb = document.getElementById("sw-notebtn"), oldNp = document.getElementById("sw-notes");
+    if (oldNb && oldNb.parentNode) oldNb.parentNode.removeChild(oldNb);
+    if (oldNp && oldNp.parentNode) oldNp.parentNode.removeChild(oldNp);
+    var nt = makeNotes(cur, { fixed: true }); row.appendChild(nt.btn); row.appendChild(note);
+    document.body.appendChild(nt.panel);
     bar.appendChild(row);
     function n() { note.textContent = noteText(); fit(); }
     store.subscribe(n); n();
@@ -212,6 +350,7 @@ const API_BASE = "https://oracle-arm.tail0eeaa5.ts.net/pizza";
     var hgt = bar.offsetHeight;
     document.body.style.paddingBottom = (hgt + (inV ? 56 : 8)) + "px";
     var pill = document.getElementById("pr-pill"), panel = document.getElementById("pr-panel");
+    var np = document.getElementById("pr-np-bar"); if (np) np.style.bottom = (hgt + 8) + "px";
     if (pill) pill.style.bottom = (hgt + 8) + "px";
     if (panel && pill) panel.style.bottom = (hgt + 8 + pill.offsetHeight + 8) + "px";
   }
