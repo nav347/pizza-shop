@@ -99,3 +99,43 @@ details p{margin:0 0 .8rem;color:var(--mute)}
 .foot h4{margin:0 0 .4rem;color:#fff}.foot p{margin:.2em 0}
 .fine{font-size:.8rem;opacity:.7;margin-top:1.5rem}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* ---- T-650c: Maple Axis content + scene pictures (before/after warehouse) */
+.fig{margin:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 18px 40px -26px rgba(13,148,136,.55)}
+.fig svg{display:block;width:100%;height:auto}
+.svc{padding:0;overflow:hidden}
+.svc .fig{border:0;border-radius:0;box-shadow:none;border-bottom:1px solid var(--line)}
+.svc-body{padding:1rem 1.2rem 1.2rem;display:flex;flex-direction:column}
+.split{display:grid;gap:1.5rem;align-items:center}
+@media(min-width:860px){.split{grid-template-columns:1.2fr 1fr}.split.rev{grid-template-columns:1fr 1.2fr}.split.rev>.fig{order:-1}}
+.prose p{max-width:62ch}
+.band{padding:0 0 2rem}
+.values{list-style:none;margin:0;padding:0;display:grid;gap:.8rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
+.values li{background:var(--alt);border:1px solid var(--line);border-radius:var(--r);padding:1rem;display:flex;flex-direction:column;gap:.15rem;color:var(--mute)}
+.values .ico{font-size:1.6rem}.values b{color:var(--ink)}
+.cards{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));margin:1.5rem 0}
+.card-c{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.2rem 1.4rem}
+.cards .svc{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 6px 18px -14px rgba(0,0,0,.4)}
+.cards.rows{grid-template-columns:1fr}
+@media(min-width:760px){.rows .svc{display:grid;grid-template-columns:320px 1fr;align-items:center}.rows .svc .fig{height:100%;border-bottom:0;border-right:1px solid var(--line)}}
+.contr .fig{margin-top:1rem}
+.contactgrid{display:grid;gap:1.5rem;align-items:start}
+@media(min-width:760px){.contactgrid{grid-template-columns:1fr 1.1fr}}
+.card-c h3{margin:.9em 0 .1em;font-size:1rem;color:var(--teal-d)}.card-c h3:first-child{margin-top:0}
+.card-c p,.card-c address{margin:0;font-style:normal}
+.cities{font-size:.9rem;color:var(--mute)}
+.pagehead{padding:2.5rem 0 1.5rem}
+.motto{font-family:Fraunces,serif;color:#fff;font-weight:800}
+.foot h3{margin:0 0 .4rem;color:#fff;font-size:1rem}
+.from{font-weight:700}
+.story .sticky svg,.ba svg{display:block}
+.l-over,.l-floor,.l-haze,.l-sparkle,.l-sheen{transition:opacity .6s}
+.room .l-sparkle,.room .l-sheen{opacity:0}
+.room[data-stage="1"] .l-over,.room[data-stage="2"] .l-over,.room[data-stage="3"] .l-over{opacity:0}
+.room[data-stage="1"] .l-haze{opacity:.6}
+.room[data-stage="2"] .l-haze{opacity:.3}
+.room[data-stage="3"] .l-haze{opacity:0}
+.room[data-stage="2"] .l-floor,.room[data-stage="3"] .l-floor{opacity:0}
+.room[data-stage="2"] .l-sheen,.room[data-stage="3"] .l-sheen{opacity:1}
+.room[data-stage="3"] .l-sparkle{opacity:1}
+@media(max-width:859px){.step{min-height:40vh}}
