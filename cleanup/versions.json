@@ -121,5 +121,17 @@
   "tag": "Your editable version",
   "added": "2026-11-18",
   "short": "Adarsh (editable)"
+ },
+ {
+  "id": "v14-newlogo",
+  "title": "New logo",
+  "vibe": "Same site as v12 with the clean vector logo",
+  "swatch": [
+   "#0e0f12",
+   "#f2b233"
+  ],
+  "tag": "New logo",
+  "added": "2026-11-18",
+  "short": "New logo"
  }
 ]
