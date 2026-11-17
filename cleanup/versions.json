@@ -123,6 +123,19 @@
   "short": "Adarsh (editable)"
  },
  {
+  "id": "v13-residential",
+  "title": "Version 13: Residential",
+  "vibe": "Adds residential services to the wording (from v12).",
+  "swatch": [
+   "#0e0f12",
+   "#f2b233"
+  ],
+  "tag": "Your change",
+  "added": "2026-11-18",
+  "parent": "v12-adarsh",
+  "short": "Residential"
+ },
+ {
   "id": "v14-newlogo",
   "title": "New logo",
   "vibe": "Same site as v12 with the clean vector logo",
