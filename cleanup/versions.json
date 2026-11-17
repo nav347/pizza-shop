@@ -133,5 +133,13 @@
   "tag": "New logo",
   "added": "2026-11-18",
   "short": "New logo"
+ },
+ {
+  "id": "v15-residential",
+  "title": "Version 15: Residential",
+  "vibe": "Add residential services also to the site. Maple Axis: Industrial, Commercial an",
+  "tag": "Your change",
+  "added": "2026-11-18",
+  "parent": "v14-newlogo"
  }
 ]
