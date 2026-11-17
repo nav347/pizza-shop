@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Maple Axis: post-drywall cleanup, 12 designs</title>
+<title>Maple Axis: post-drywall cleanup, website designs</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0}html,body{max-width:100%;overflow-x:hidden}
@@ -21,6 +21,7 @@ header p{margin-top:12px;color:#3d5168}
 .cw{display:flex;flex-direction:column;min-width:0}.cw[hidden]{display:none}.cw .card{flex:1}
 .rt{background:#fff;border:2px solid #d5e0ee;border-top:0;border-radius:0 0 14px 14px;margin:-8px 8px 0;padding:10px 8px 6px;position:relative;z-index:1}
 .rt .pr-w{color:#12202f;max-width:100%}.rt .pr-w button{color:#b5c3d3}.rt .pr-w button.on{color:#f5a300}.rt .pr-w button.hf.on{color:#e0245e}.rt .pr-t{flex-basis:100%;margin:2px 0 0 4px;color:#3d5168}
+.meta{padding:6px 10px 0;font-size:.85rem;color:#3d5168;margin:0 8px;position:relative;z-index:1;background:#fff;border:2px solid #d5e0ee;border-top:0;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}.meta a{color:#1167c9;font-weight:600}.meta button{background:none;border:0;color:#0b3a6e;font:inherit;font-weight:600;cursor:pointer;padding:4px 0}.meta .np{flex-basis:100%}.meta .np p{margin:4px 0}.meta :focus-visible{outline:3px solid #1167c9;outline-offset:2px}
 .tools{max-width:1100px;margin:10px auto 0;padding:0 5vw;display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:.95rem;color:#3d5168}
 .tools select,.tools button{background:#fff;color:#0b3a6e;border:2px solid #d5e0ee;border-radius:10px;padding:8px 10px;font:inherit;font-weight:600;min-height:40px;cursor:pointer}
 .tools button[aria-pressed=true]{background:#1167c9;color:#fff;border-color:#1167c9}
@@ -29,30 +30,33 @@ header p{margin-top:12px;color:#3d5168}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style><link rel="icon" type="image/png" href="assets/maple-axis-mark.png"></head>
 <body>
-<header><span class="logochip"><img src="assets/maple-axis-logo.png" alt="Maple Axis logo" width="200" height="88"></span><h1 data-biz="name">Maple Axis</h1><p><span data-biz="tagline"></span><br>Post-drywall cleanup for Toronto and the GTA. One business, twelve different websites. Pick a vibe.</p><span class="tag">Placeholder brand for a design test</span></header>
+<header><span class="logochip"><img src="assets/maple-axis-logo.png" alt="Maple Axis logo" width="200" height="88"></span><h1 data-biz="name">Maple Axis</h1><p><span data-biz="tagline"></span><br>Post-drywall cleanup for Toronto and the GTA. One business, many different websites. Pick a vibe.</p><span class="tag">Placeholder brand for a design test</span></header>
 <div class="tools"><label>Sort <select id="srt"><option value="n">Version</option><option value="r">Highest rated</option><option value="f">Most favourited</option></select></label><button type="button" id="myf" aria-pressed="false">&#10084; Your favourites</button><button type="button" id="shh" aria-pressed="false">Show hidden</button></div><p class="pnote" id="pnote" aria-live="polite"></p>
 <main class="grid" id="grid">
-<a class="card" href="v1-clean/index.html"><div class="sw" style="background:linear-gradient(90deg,#fff,#1167c9)"></div><span class="n">01</span><h2>Clean Trust</h2><p>Crisp white and blue minimal: calm, clear and trustworthy.</p><span class="go">Open &rarr;</span></a>
-<a class="card" href="v2-pro/index.html"><div class="sw" style="background:linear-gradient(90deg,#14202e,#f5a300)"></div><span class="n">02</span><h2>Pro Contractor</h2><p>Corporate B2B look aimed at drywall companies who need a crew after theirs.</p><span class="go">Open &rarr;</span></a>
-<a class="card" href="v3-blueprint/index.html"><div class="sw" style="background:linear-gradient(90deg,#0a3d8f,#7fb2ff)"></div><span class="n">03</span><h2>Blueprint</h2><p>Technical drawing grid, white linework and dimensioned rooms.</p><span class="go">Open &rarr;</span></a>
-<a class="card" href="v4-bold/index.html"><div class="sw" style="background:linear-gradient(90deg,#111,#ffd400)"></div><span class="n">04</span><h2>Bold</h2><p>Huge type, hard contrast and loud yellow: impossible to miss.</p><span class="go">Open &rarr;</span></a>
-<a class="card" href="v5-friendly/index.html"><div class="sw" style="background:linear-gradient(90deg,#ffb86b,#7ad7c0)"></div><span class="n">05</span><h2>Friendly</h2><p>Rounded shapes, warm colours and a neighbourly voice for homeowners.</p><span class="go">Open &rarr;</span></a>
-<a class="card" href="v6-luxury/index.html"><div class="sw" style="background:linear-gradient(90deg,#1b1b1b,#c9a24b)"></div><span class="n">06</span><h2>Luxury</h2><p>White-glove service for high-end renovations, in black and gold.</p><span class="go">Open &rarr;</span></a>
-<a class="card" href="v7-industrial/index.html"><div class="sw" style="background:linear-gradient(90deg,#444,#ff6a00)"></div><span class="n">07</span><h2>Industrial</h2><p>Steel, safety orange and site-sign stencils.</p><span class="go">Open &rarr;</span></a>
-<a class="card" href="v8-eco/index.html"><div class="sw" style="background:linear-gradient(90deg,#2f7d4f,#cfe8c8)"></div><span class="n">08</span><h2>Eco</h2><p>Greens and natural tones: HEPA, low-waste and healthier air.</p><span class="go">Open &rarr;</span></a>
-<a class="card" href="v9-before-after/index.html"><div class="sw" style="background:linear-gradient(90deg,#b9a99a,#fff)"></div><span class="n">09</span><h2>Before &amp; After</h2><p>Dusty on the left, spotless on the right: the result tells the story.</p><span class="go">Open &rarr;</span></a>
-<a class="card" href="v10-dark/index.html"><div class="sw" style="background:linear-gradient(90deg,#0d0f14,#4de0c4)"></div><span class="n">10</span><h2>Dark</h2><p>Dark mode with a cool teal glow, modern and sleek.</p><span class="go">Open &rarr;</span></a>
-<a class="card" href="v11-axis/index.html"><div class="sw" style="background:linear-gradient(90deg,#0e0f12,#f2b233)"></div><span class="n">11 <span class="newb">New: Maple Axis style</span></span><h2>Maple Axis</h2><p>Near-black and gold corporate look with a glass-lobby Toronto skyline hero.</p><span class="go">Open &rarr;</span></a>
-<a class="card" href="v12-adarsh/index.html"><div class="sw" style="background:linear-gradient(90deg,#0e0f12,#f2b233)"></div><span class="n">12 <span class="newb">Your editable version</span></span><h2>Adarsh's version</h2><p>Your own copy of the Maple Axis look. Changes you ask for go here only.</p><span class="go">Open &rarr;</span></a>
 </main>
 <script src="business.js"></script><script src="../ratings.js"></script><script src="switcher.js"></script>
 <script>
 (function(){
+  function esc(t){var d=document.createElement("div");d.textContent=t;return d.innerHTML;}
+  function cards(L){
+    var g=document.getElementById("grid"),o="";
+    L.forEach(function(e,i){var n=i+1;n=(n<10?"0":"")+n;
+      o+='<a class="card" href="'+esc(e.id)+'/index.html"><div class="sw" style="background:linear-gradient(90deg,'+esc(e.swatch[0])+','+esc(e.swatch[1])+')"></div><span class="n">'+n+(e.tag?' <span class="newb">'+esc(e.tag)+'</span>':'')+'</span><h2>'+esc(e.title)+'</h2><p>'+esc(e.vibe)+'</p><span class="go">Open &rarr;</span></a>';});
+    g.innerHTML=o;
+  }
+  function init(){
   var grid=document.getElementById("grid"),srt=document.getElementById("srt"),myf=document.getElementById("myf"),note=document.getElementById("pnote");
   var items=[],i=0;
   [].slice.call(grid.querySelectorAll("a.card")).forEach(function(a){
     var slug=a.getAttribute("href").split("/")[0],w=document.createElement("div");
     w.className="cw";grid.replaceChild(w,a);w.appendChild(a);
+    w.id="card-"+slug;
+    var V=window.CleanupVersions,ver=V.byId(slug)||{},ns=V.notes(slug),m=document.createElement("div");m.className="meta";
+    if(ver.parent){var pr=V.byId(ver.parent),pa=document.createElement("a");pa.href="#card-"+ver.parent;pa.textContent="branched from "+(pr?pr.title:ver.parent);m.appendChild(pa);}
+    var nb=document.createElement("button");nb.type="button";nb.textContent="\uD83D\uDCDD "+ns.length+(ns.length===1?" note":" notes");nb.setAttribute("aria-expanded","false");
+    var np=document.createElement("div");np.className="np";np.hidden=true;
+    nb.onclick=function(){np.hidden=!np.hidden;nb.setAttribute("aria-expanded",String(!np.hidden));if(!np.hidden)V.renderNotes(np,slug);};
+    m.appendChild(nb);m.appendChild(np);w.appendChild(m);
     var r=document.createElement("div");r.className="rt";w.appendChild(r);
     items.push({slug:slug,el:w,box:r,pos:i++});
   });
@@ -80,6 +84,8 @@ header p{margin-top:12px;color:#3d5168}
     render();
   }
   if(window.PizzaRatings)start();else{var n=0,t=setInterval(function(){if(window.PizzaRatings){clearInterval(t);start();}else if(++n>80)clearInterval(t);},50);}
+  }
+  window.CleanupVersions.ready(function(L){cards(L);init();});
 })();
 </script>
 </body></html>

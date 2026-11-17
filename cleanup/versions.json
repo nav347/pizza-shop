@@ -1,0 +1,125 @@
+[
+ {
+  "id": "v1-clean",
+  "title": "Clean Trust",
+  "vibe": "Crisp white and blue minimal: calm, clear and trustworthy.",
+  "swatch": [
+   "#fff",
+   "#1167c9"
+  ],
+  "added": "2026-11-05"
+ },
+ {
+  "id": "v2-pro",
+  "title": "Pro Contractor",
+  "vibe": "Corporate B2B look aimed at drywall companies who need a crew after theirs.",
+  "swatch": [
+   "#14202e",
+   "#f5a300"
+  ],
+  "added": "2026-11-05"
+ },
+ {
+  "id": "v3-blueprint",
+  "title": "Blueprint",
+  "vibe": "Technical drawing grid, white linework and dimensioned rooms.",
+  "swatch": [
+   "#0a3d8f",
+   "#7fb2ff"
+  ],
+  "added": "2026-11-05"
+ },
+ {
+  "id": "v4-bold",
+  "title": "Bold",
+  "vibe": "Huge type, hard contrast and loud yellow: impossible to miss.",
+  "swatch": [
+   "#111",
+   "#ffd400"
+  ],
+  "added": "2026-11-05"
+ },
+ {
+  "id": "v5-friendly",
+  "title": "Friendly",
+  "vibe": "Rounded shapes, warm colours and a neighbourly voice for homeowners.",
+  "swatch": [
+   "#ffb86b",
+   "#7ad7c0"
+  ],
+  "added": "2026-11-05"
+ },
+ {
+  "id": "v6-luxury",
+  "title": "Luxury",
+  "vibe": "White-glove service for high-end renovations, in black and gold.",
+  "swatch": [
+   "#1b1b1b",
+   "#c9a24b"
+  ],
+  "added": "2026-11-05"
+ },
+ {
+  "id": "v7-industrial",
+  "title": "Industrial",
+  "vibe": "Steel, safety orange and site-sign stencils.",
+  "swatch": [
+   "#444",
+   "#ff6a00"
+  ],
+  "added": "2026-11-05"
+ },
+ {
+  "id": "v8-eco",
+  "title": "Eco",
+  "vibe": "Greens and natural tones: HEPA, low-waste and healthier air.",
+  "swatch": [
+   "#2f7d4f",
+   "#cfe8c8"
+  ],
+  "added": "2026-11-05"
+ },
+ {
+  "id": "v9-before-after",
+  "title": "Before & After",
+  "vibe": "Dusty on the left, spotless on the right: the result tells the story.",
+  "swatch": [
+   "#b9a99a",
+   "#fff"
+  ],
+  "added": "2026-11-05"
+ },
+ {
+  "id": "v10-dark",
+  "title": "Dark",
+  "vibe": "Dark mode with a cool teal glow, modern and sleek.",
+  "swatch": [
+   "#0d0f14",
+   "#4de0c4"
+  ],
+  "added": "2026-11-05"
+ },
+ {
+  "id": "v11-axis",
+  "title": "Maple Axis",
+  "vibe": "Near-black and gold corporate look with a glass-lobby Toronto skyline hero.",
+  "swatch": [
+   "#0e0f12",
+   "#f2b233"
+  ],
+  "tag": "New: Maple Axis style",
+  "added": "2026-11-16"
+ },
+ {
+  "id": "v12-adarsh",
+  "title": "Adarsh's version",
+  "vibe": "Your own copy of the Maple Axis look. Changes you ask for go here only.",
+  "swatch": [
+   "#0e0f12",
+   "#f2b233"
+  ],
+  "tag": "Your editable version",
+  "added": "2026-11-18",
+  "short": "Adarsh (editable)"
+ }
+]

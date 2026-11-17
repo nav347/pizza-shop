@@ -16,9 +16,31 @@ for slug in ["v1-trattoria", "v2-neon", "v3-diner", "v4-brutalist", "v5-comic", 
 # second site: cleanup/ (index gallery + 10 versions x index/services/quote); only enforced for folders that exist or are in the contract
 EXPECT += ["megabar.js", "cleanup/index.html", "cleanup/business.js", "cleanup/switcher.js",
            "cleanup/assets/maple-axis-logo.png", "cleanup/assets/maple-axis-mark.png"]
-for slug in ["v1-clean", "v2-pro", "v3-blueprint", "v4-bold", "v5-friendly", "v6-luxury",
-             "v7-industrial", "v8-eco", "v9-before-after", "v10-dark", "v11-axis", "v12-adarsh"]:
-    EXPECT += ["cleanup/" + slug + "/" + p for p in ["index.html", "services.html", "quote.html", "style.css"]]
+import json   # versions come from cleanup/versions.json; a version may list its own "pages" (default index/services/quote + style.css)
+_vj = os.path.join(ROOT, "cleanup", "versions.json")
+try:
+    _versions = json.load(open(_vj, encoding="utf-8"))
+except Exception as ex:
+    _versions = []; EXPECT.append("cleanup/versions.json (unreadable: %s)" % ex)
+EXPECT.append("cleanup/versions.json")
+for v in _versions:
+    for p in v.get("pages") or ["index.html", "services.html", "quote.html", "style.css"]:
+        EXPECT.append("cleanup/" + v["id"] + "/" + p)
+_ids = {v["id"] for v in _versions}
+_probs = []
+for v in _versions:
+    if v.get("parent") and v["parent"] not in _ids:
+        _probs.append("cleanup/versions.json: parent '%s' of %s is not a version id" % (v["parent"], v["id"]))
+try:
+    _notes = json.load(open(os.path.join(ROOT, "cleanup", "notes.json"), encoding="utf-8"))
+    if not isinstance(_notes, dict):
+        raise ValueError("must be an object")
+    for k in _notes:
+        if k not in _ids:
+            _probs.append("cleanup/notes.json: key '%s' is not a version id" % k)
+except Exception as ex:
+    _probs.append("cleanup/notes.json unreadable: %s" % ex)
+EXPECT += _probs
 
 
 class P(HTMLParser):
