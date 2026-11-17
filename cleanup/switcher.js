@@ -1,4 +1,4 @@
-/* Cleanup-site version bar: jump between v1..v11, keeping the same page (index / services / quote).
+/* Cleanup-site version bar: jump between v1..v12, keeping the same page (index / services / quote).
    Also fills elements with data-biz="name|tagline|phone|email|area|hours" from window.BIZ
    (links with data-biz=phone/email and no href get tel:/mailto:), and loads the root megabar.js and ratings.js. */
 (function () {
@@ -8,7 +8,7 @@
     ["v5-friendly", "5 Friendly"], ["v6-luxury", "6 Luxury"],
     ["v7-industrial", "7 Industrial"], ["v8-eco", "8 Eco"],
     ["v9-before-after", "9 Before & After"], ["v10-dark", "10 Dark"],
-    ["v11-axis", "11 Maple Axis"]
+    ["v11-axis", "11 Maple Axis"], ["v12-adarsh", "12 Adarsh (editable)"]
   ];
   var me = document.currentScript;
   var here = me && me.src ? me.src : "";

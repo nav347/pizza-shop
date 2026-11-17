@@ -17,7 +17,7 @@ for slug in ["v1-trattoria", "v2-neon", "v3-diner", "v4-brutalist", "v5-comic", 
 EXPECT += ["megabar.js", "cleanup/index.html", "cleanup/business.js", "cleanup/switcher.js",
            "cleanup/assets/maple-axis-logo.png", "cleanup/assets/maple-axis-mark.png"]
 for slug in ["v1-clean", "v2-pro", "v3-blueprint", "v4-bold", "v5-friendly", "v6-luxury",
-             "v7-industrial", "v8-eco", "v9-before-after", "v10-dark", "v11-axis"]:
+             "v7-industrial", "v8-eco", "v9-before-after", "v10-dark", "v11-axis", "v12-adarsh"]:
     EXPECT += ["cleanup/" + slug + "/" + p for p in ["index.html", "services.html", "quote.html", "style.css"]]
 
 
