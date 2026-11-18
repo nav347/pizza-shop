@@ -199,5 +199,13 @@
   "tag": "Your change",
   "added": "2026-11-18",
   "parent": "v18-build"
+ },
+ {
+  "id": "v20-build",
+  "title": "Version 20: Build",
+  "vibe": "Build a NEW version v20 from v19-then. Keep ALL content, wording, sections, link",
+  "tag": "Your change",
+  "added": "2026-11-18",
+  "parent": "v19-then"
  }
 ]
