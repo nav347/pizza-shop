@@ -183,5 +183,13 @@
   "tag": "Your change",
   "added": "2026-11-18",
   "parent": "v16-homes-business"
+ },
+ {
+  "id": "v18-build",
+  "title": "Version 18: Build",
+  "vibe": "Build a NEW version v18 from v16-homes-business (NOT from v17). Keep ALL content",
+  "tag": "Your change",
+  "added": "2026-11-18",
+  "parent": "v16-homes-business"
  }
 ]
