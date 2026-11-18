@@ -207,5 +207,13 @@
   "tag": "Your change",
   "added": "2026-11-18",
   "parent": "v19-then"
+ },
+ {
+  "id": "v21-why",
+  "title": "Version 21: Why",
+  "vibe": "Why not branding nd colors as from v15?",
+  "tag": "Your change",
+  "added": "2026-11-18",
+  "parent": "v20-build"
  }
 ]
