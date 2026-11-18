@@ -74,7 +74,7 @@ section{padding:80px 0}section.alt{background:var(--white);border-top:1px solid 
 .aud{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px}
 .aud article{position:relative;border-radius:22px;padding:36px 34px 34px;overflow:hidden;display:flex;flex-direction:column}
 .aud .biz{background:var(--night);color:#d7d9de}
-.aud .biz h3,.aud .biz .kick{color:#fff}.aud .biz .kick{color:#ff8a5c}
+.aud .biz h3,.aud .biz .kick{color:#fff}.aud .biz .kick{color:#ffd98a}
 .aud .home{background:var(--or-soft);border:1px solid #f6d3c2}
 .aud h3{font-size:clamp(1.4rem,3vw,1.9rem);line-height:1.15;margin:10px 0 10px;font-weight:800;letter-spacing:-.01em}
 .aud p.in{max-width:44ch}
@@ -114,11 +114,11 @@ section{padding:80px 0}section.alt{background:var(--white);border-top:1px solid 
 .pic{margin:0;overflow:hidden;background:#f3ede4}
 .pic svg{display:block;width:100%;height:auto;aspect-ratio:400/260}
 .pic .pb{fill:#f3ede4}.pic .pm{fill:#e4dccf;stroke:#cbc0af;stroke-width:1}.pic .pk{fill:#2b2e35;stroke:#1d2026;stroke-width:1}
-.pic .pl{fill:#ffc9ad}.pic .pa{fill:#e63a00}.pic .pt{fill:#fff}
+.pic .pl{fill:#ffd98a}.pic .pa{fill:#f2b233}.pic .pt{fill:#fff}
 .pic .pn{fill:none;stroke:#b5a996;stroke-width:1.2}.pic .pbm{fill:none;stroke:#cbc0af;stroke-width:4}
 .pic .pd{fill:#7d7466;opacity:.35}.pic .pd2{fill:#9a907f;opacity:.5}
-.pic .pw{fill:rgba(230,58,0,.14)}.pic .pl2{fill:rgba(230,58,0,.10)}.pic .pl3{stroke:#e63a00;stroke-width:2;opacity:.45}
-.pic .pal{fill:none;stroke:#e63a00;stroke-width:3;stroke-linecap:round}.pic .pal2{fill:none;stroke:#e63a00;stroke-width:3;stroke-dasharray:8 6}
+.pic .pw{fill:rgba(242,178,51,.14)}.pic .pl2{fill:rgba(242,178,51,.10)}.pic .pl3{stroke:#f2b233;stroke-width:2;opacity:.45}
+.pic .pal{fill:none;stroke:#f2b233;stroke-width:3;stroke-linecap:round}.pic .pal2{fill:none;stroke:#f2b233;stroke-width:3;stroke-dasharray:8 6}
 .pic .pal3{fill:none;stroke:#fff;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}.pic .pk2{stroke:#ffb08a;stroke-width:4;stroke-linecap:round}
 .pic.big{border-radius:22px;border:1px solid var(--line)}
 
@@ -152,11 +152,11 @@ section{padding:80px 0}section.alt{background:var(--white);border-top:1px solid 
 
 /* dark band (contractors) */
 .on-dark{background:var(--night);color:#cfd2d8}
-.on-dark h2.s,.on-dark h3{color:#fff}.on-dark .kick{color:#ff8a5c}.on-dark .sub{color:#b9bcc4}
+.on-dark h2.s,.on-dark h3{color:#fff}.on-dark .kick{color:#ffd98a}.on-dark .sub{color:#b9bcc4}
 .on-dark .pic.big{border-color:#2a2d35}
 .perks{list-style:none;padding:0;display:grid;gap:10px;margin:22px 0}
 .perks li{padding:12px 16px 12px 46px;border-radius:10px;position:relative;background:var(--night2);border:1px solid #2a2d35;color:#e6e7ea}
-.perks li:before{content:"";position:absolute;left:17px;top:50%;width:13px;height:7px;border-left:3px solid #ff8a5c;border-bottom:3px solid #ff8a5c;transform:translateY(-70%) rotate(-45deg)}
+.perks li:before{content:"";position:absolute;left:17px;top:50%;width:13px;height:7px;border-left:3px solid #ffd98a;border-bottom:3px solid #ffd98a;transform:translateY(-70%) rotate(-45deg)}
 
 /* page head */
 .page-head{padding:58px 0 46px;background:radial-gradient(900px 380px at 90% 0,var(--or-soft),transparent 70%),var(--paper);border-bottom:1px solid var(--line)}
@@ -218,7 +218,7 @@ footer a{color:#ffb08a}footer a:hover{color:#fff}
 .fbrand img{display:block;height:44px;width:auto;aspect-ratio:1487/651}
 footer h4{color:#fff;font:700 .8rem Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
 footer strong{color:#fff}
-.motto{margin-top:30px;padding-top:22px;border-top:1px solid #2a2d35;font:800 .82rem Montserrat,sans-serif;letter-spacing:.1em;color:#ff8a5c;text-transform:uppercase;overflow-wrap:anywhere}
+.motto{margin-top:30px;padding-top:22px;border-top:1px solid #2a2d35;font:800 .82rem Montserrat,sans-serif;letter-spacing:.1em;color:#ffd98a;text-transform:uppercase;overflow-wrap:anywhere}
 .fine{margin-top:10px;font-size:.8rem}
 
 /* responsive: built from 375 px up */
@@ -471,8 +471,8 @@ footer{background:#101216;color:#b4b1a8;border-top:3px solid #f2b233}footer a{co
 .pic .pl{fill:#ffe3a0}.pic .pa{fill:#f2b233}.pic .pt{fill:#f3f1ec}.pic .pn{stroke:#6b6f7a}.pic .pbm{stroke:#3a3e48}
 .pic .pd{fill:#b4b1a8}.pic .pd2{fill:#b4b1a8}.pic .pw{fill:rgba(242,178,51,.14)}.pic .pl2{fill:rgba(242,178,51,.10)}
 .pic .pl3,.pic .pal,.pic .pal2{stroke:#f2b233}.pic .pal3{stroke:#f3f1ec}.pic .pk2{stroke:#ffd98a}
-.art svg [fill="#e63a00"]{fill:#f2b233}.art svg [stroke="#e63a00"]{stroke:#f2b233}
-.art svg [fill="#ffc9ad"],.art svg [fill="#ffd2bd"]{fill:#ffd98a}
+.art svg [fill="#f2b233"]{fill:#f2b233}.art svg [stroke="#f2b233"]{stroke:#f2b233}
+.art svg [fill="#ffd98a"],.art svg [fill="#ffd98a"]{fill:#ffd98a}
 .art svg [fill="#fde3d6"]{fill:#2a2412}.art svg [fill="#fcd2bf"]{fill:#3a3320}
 
 /* make the hover lift harmless on touch screens */
