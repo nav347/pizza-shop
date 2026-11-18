@@ -175,5 +175,13 @@
    "biz-local.js",
    "site.js"
   ]
+ },
+ {
+  "id": "v17-build",
+  "title": "Version 17: Build",
+  "vibe": "Build a NEW version v17 from v16-homes-business. Keep ALL content, wording, sect",
+  "tag": "Your change",
+  "added": "2026-11-18",
+  "parent": "v16-homes-business"
  }
 ]
