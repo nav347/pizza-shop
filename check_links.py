@@ -31,6 +31,17 @@ _probs = []
 for v in _versions:
     if v.get("parent") and v["parent"] not in _ids:
         _probs.append("cleanup/versions.json: parent '%s' of %s is not a version id" % (v["parent"], v["id"]))
+import re   # numbering rule (Naveen 2026-11-18): version numbers run 1..N with no gaps, no duplicates, and every vN-* folder is in the list
+_nums = [int(m.group(1)) for m in (re.match(r"v(\d+)-", v["id"]) for v in _versions) if m]
+for _n in range(1, (max(_nums) if _nums else 0) + 1):
+    if _n not in _nums:
+        _probs.append("cleanup/versions.json: version number %d is missing from the list" % _n)
+for _n in sorted({n for n in _nums if _nums.count(n) > 1}):
+    _probs.append("cleanup/versions.json: version number %d is used twice" % _n)
+_cdir = os.path.join(ROOT, "cleanup")
+for _f in sorted(os.listdir(_cdir)) if os.path.isdir(_cdir) else []:
+    if re.match(r"v\d+-", _f) and os.path.isdir(os.path.join(_cdir, _f)) and _f not in _ids:
+        _probs.append("cleanup/%s has a folder but is not in versions.json" % _f)
 try:
     _notes = json.load(open(os.path.join(ROOT, "cleanup", "notes.json"), encoding="utf-8"))
     if not isinstance(_notes, dict):
