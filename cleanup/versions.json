@@ -154,5 +154,26 @@
   "tag": "Your change",
   "added": "2026-11-18",
   "parent": "v14-newlogo"
+ },
+ {
+  "id": "v16-homes-business",
+  "title": "Version 16",
+  "vibe": "Light, logo-first redesign in the logo's own orange and black, with For businesses / For homeowners, a Residential page and a property-type quote form.",
+  "swatch": [
+   "#faf7f2",
+   "#e63a00"
+  ],
+  "tag": "New design",
+  "added": "2026-11-18",
+  "parent": "v15-residential",
+  "pages": [
+   "index.html",
+   "residential.html",
+   "services.html",
+   "quote.html",
+   "style.css",
+   "biz-local.js",
+   "site.js"
+  ]
  }
 ]
