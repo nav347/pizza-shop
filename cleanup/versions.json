@@ -223,5 +223,13 @@
   "tag": "Your change",
   "added": "2026-11-18",
   "parent": "v20-build"
+ },
+ {
+  "id": "v23-build",
+  "title": "Version 23: Build",
+  "vibe": "Build a NEW version v23 from v22-build. Keep ALL content, wording, sections, lin",
+  "tag": "Your change",
+  "added": "2026-11-18",
+  "parent": "v22-build"
  }
 ]
