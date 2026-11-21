@@ -9,8 +9,8 @@ window.BIZ = {
   phone: "+1 (647) 936-2203",
   phoneRaw: "6479362203",
   email: "Info.mapleaxis@gmail.com",
-  address: "1-431 Lawrence Ave West, North York, ON M5M 1C3",
-  addressLines: ["1-431 Lawrence Ave West", "North York, ON M5M 1C3"],
+  address: "North York, Toronto and the GTA",
+  addressLines: ["North York, Toronto and the GTA"],
   area: "North York, Toronto and the GTA",
   cities: ["North York", "Toronto", "Etobicoke", "Scarborough", "Mississauga", "Brampton", "Vaughan", "Markham", "Richmond Hill"],
   hours: "Call or email for availability",
@@ -61,7 +61,7 @@ window.BIZ = {
     { q: "Can you clean after construction or drywall work?", a: "Yes, post-construction and post-drywall cleanup is part of our specialized cleaning projects." },
     { q: "How do I get a price?", a: "Call or email us with the location, the type of work and your timing, and we will respond with a quote. Pricing depends on the scope." },
     { q: "Which areas do you cover?", a: "North York, Toronto and the GTA." },
-    { q: "How do I reach you?", a: "Phone +1 (647) 936-2203, or email Info.mapleaxis@gmail.com. We are at 1-431 Lawrence Ave West, North York." }
+    { q: "How do I reach you?", a: "Phone +1 (647) 936-2203, or email Info.mapleaxis@gmail.com." }
   ],
   /* Real testimonials only. Empty until the owner supplies some: versions must hide the block when this is empty. */
   quotes: [],
