@@ -231,5 +231,13 @@
   "tag": "Your change",
   "added": "2026-11-18",
   "parent": "v22-build"
+ },
+ {
+  "id": "v24-upgrade",
+  "title": "Version 24: Upgrade",
+  "vibe": "Upgrade my existing Maple Axis website while keeping its current layout, format ",
+  "tag": "Your change",
+  "added": "2026-11-21",
+  "parent": "v23-build"
  }
 ]
