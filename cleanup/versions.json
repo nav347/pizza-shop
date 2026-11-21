@@ -271,5 +271,13 @@
   "tag": "Your change",
   "added": "2026-11-21",
   "parent": "v27-build"
+ },
+ {
+  "id": "v29-build",
+  "title": "Version 29: Build",
+  "vibe": "Build the next version from v28-build. This is ONE targeted change, nothing else",
+  "tag": "Your change",
+  "added": "2026-11-21",
+  "parent": "v28-build"
  }
 ]
