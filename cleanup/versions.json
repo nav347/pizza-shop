@@ -255,5 +255,13 @@
   "tag": "Your change",
   "added": "2026-11-21",
   "parent": "v25-upgrade"
+ },
+ {
+  "id": "v27-build",
+  "title": "Version 27: Build",
+  "vibe": "Build the next version from v26-build (the customer asked for these changes to V",
+  "tag": "Your change",
+  "added": "2026-11-21",
+  "parent": "v26-build"
  }
 ]
