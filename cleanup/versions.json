@@ -247,5 +247,13 @@
   "tag": "Your change",
   "added": "2026-11-21",
   "parent": "v24-upgrade"
+ },
+ {
+  "id": "v26-build",
+  "title": "Version 26: Build",
+  "vibe": "Build the next version from v25-upgrade. Keep everything as it is (red, black an",
+  "tag": "Your change",
+  "added": "2026-11-21",
+  "parent": "v25-upgrade"
  }
 ]
