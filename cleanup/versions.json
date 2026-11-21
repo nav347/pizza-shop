@@ -279,5 +279,13 @@
   "tag": "Your change",
   "added": "2026-11-21",
   "parent": "v28-build"
+ },
+ {
+  "id": "v30-wow",
+  "title": "Version 30: Mobile first",
+  "vibe": "Same pages and wording as v29, made much better on phones (full-photo hero, sticky quote and call bar, full-screen menu, swipe rows) and sharper on desktop (photo mosaic, bigger hero).",
+  "tag": "Your change",
+  "added": "2026-11-22",
+  "parent": "v29-build"
  }
 ]
