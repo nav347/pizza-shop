@@ -287,5 +287,13 @@
   "tag": "Your change",
   "added": "2026-11-22",
   "parent": "v29-build"
+ },
+ {
+  "id": "v31-fit",
+  "title": "Version 31: Phone fit",
+  "vibe": "Same pages, wording and look as v30, but the phone layout now fits the screen: no sideways scrolling, a one-row header and a hamburger menu that opens cleanly under it.",
+  "tag": "Phone fix",
+  "added": "2026-11-22",
+  "parent": "v30-wow"
  }
 ]
