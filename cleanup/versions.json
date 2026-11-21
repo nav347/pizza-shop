@@ -295,5 +295,13 @@
   "tag": "Phone fix",
   "added": "2026-11-22",
   "parent": "v30-wow"
+ },
+ {
+  "id": "v32-fluid",
+  "title": "Version 32: Fits every screen",
+  "vibe": "Same pages, wording and look as v31, now checked at 30 popular screen sizes: the header fits from phone to wide desktop (menu button up to 1180px), and card groups no longer leave one card alone on the last row.",
+  "tag": "Screen fit",
+  "added": "2026-11-22",
+  "parent": "v31-fit"
  }
 ]
