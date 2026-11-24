@@ -303,5 +303,13 @@
   "tag": "Screen fit",
   "added": "2026-11-22",
   "parent": "v31-fit"
+ },
+ {
+  "id": "v33-adarsh",
+  "title": "Version 33: Adarsh",
+  "vibe": "Adarsh's request (2026-11-22, never built): make the whole site consistently bra",
+  "tag": "Your change",
+  "added": "2026-11-24",
+  "parent": "v28-build"
  }
 ]
